@@ -59,25 +59,27 @@
             <id>spacehq-snapshots</id>
             <url>https://repo.spacehq.org/content/repositories/snapshots/</url>
         </repository>
+        <repository>
+            <id>jitpack.io</id>
+            <url>https://jitpack.io</url>
+        </repository>
     </repositories>
 
     <dependencies>
         <dependency>
-            <groupId>org.spacehq</groupId>
-            <artifactId>opennbt</artifactId>
-            <version>1.0</version>
-            <scope>compile</scope>
+            <groupId>com.github.Steveice10</groupId>
+            <artifactId>OpenNBT</artifactId>
+            <version>32efcec2f3</version>
         </dependency>
         <dependency>
-            <groupId>org.spacehq</groupId>
-            <artifactId>packetlib</artifactId>
-            <version>1.0</version>
-            <scope>compile</scope>
+            <groupId>com.github.Steveice10</groupId>
+            <artifactId>PacketLib</artifactId>
+            <version>885d03759d</version>
         </dependency>
         <dependency>
-            <groupId>org.spacehq</groupId>
-            <artifactId>mcauthlib</artifactId>
-            <version>1.0</version>
+            <groupId>com.github.Steveice10</groupId>
+            <artifactId>MCAuthLib</artifactId>
+            <version>4aecadde85</version>
         </dependency>
         <dependency>
             <groupId>junit</groupId>
@@ -96,8 +98,8 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>2.5.1</version>
                 <configuration>
-                    <source>1.6</source>
-                    <target>1.6</target>
+                    <source>1.8</source>
+                    <target>1.8</target>
                 </configuration>
             </plugin>
             <plugin>
