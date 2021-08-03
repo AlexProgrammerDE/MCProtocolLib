@@ -21,33 +21,57 @@ public class MessageStyle implements Cloneable {
         return this.color;
     }
 
+    public MessageStyle setColor(ChatColor color) {
+        this.color = color;
+        return this;
+    }
+
     public List<ChatFormat> getFormats() {
         return new ArrayList<ChatFormat>(this.formats);
+    }
+
+    public MessageStyle setFormats(List<ChatFormat> formats) {
+        this.formats = new ArrayList<ChatFormat>(formats);
+        return this;
     }
 
     public ClickEvent getClickEvent() {
         return this.click;
     }
 
+    public MessageStyle setClickEvent(ClickEvent event) {
+        this.click = event;
+        return this;
+    }
+
     public HoverEvent getHoverEvent() {
         return this.hover;
+    }
+
+    public MessageStyle setHoverEvent(HoverEvent event) {
+        this.hover = event;
+        return this;
     }
 
     public String getInsertion() {
         return this.insertion;
     }
 
+    public MessageStyle setInsertion(String insertion) {
+        this.insertion = insertion;
+        return this;
+    }
+
     public MessageStyle getParent() {
         return this.parent;
     }
 
-    public MessageStyle setColor(ChatColor color) {
-        this.color = color;
-        return this;
-    }
+    protected MessageStyle setParent(MessageStyle parent) {
+        if (parent == null) {
+            parent = DEFAULT;
+        }
 
-    public MessageStyle setFormats(List<ChatFormat> formats) {
-        this.formats = new ArrayList<ChatFormat>(formats);
+        this.parent = parent;
         return this;
     }
 
@@ -63,30 +87,6 @@ public class MessageStyle implements Cloneable {
 
     public MessageStyle clearFormats() {
         this.formats.clear();
-        return this;
-    }
-
-    public MessageStyle setClickEvent(ClickEvent event) {
-        this.click = event;
-        return this;
-    }
-
-    public MessageStyle setHoverEvent(HoverEvent event) {
-        this.hover = event;
-        return this;
-    }
-
-    public MessageStyle setInsertion(String insertion) {
-        this.insertion = insertion;
-        return this;
-    }
-
-    protected MessageStyle setParent(MessageStyle parent) {
-        if(parent == null) {
-            parent = DEFAULT;
-        }
-
-        this.parent = parent;
         return this;
     }
 

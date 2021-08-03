@@ -9,13 +9,13 @@ import java.io.IOException;
 
 public class ServerTabCompletePacket implements Packet {
 
-    private String matches[];
+    private String[] matches;
 
     @SuppressWarnings("unused")
     private ServerTabCompletePacket() {
     }
 
-    public ServerTabCompletePacket(String matches[]) {
+    public ServerTabCompletePacket(String[] matches) {
         this.matches = matches;
     }
 
@@ -26,7 +26,7 @@ public class ServerTabCompletePacket implements Packet {
     @Override
     public void read(NetInput in) throws IOException {
         this.matches = new String[in.readVarInt()];
-        for(int index = 0; index < this.matches.length; index++) {
+        for (int index = 0; index < this.matches.length; index++) {
             this.matches[index] = in.readString();
         }
     }
@@ -34,7 +34,7 @@ public class ServerTabCompletePacket implements Packet {
     @Override
     public void write(NetOutput out) throws IOException {
         out.writeVarInt(this.matches.length);
-        for(String match : this.matches) {
+        for (String match : this.matches) {
             out.writeString(match);
         }
     }

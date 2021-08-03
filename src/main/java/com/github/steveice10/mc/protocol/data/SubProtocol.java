@@ -4,5 +4,5 @@ public enum SubProtocol {
     HANDSHAKE,
     LOGIN,
     GAME,
-    STATUS;
+    STATUS
 }

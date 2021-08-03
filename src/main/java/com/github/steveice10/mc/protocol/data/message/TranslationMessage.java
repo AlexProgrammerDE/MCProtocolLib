@@ -7,14 +7,14 @@ import com.google.gson.JsonObject;
 import java.util.Arrays;
 
 public class TranslationMessage extends Message {
-    private String translationKey;
-    private Message translationParams[];
+    private final String translationKey;
+    private Message[] translationParams;
 
     public TranslationMessage(String translationKey, Message... translationParams) {
         this.translationKey = translationKey;
         this.translationParams = translationParams;
         this.translationParams = this.getTranslationParams();
-        for(Message param : this.translationParams) {
+        for (Message param : this.translationParams) {
             param.getStyle().setParent(this.getStyle());
         }
     }
@@ -24,8 +24,8 @@ public class TranslationMessage extends Message {
     }
 
     public Message[] getTranslationParams() {
-        Message copy[] = Arrays.copyOf(this.translationParams, this.translationParams.length);
-        for(int index = 0; index < copy.length; index++) {
+        Message[] copy = Arrays.copyOf(this.translationParams, this.translationParams.length);
+        for (int index = 0; index < copy.length; index++) {
             copy[index] = copy[index].clone();
         }
 
@@ -35,7 +35,7 @@ public class TranslationMessage extends Message {
     @Override
     public Message setStyle(MessageStyle style) {
         super.setStyle(style);
-        for(Message param : this.translationParams) {
+        for (Message param : this.translationParams) {
             param.getStyle().setParent(this.getStyle());
         }
 
@@ -55,11 +55,11 @@ public class TranslationMessage extends Message {
     @Override
     public JsonElement toJson() {
         JsonElement e = super.toJson();
-        if(e.isJsonObject()) {
+        if (e.isJsonObject()) {
             JsonObject json = e.getAsJsonObject();
             json.addProperty("translate", this.translationKey);
             JsonArray params = new JsonArray();
-            for(Message param : this.translationParams) {
+            for (Message param : this.translationParams) {
                 params.add(param.toJson());
             }
 

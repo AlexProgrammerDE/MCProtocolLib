@@ -1,9 +1,9 @@
 package com.github.steveice10.mc.protocol.data.game.chunk;
 
 public class Chunk {
-    private BlockStorage blocks;
-    private NibbleArray3d blocklight;
-    private NibbleArray3d skylight;
+    private final BlockStorage blocks;
+    private final NibbleArray3d blocklight;
+    private final NibbleArray3d skylight;
 
     public Chunk(boolean skylight) {
         this(new BlockStorage(), new NibbleArray3d(4096), skylight ? new NibbleArray3d(4096) : null);

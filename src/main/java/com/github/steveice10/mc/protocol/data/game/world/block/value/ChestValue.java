@@ -1,7 +1,7 @@
 package com.github.steveice10.mc.protocol.data.game.world.block.value;
 
 public class ChestValue implements BlockValue {
-    private int viewers;
+    private final int viewers;
 
     public ChestValue(int viewers) {
         this.viewers = viewers;

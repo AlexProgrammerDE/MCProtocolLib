@@ -1,10 +1,10 @@
 package com.github.steveice10.mc.protocol.data.game.world.map;
 
 public class MapPlayer {
-    private int centerX;
-    private int centerZ;
-    private int iconSize;
-    private int iconRotation;
+    private final int centerX;
+    private final int centerZ;
+    private final int iconSize;
+    private final int iconRotation;
 
     public MapPlayer(int centerX, int centerZ, int iconSize, int iconRotation) {
         this.centerX = centerX;

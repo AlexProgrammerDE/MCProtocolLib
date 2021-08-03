@@ -54,7 +54,7 @@ public class ServerUpdateScorePacket implements Packet {
         this.entry = in.readString();
         this.action = MagicValues.key(ScoreboardAction.class, in.readVarInt());
         this.objective = in.readString();
-        if(this.action == ScoreboardAction.ADD_OR_UPDATE) {
+        if (this.action == ScoreboardAction.ADD_OR_UPDATE) {
             this.value = in.readVarInt();
         }
     }
@@ -64,7 +64,7 @@ public class ServerUpdateScorePacket implements Packet {
         out.writeString(this.entry);
         out.writeVarInt(MagicValues.value(Integer.class, this.action));
         out.writeString(this.objective);
-        if(this.action == ScoreboardAction.ADD_OR_UPDATE) {
+        if (this.action == ScoreboardAction.ADD_OR_UPDATE) {
             out.writeVarInt(this.value);
         }
     }

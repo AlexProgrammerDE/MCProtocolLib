@@ -5,7 +5,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonPrimitive;
 
 public class TextMessage extends Message {
-    private String text;
+    private final String text;
 
     public TextMessage(String text) {
         this.text = text;
@@ -23,11 +23,11 @@ public class TextMessage extends Message {
 
     @Override
     public JsonElement toJson() {
-        if(this.getStyle().isDefault() && this.getExtra().isEmpty()) {
+        if (this.getStyle().isDefault() && this.getExtra().isEmpty()) {
             return new JsonPrimitive(this.text);
         } else {
             JsonElement e = super.toJson();
-            if(e.isJsonObject()) {
+            if (e.isJsonObject()) {
                 JsonObject json = e.getAsJsonObject();
                 json.addProperty("text", this.text);
                 return json;

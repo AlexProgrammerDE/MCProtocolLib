@@ -3,9 +3,9 @@ package com.github.steveice10.mc.protocol.data.game.entity.metadata;
 import com.github.steveice10.mc.protocol.util.ReflectionToString;
 
 public class EntityMetadata {
-    private int id;
-    private MetadataType type;
-    private Object value;
+    private final int id;
+    private final MetadataType type;
+    private final Object value;
 
     public EntityMetadata(int id, MetadataType type, Object value) {
         this.id = id;

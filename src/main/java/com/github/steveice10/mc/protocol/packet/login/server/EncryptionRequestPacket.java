@@ -13,13 +13,13 @@ public class EncryptionRequestPacket implements Packet {
 
     private String serverId;
     private PublicKey publicKey;
-    private byte verifyToken[];
+    private byte[] verifyToken;
 
     @SuppressWarnings("unused")
     private EncryptionRequestPacket() {
     }
 
-    public EncryptionRequestPacket(String serverId, PublicKey publicKey, byte verifyToken[]) {
+    public EncryptionRequestPacket(String serverId, PublicKey publicKey, byte[] verifyToken) {
         this.serverId = serverId;
         this.publicKey = publicKey;
         this.verifyToken = verifyToken;
@@ -47,7 +47,7 @@ public class EncryptionRequestPacket implements Packet {
     @Override
     public void write(NetOutput out) throws IOException {
         out.writeString(this.serverId);
-        byte encoded[] = this.publicKey.getEncoded();
+        byte[] encoded = this.publicKey.getEncoded();
         out.writeVarInt(encoded.length);
         out.writeBytes(encoded);
         out.writeVarInt(this.verifyToken.length);

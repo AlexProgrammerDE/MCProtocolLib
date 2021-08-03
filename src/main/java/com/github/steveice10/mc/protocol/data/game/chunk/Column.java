@@ -3,24 +3,24 @@ package com.github.steveice10.mc.protocol.data.game.chunk;
 import com.github.steveice10.opennbt.tag.builtin.CompoundTag;
 
 public class Column {
-    private int x;
-    private int z;
-    private Chunk chunks[];
-    private byte biomeData[];
-    private CompoundTag tileEntities[];
+    private final int x;
+    private final int z;
+    private final Chunk[] chunks;
+    private final byte[] biomeData;
+    private final CompoundTag[] tileEntities;
 
     private boolean skylight;
 
-    public Column(int x, int z, Chunk chunks[], CompoundTag tileEntities[]) {
+    public Column(int x, int z, Chunk[] chunks, CompoundTag[] tileEntities) {
         this(x, z, chunks, null, tileEntities);
     }
 
-    public Column(int x, int z, Chunk chunks[], byte biomeData[], CompoundTag tileEntities[]) {
-        if(chunks.length != 16) {
+    public Column(int x, int z, Chunk[] chunks, byte[] biomeData, CompoundTag[] tileEntities) {
+        if (chunks.length != 16) {
             throw new IllegalArgumentException("Chunk array length must be 16.");
         }
 
-        if(biomeData != null && biomeData.length != 256) {
+        if (biomeData != null && biomeData.length != 256) {
             throw new IllegalArgumentException("Biome data array length must be 256.");
         }
 
@@ -36,7 +36,7 @@ public class Column {
             }
         }
 
-        if(noSkylight && this.skylight) {
+        if (noSkylight && this.skylight) {
             throw new IllegalArgumentException("Either all chunks must have skylight values or none must have them.");
         }
 

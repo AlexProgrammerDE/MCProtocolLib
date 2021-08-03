@@ -6,6 +6,6 @@ public enum PositionElement {
     Y,
     Z,
     PITCH,
-    YAW;
+    YAW
 
 }

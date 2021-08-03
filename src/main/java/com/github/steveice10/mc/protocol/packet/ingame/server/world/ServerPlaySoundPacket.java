@@ -69,7 +69,7 @@ public class ServerPlaySoundPacket implements Packet {
         String value = in.readString();
         try {
             this.sound = MagicValues.key(BuiltinSound.class, value);
-        } catch(IllegalArgumentException e) {
+        } catch (IllegalArgumentException e) {
             this.sound = new CustomSound(value);
         }
 
@@ -84,10 +84,10 @@ public class ServerPlaySoundPacket implements Packet {
     @Override
     public void write(NetOutput out) throws IOException {
         String value = "";
-        if(this.sound instanceof CustomSound) {
+        if (this.sound instanceof CustomSound) {
             value = ((CustomSound) this.sound).getName();
-        } else if(this.sound instanceof BuiltinSound) {
-            value = MagicValues.value(String.class, (BuiltinSound) this.sound);
+        } else if (this.sound instanceof BuiltinSound) {
+            value = MagicValues.value(String.class, this.sound);
         }
 
         out.writeString(value);
@@ -97,11 +97,11 @@ public class ServerPlaySoundPacket implements Packet {
         out.writeInt((int) (this.z * 8));
         out.writeFloat(this.volume);
         int pitch = (int) (this.pitch * 63);
-        if(pitch > 255) {
+        if (pitch > 255) {
             pitch = 255;
         }
 
-        if(pitch < 0) {
+        if (pitch < 0) {
             pitch = 0;
         }
 

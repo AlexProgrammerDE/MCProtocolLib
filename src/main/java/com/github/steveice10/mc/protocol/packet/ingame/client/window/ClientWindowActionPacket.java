@@ -2,15 +2,7 @@ package com.github.steveice10.mc.protocol.packet.ingame.client.window;
 
 import com.github.steveice10.mc.protocol.data.MagicValues;
 import com.github.steveice10.mc.protocol.data.game.entity.metadata.ItemStack;
-import com.github.steveice10.mc.protocol.data.game.window.ClickItemParam;
-import com.github.steveice10.mc.protocol.data.game.window.CreativeGrabParam;
-import com.github.steveice10.mc.protocol.data.game.window.DropItemParam;
-import com.github.steveice10.mc.protocol.data.game.window.FillStackParam;
-import com.github.steveice10.mc.protocol.data.game.window.MoveToHotbarParam;
-import com.github.steveice10.mc.protocol.data.game.window.ShiftClickItemParam;
-import com.github.steveice10.mc.protocol.data.game.window.SpreadItemParam;
-import com.github.steveice10.mc.protocol.data.game.window.WindowAction;
-import com.github.steveice10.mc.protocol.data.game.window.WindowActionParam;
+import com.github.steveice10.mc.protocol.data.game.window.*;
 import com.github.steveice10.mc.protocol.util.NetUtil;
 import com.github.steveice10.mc.protocol.util.ReflectionToString;
 import com.github.steveice10.packetlib.io.NetInput;
@@ -73,19 +65,19 @@ public class ClientWindowActionPacket implements Packet {
         this.actionId = in.readShort();
         this.action = MagicValues.key(WindowAction.class, in.readByte());
         this.clicked = NetUtil.readItem(in);
-        if(this.action == WindowAction.CLICK_ITEM) {
+        if (this.action == WindowAction.CLICK_ITEM) {
             this.param = MagicValues.key(ClickItemParam.class, param);
-        } else if(this.action == WindowAction.SHIFT_CLICK_ITEM) {
+        } else if (this.action == WindowAction.SHIFT_CLICK_ITEM) {
             this.param = MagicValues.key(ShiftClickItemParam.class, param);
-        } else if(this.action == WindowAction.MOVE_TO_HOTBAR_SLOT) {
+        } else if (this.action == WindowAction.MOVE_TO_HOTBAR_SLOT) {
             this.param = MagicValues.key(MoveToHotbarParam.class, param);
-        } else if(this.action == WindowAction.CREATIVE_GRAB_MAX_STACK) {
+        } else if (this.action == WindowAction.CREATIVE_GRAB_MAX_STACK) {
             this.param = MagicValues.key(CreativeGrabParam.class, param);
-        } else if(this.action == WindowAction.DROP_ITEM) {
+        } else if (this.action == WindowAction.DROP_ITEM) {
             this.param = MagicValues.key(DropItemParam.class, param + (this.slot != -999 ? 2 : 0));
-        } else if(this.action == WindowAction.SPREAD_ITEM) {
+        } else if (this.action == WindowAction.SPREAD_ITEM) {
             this.param = MagicValues.key(SpreadItemParam.class, param);
-        } else if(this.action == WindowAction.FILL_STACK) {
+        } else if (this.action == WindowAction.FILL_STACK) {
             this.param = MagicValues.key(FillStackParam.class, param);
         }
     }
@@ -95,20 +87,20 @@ public class ClientWindowActionPacket implements Packet {
         out.writeByte(this.windowId);
         out.writeShort(this.slot);
         int param = 0;
-        if(this.action == WindowAction.CLICK_ITEM) {
-            param = MagicValues.value(Integer.class, (Enum<?>) this.param);
-        } else if(this.action == WindowAction.SHIFT_CLICK_ITEM) {
-            param = MagicValues.value(Integer.class, (Enum<?>) this.param);
-        } else if(this.action == WindowAction.MOVE_TO_HOTBAR_SLOT) {
-            param = MagicValues.value(Integer.class, (Enum<?>) this.param);
-        } else if(this.action == WindowAction.CREATIVE_GRAB_MAX_STACK) {
-            param = MagicValues.value(Integer.class, (Enum<?>) this.param);
-        } else if(this.action == WindowAction.DROP_ITEM) {
-            param = MagicValues.value(Integer.class, (Enum<?>) this.param) + (this.slot != -999 ? 2 : 0);
-        } else if(this.action == WindowAction.SPREAD_ITEM) {
-            param = MagicValues.value(Integer.class, (Enum<?>) this.param);
-        } else if(this.action == WindowAction.FILL_STACK) {
-            param = MagicValues.value(Integer.class, (Enum<?>) this.param);
+        if (this.action == WindowAction.CLICK_ITEM) {
+            param = MagicValues.value(Integer.class, this.param);
+        } else if (this.action == WindowAction.SHIFT_CLICK_ITEM) {
+            param = MagicValues.value(Integer.class, this.param);
+        } else if (this.action == WindowAction.MOVE_TO_HOTBAR_SLOT) {
+            param = MagicValues.value(Integer.class, this.param);
+        } else if (this.action == WindowAction.CREATIVE_GRAB_MAX_STACK) {
+            param = MagicValues.value(Integer.class, this.param);
+        } else if (this.action == WindowAction.DROP_ITEM) {
+            param = MagicValues.value(Integer.class, this.param) + (this.slot != -999 ? 2 : 0);
+        } else if (this.action == WindowAction.SPREAD_ITEM) {
+            param = MagicValues.value(Integer.class, this.param);
+        } else if (this.action == WindowAction.FILL_STACK) {
+            param = MagicValues.value(Integer.class, this.param);
         }
 
         out.writeByte(param);

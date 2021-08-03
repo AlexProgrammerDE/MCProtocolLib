@@ -1,7 +1,7 @@
 package com.github.steveice10.mc.protocol.data.game.world.sound;
 
 public class CustomSound implements Sound {
-    private String name;
+    private final String name;
 
     public CustomSound(String name) {
         this.name = name;

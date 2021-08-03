@@ -6,5 +6,5 @@ public enum PlayerState {
     LEAVE_BED,
     START_SPRINTING,
     STOP_SPRINTING,
-    RIDING_JUMP;
+    RIDING_JUMP
 }

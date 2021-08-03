@@ -1,13 +1,6 @@
 package com.github.steveice10.mc.protocol.data;
 
-import com.github.steveice10.mc.protocol.data.game.BossBarAction;
-import com.github.steveice10.mc.protocol.data.game.BossBarColor;
-import com.github.steveice10.mc.protocol.data.game.BossBarDivision;
-import com.github.steveice10.mc.protocol.data.game.ClientRequest;
-import com.github.steveice10.mc.protocol.data.game.MessageType;
-import com.github.steveice10.mc.protocol.data.game.PlayerListEntryAction;
-import com.github.steveice10.mc.protocol.data.game.ResourcePackStatus;
-import com.github.steveice10.mc.protocol.data.game.TitleAction;
+import com.github.steveice10.mc.protocol.data.game.*;
 import com.github.steveice10.mc.protocol.data.game.entity.Effect;
 import com.github.steveice10.mc.protocol.data.game.entity.EntityStatus;
 import com.github.steveice10.mc.protocol.data.game.entity.EquipmentSlot;
@@ -15,42 +8,19 @@ import com.github.steveice10.mc.protocol.data.game.entity.attribute.AttributeTyp
 import com.github.steveice10.mc.protocol.data.game.entity.attribute.ModifierOperation;
 import com.github.steveice10.mc.protocol.data.game.entity.attribute.ModifierType;
 import com.github.steveice10.mc.protocol.data.game.entity.metadata.MetadataType;
-import com.github.steveice10.mc.protocol.data.game.entity.player.Animation;
-import com.github.steveice10.mc.protocol.data.game.entity.player.BlockBreakStage;
-import com.github.steveice10.mc.protocol.data.game.entity.player.CombatState;
-import com.github.steveice10.mc.protocol.data.game.entity.player.GameMode;
-import com.github.steveice10.mc.protocol.data.game.entity.player.Hand;
-import com.github.steveice10.mc.protocol.data.game.entity.player.InteractAction;
-import com.github.steveice10.mc.protocol.data.game.entity.player.PlayerAction;
-import com.github.steveice10.mc.protocol.data.game.entity.player.PlayerState;
-import com.github.steveice10.mc.protocol.data.game.entity.player.PositionElement;
+import com.github.steveice10.mc.protocol.data.game.entity.player.*;
 import com.github.steveice10.mc.protocol.data.game.entity.type.GlobalEntityType;
 import com.github.steveice10.mc.protocol.data.game.entity.type.MobType;
 import com.github.steveice10.mc.protocol.data.game.entity.type.PaintingType;
 import com.github.steveice10.mc.protocol.data.game.entity.type.object.HangingDirection;
 import com.github.steveice10.mc.protocol.data.game.entity.type.object.MinecartType;
 import com.github.steveice10.mc.protocol.data.game.entity.type.object.ObjectType;
-import com.github.steveice10.mc.protocol.data.game.scoreboard.CollisionRule;
-import com.github.steveice10.mc.protocol.data.game.scoreboard.NameTagVisibility;
-import com.github.steveice10.mc.protocol.data.game.scoreboard.ObjectiveAction;
-import com.github.steveice10.mc.protocol.data.game.scoreboard.ScoreType;
-import com.github.steveice10.mc.protocol.data.game.scoreboard.ScoreboardAction;
-import com.github.steveice10.mc.protocol.data.game.scoreboard.ScoreboardPosition;
-import com.github.steveice10.mc.protocol.data.game.scoreboard.TeamAction;
-import com.github.steveice10.mc.protocol.data.game.scoreboard.TeamColor;
+import com.github.steveice10.mc.protocol.data.game.scoreboard.*;
 import com.github.steveice10.mc.protocol.data.game.setting.ChatVisibility;
 import com.github.steveice10.mc.protocol.data.game.setting.Difficulty;
 import com.github.steveice10.mc.protocol.data.game.statistic.Achievement;
 import com.github.steveice10.mc.protocol.data.game.statistic.GenericStatistic;
-import com.github.steveice10.mc.protocol.data.game.window.ClickItemParam;
-import com.github.steveice10.mc.protocol.data.game.window.CreativeGrabParam;
-import com.github.steveice10.mc.protocol.data.game.window.DropItemParam;
-import com.github.steveice10.mc.protocol.data.game.window.FillStackParam;
-import com.github.steveice10.mc.protocol.data.game.window.MoveToHotbarParam;
-import com.github.steveice10.mc.protocol.data.game.window.ShiftClickItemParam;
-import com.github.steveice10.mc.protocol.data.game.window.SpreadItemParam;
-import com.github.steveice10.mc.protocol.data.game.window.WindowAction;
-import com.github.steveice10.mc.protocol.data.game.window.WindowType;
+import com.github.steveice10.mc.protocol.data.game.window.*;
 import com.github.steveice10.mc.protocol.data.game.window.property.AnvilProperty;
 import com.github.steveice10.mc.protocol.data.game.window.property.BrewingStandProperty;
 import com.github.steveice10.mc.protocol.data.game.window.property.EnchantmentTableProperty;
@@ -60,12 +30,7 @@ import com.github.steveice10.mc.protocol.data.game.world.WorldBorderAction;
 import com.github.steveice10.mc.protocol.data.game.world.WorldType;
 import com.github.steveice10.mc.protocol.data.game.world.block.BlockFace;
 import com.github.steveice10.mc.protocol.data.game.world.block.UpdatedTileType;
-import com.github.steveice10.mc.protocol.data.game.world.block.value.ChestValueType;
-import com.github.steveice10.mc.protocol.data.game.world.block.value.GenericBlockValueType;
-import com.github.steveice10.mc.protocol.data.game.world.block.value.MobSpawnerValueType;
-import com.github.steveice10.mc.protocol.data.game.world.block.value.NoteBlockValueType;
-import com.github.steveice10.mc.protocol.data.game.world.block.value.PistonValue;
-import com.github.steveice10.mc.protocol.data.game.world.block.value.PistonValueType;
+import com.github.steveice10.mc.protocol.data.game.world.block.value.*;
 import com.github.steveice10.mc.protocol.data.game.world.effect.ParticleEffect;
 import com.github.steveice10.mc.protocol.data.game.world.effect.SmokeEffectData;
 import com.github.steveice10.mc.protocol.data.game.world.effect.SoundEffect;
@@ -76,11 +41,7 @@ import com.github.steveice10.mc.protocol.data.game.world.sound.BuiltinSound;
 import com.github.steveice10.mc.protocol.data.game.world.sound.SoundCategory;
 import com.github.steveice10.mc.protocol.data.handshake.HandshakeIntent;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 
 public class MagicValues {
     private static final Map<Object, List<Object>> values = new HashMap<Object, List<Object>>();
@@ -805,31 +766,31 @@ public class MagicValues {
         register(SoundCategory.AMBIENT, 8);
         register(SoundCategory.VOICE, 9);
 
-        for(BuiltinSound sound : BuiltinSound.values()) {
+        for (BuiltinSound sound : BuiltinSound.values()) {
             register(sound, sound.ordinal());
             register(sound, sound.name().toLowerCase().replace('_', '.'));
         }
     }
 
     private static void register(Enum<?> key, Object value) {
-        if(!values.containsKey(key)) {
+        if (!values.containsKey(key)) {
             values.put(key, new ArrayList<Object>());
         }
 
         values.get(key).add(value);
     }
 
-    @SuppressWarnings({ "unchecked" })
+    @SuppressWarnings({"unchecked"})
     public static <T> T key(Class<T> keyType, Object value) {
-        for(Object key : values.keySet()) {
-            if(keyType.isAssignableFrom(key.getClass())) {
-                for(Object val : values.get(key)) {
-                    if(val == value || val.equals(value)) {
+        for (Object key : values.keySet()) {
+            if (keyType.isAssignableFrom(key.getClass())) {
+                for (Object val : values.get(key)) {
+                    if (val == value || val.equals(value)) {
                         return (T) key;
-                    } else if(Number.class.isAssignableFrom(val.getClass()) && Number.class.isAssignableFrom(value.getClass())) {
+                    } else if (Number.class.isAssignableFrom(val.getClass()) && Number.class.isAssignableFrom(value.getClass())) {
                         Number num = (Number) val;
                         Number num2 = (Number) value;
-                        if(num.doubleValue() == num2.doubleValue()) {
+                        if (num.doubleValue() == num2.doubleValue()) {
                             return (T) key;
                         }
                     }
@@ -842,22 +803,22 @@ public class MagicValues {
 
     @SuppressWarnings("unchecked")
     public static <T> T value(Class<T> valueType, Object key) {
-        if(values.containsKey(key)) {
-            for(Object val : values.get(key)) {
-                if(valueType.isAssignableFrom(val.getClass())) {
+        if (values.containsKey(key)) {
+            for (Object val : values.get(key)) {
+                if (valueType.isAssignableFrom(val.getClass())) {
                     return (T) val;
-                } else if(Number.class.isAssignableFrom(val.getClass())) {
-                    if(valueType == Byte.class) {
+                } else if (Number.class.isAssignableFrom(val.getClass())) {
+                    if (valueType == Byte.class) {
                         return (T) (Object) ((Number) val).byteValue();
-                    } else if(valueType == Short.class) {
+                    } else if (valueType == Short.class) {
                         return (T) (Object) ((Number) val).shortValue();
-                    } else if(valueType == Integer.class) {
+                    } else if (valueType == Integer.class) {
                         return (T) (Object) ((Number) val).intValue();
-                    } else if(valueType == Long.class) {
+                    } else if (valueType == Long.class) {
                         return (T) (Object) ((Number) val).longValue();
-                    } else if(valueType == Float.class) {
+                    } else if (valueType == Float.class) {
                         return (T) (Object) ((Number) val).floatValue();
-                    } else if(valueType == Double.class) {
+                    } else if (valueType == Double.class) {
                         return (T) (Object) ((Number) val).doubleValue();
                     }
                 }

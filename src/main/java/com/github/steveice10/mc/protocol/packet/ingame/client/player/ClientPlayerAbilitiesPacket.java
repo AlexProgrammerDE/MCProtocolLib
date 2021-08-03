@@ -67,19 +67,19 @@ public class ClientPlayerAbilitiesPacket implements Packet {
     @Override
     public void write(NetOutput out) throws IOException {
         byte flags = 0;
-        if(this.invincible) {
+        if (this.invincible) {
             flags = (byte) (flags | 1);
         }
 
-        if(this.canFly) {
+        if (this.canFly) {
             flags = (byte) (flags | 2);
         }
 
-        if(this.flying) {
+        if (this.flying) {
             flags = (byte) (flags | 4);
         }
 
-        if(this.creative) {
+        if (this.creative) {
             flags = (byte) (flags | 8);
         }
 

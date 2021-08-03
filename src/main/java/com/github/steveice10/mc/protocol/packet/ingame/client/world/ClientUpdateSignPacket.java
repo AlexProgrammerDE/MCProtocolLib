@@ -12,14 +12,14 @@ import java.io.IOException;
 public class ClientUpdateSignPacket implements Packet {
 
     private Position position;
-    private String lines[];
+    private String[] lines;
 
     @SuppressWarnings("unused")
     private ClientUpdateSignPacket() {
     }
 
-    public ClientUpdateSignPacket(Position position, String lines[]) {
-        if(lines.length != 4) {
+    public ClientUpdateSignPacket(Position position, String[] lines) {
+        if (lines.length != 4) {
             throw new IllegalArgumentException("Lines must contain exactly 4 strings!");
         }
 
@@ -39,7 +39,7 @@ public class ClientUpdateSignPacket implements Packet {
     public void read(NetInput in) throws IOException {
         this.position = NetUtil.readPosition(in);
         this.lines = new String[4];
-        for(int count = 0; count < this.lines.length; count++) {
+        for (int count = 0; count < this.lines.length; count++) {
             this.lines[count] = in.readString();
         }
     }
@@ -47,7 +47,7 @@ public class ClientUpdateSignPacket implements Packet {
     @Override
     public void write(NetOutput out) throws IOException {
         NetUtil.writePosition(out, this.position);
-        for(String line : this.lines) {
+        for (String line : this.lines) {
             out.writeString(line);
         }
     }

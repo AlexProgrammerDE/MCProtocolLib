@@ -36,5 +36,5 @@ public enum MobType {
     IRON_GOLEM,
     HORSE,
     RABBIT,
-    VILLAGER;
+    VILLAGER
 }

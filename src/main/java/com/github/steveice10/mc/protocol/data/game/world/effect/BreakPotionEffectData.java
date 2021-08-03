@@ -1,7 +1,7 @@
 package com.github.steveice10.mc.protocol.data.game.world.effect;
 
 public class BreakPotionEffectData implements WorldEffectData {
-    private int potionId;
+    private final int potionId;
 
     public BreakPotionEffectData(int potionId) {
         this.potionId = potionId;

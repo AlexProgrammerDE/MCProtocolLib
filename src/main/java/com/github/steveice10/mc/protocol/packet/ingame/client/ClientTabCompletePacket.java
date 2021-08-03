@@ -53,7 +53,7 @@ public class ClientTabCompletePacket implements Packet {
         out.writeString(this.text);
         out.writeBoolean(this.assumeCommand);
         out.writeBoolean(this.lookingAt != null);
-        if(this.lookingAt != null) {
+        if (this.lookingAt != null) {
             NetUtil.writePosition(out, this.lookingAt);
         }
     }

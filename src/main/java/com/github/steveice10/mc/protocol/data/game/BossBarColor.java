@@ -7,5 +7,5 @@ public enum BossBarColor {
     LIME,
     YELLOW,
     PURPLE,
-    WHITE;
+    WHITE
 }
