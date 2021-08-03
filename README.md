@@ -15,7 +15,7 @@ package contains the protocol library.
 <b>Example Code</b>
 --------
 
-See ch.spacebase.mc.protocol.test.Test.
+See Test.
 
 
 <b>Building the Source</b>

@@ -1,6 +1,6 @@
 package ch.spacebase.mc.util;
 
-import ch.spacebase.mc.protocol.data.game.*;
+import com.github.steveice10.mc.protocol.data.game.*;
 import com.github.steveice10.opennbt.NBTIO;
 import com.github.steveice10.opennbt.tag.builtin.CompoundTag;
 import com.github.steveice10.packetlib.io.NetInput;

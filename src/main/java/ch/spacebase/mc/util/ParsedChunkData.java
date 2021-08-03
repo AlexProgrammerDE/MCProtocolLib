@@ -1,6 +1,6 @@
 package ch.spacebase.mc.util;
 
-import ch.spacebase.mc.protocol.data.game.Chunk;
+import com.github.steveice10.mc.protocol.data.game.Chunk;
 
 public class ParsedChunkData {
 
