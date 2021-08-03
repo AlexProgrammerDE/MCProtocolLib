@@ -6,8 +6,10 @@
 <b>About MCProtocolLib</b>
 --------
 
-MCProtocolLib is a simple library for communicating with a Minecraft client/server. It aims to allow people to make custom bots, clients, or servers for Minecraft easily.
-The library is split into two packages, ch.spacebase.mc.auth and ch.spacebase.mc.protocol. The auth package contains some classes to work with Mojang's auth servers and the protocol package contains the protocol library.
+MCProtocolLib is a simple library for communicating with a Minecraft client/server. It aims to allow people to make
+custom bots, clients, or servers for Minecraft easily. The library is split into two packages, com.github.steveice10.mc.auth and
+ch.spacebase.mc.protocol. The auth package contains some classes to work with Mojang's auth servers and the protocol
+package contains the protocol library.
 
 
 <b>Example Code</b>
@@ -19,8 +21,8 @@ See ch.spacebase.mc.protocol.test.Test.
 <b>Building the Source</b>
 --------
 
-MCProtocolLib uses Maven to manage dependencies. Simply run 'mvn clean install' in the source's directory.
-You can also download a build <b>[here](http://build.spacebase.ch/job/MCProtocolLib/)</b>.
+MCProtocolLib uses Maven to manage dependencies. Simply run 'mvn clean install' in the source's directory. You can also
+download a build <b>[here](http://build.spacebase.ch/job/MCProtocolLib/)</b>.
 
 
 <b>License</b>
