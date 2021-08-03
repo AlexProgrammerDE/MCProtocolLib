@@ -1,4 +1,4 @@
-package ch.spacebase.mc.util;
+package ch.spacebase.mc.auth.util;
 
 import java.io.*;
 

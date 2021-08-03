@@ -7,7 +7,7 @@ import ch.spacebase.mc.auth.request.RefreshRequest;
 import ch.spacebase.mc.auth.response.AuthenticationResponse;
 import ch.spacebase.mc.auth.response.RefreshResponse;
 import ch.spacebase.mc.auth.response.User;
-import ch.spacebase.mc.util.URLUtils;
+import ch.spacebase.mc.auth.util.URLUtils;
 
 import java.net.URL;
 import java.util.*;

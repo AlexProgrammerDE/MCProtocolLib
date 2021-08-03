@@ -1,6 +1,6 @@
 package com.github.steveice10.mc.protocol.packet.login.server;
 
-import ch.spacebase.mc.util.CryptUtil;
+import com.github.steveice10.mc.protocol.util.CryptUtil;
 import com.github.steveice10.packetlib.io.NetInput;
 import com.github.steveice10.packetlib.io.NetOutput;
 import com.github.steveice10.packetlib.packet.Packet;

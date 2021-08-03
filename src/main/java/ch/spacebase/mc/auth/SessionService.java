@@ -5,7 +5,7 @@ import ch.spacebase.mc.auth.exceptions.AuthenticationUnavailableException;
 import ch.spacebase.mc.auth.request.JoinServerRequest;
 import ch.spacebase.mc.auth.response.HasJoinedResponse;
 import ch.spacebase.mc.auth.response.Response;
-import ch.spacebase.mc.util.URLUtils;
+import ch.spacebase.mc.auth.util.URLUtils;
 
 import java.net.URL;
 import java.util.HashMap;

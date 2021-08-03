@@ -21,7 +21,7 @@ import com.github.steveice10.mc.protocol.packet.status.client.StatusPingPacket;
 import com.github.steveice10.mc.protocol.packet.status.client.StatusQueryPacket;
 import com.github.steveice10.mc.protocol.packet.status.server.StatusPongPacket;
 import com.github.steveice10.mc.protocol.packet.status.server.StatusResponsePacket;
-import ch.spacebase.mc.util.CryptUtil;
+import com.github.steveice10.mc.protocol.util.CryptUtil;
 import com.github.steveice10.packetlib.event.session.ConnectedEvent;
 import com.github.steveice10.packetlib.event.session.PacketReceivedEvent;
 import com.github.steveice10.packetlib.event.session.PacketSentEvent;

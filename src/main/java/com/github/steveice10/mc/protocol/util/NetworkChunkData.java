@@ -1,4 +1,4 @@
-package ch.spacebase.mc.util;
+package com.github.steveice10.mc.protocol.util;
 
 public class NetworkChunkData {
 

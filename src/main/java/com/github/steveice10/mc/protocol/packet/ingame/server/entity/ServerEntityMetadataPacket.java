@@ -1,7 +1,7 @@
 package com.github.steveice10.mc.protocol.packet.ingame.server.entity;
 
 import com.github.steveice10.mc.protocol.data.game.EntityMetadata;
-import ch.spacebase.mc.util.NetUtil;
+import com.github.steveice10.mc.protocol.util.NetUtil;
 import com.github.steveice10.packetlib.io.NetInput;
 import com.github.steveice10.packetlib.io.NetOutput;
 import com.github.steveice10.packetlib.packet.Packet;

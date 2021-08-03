@@ -1,6 +1,6 @@
 package com.github.steveice10.mc.protocol.packet.ingame.server.world;
 
-import ch.spacebase.mc.util.NetUtil;
+import com.github.steveice10.mc.protocol.util.NetUtil;
 import com.github.steveice10.opennbt.tag.builtin.CompoundTag;
 import com.github.steveice10.packetlib.io.NetInput;
 import com.github.steveice10.packetlib.io.NetOutput;

@@ -1,4 +1,4 @@
-package ch.spacebase.mc.util;
+package com.github.steveice10.mc.protocol.util;
 
 import javax.crypto.Cipher;
 import javax.crypto.KeyGenerator;

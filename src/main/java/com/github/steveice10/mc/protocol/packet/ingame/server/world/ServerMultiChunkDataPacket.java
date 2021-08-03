@@ -1,9 +1,9 @@
 package com.github.steveice10.mc.protocol.packet.ingame.server.world;
 
 import com.github.steveice10.mc.protocol.data.game.Chunk;
-import ch.spacebase.mc.util.NetUtil;
-import ch.spacebase.mc.util.NetworkChunkData;
-import ch.spacebase.mc.util.ParsedChunkData;
+import com.github.steveice10.mc.protocol.util.NetUtil;
+import com.github.steveice10.mc.protocol.util.NetworkChunkData;
+import com.github.steveice10.mc.protocol.util.ParsedChunkData;
 import com.github.steveice10.packetlib.io.NetInput;
 import com.github.steveice10.packetlib.io.NetOutput;
 import com.github.steveice10.packetlib.packet.Packet;
