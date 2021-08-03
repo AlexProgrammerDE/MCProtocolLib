@@ -5,11 +5,11 @@ import ch.spacebase.mc.auth.UserAuthentication;
 @SuppressWarnings("unused")
 public class AuthenticationRequest {
 
-    private Agent agent;
-    private String username;
-    private String password;
-    private String clientToken;
-    private boolean requestUser = true;
+    private final Agent agent;
+    private final String username;
+    private final String password;
+    private final String clientToken;
+    private final boolean requestUser = true;
 
     public AuthenticationRequest(UserAuthentication auth, String username, String password) {
         this.agent = new Agent("Minecraft", 1);

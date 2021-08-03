@@ -98,7 +98,7 @@ public class ServerNotifyClientPacket implements Packet {
         return 0;
     }
 
-    public static enum Notification {
+    public enum Notification {
         INVALID_BED,
         START_RAIN,
         STOP_RAIN,
@@ -107,27 +107,27 @@ public class ServerNotifyClientPacket implements Packet {
         DEMO_MESSAGE,
         ARROW_HIT_PLAYER,
         RAIN_STRENGTH,
-        THUNDER_STRENGTH;
+        THUNDER_STRENGTH
     }
 
-    public static enum GameModeValue implements NotificationValue {
+    public enum GameModeValue implements NotificationValue {
         SURVIVAL,
         CREATIVE,
-        ADVENTURE;
+        ADVENTURE
     }
 
-    public static enum DemoMessageValue implements NotificationValue {
+    public enum DemoMessageValue implements NotificationValue {
         WELCOME,
         MOVEMENT_CONTROLS,
         JUMP_CONTROL,
-        INVENTORY_CONTROL;
+        INVENTORY_CONTROL
     }
 
-    public static interface NotificationValue {
+    public interface NotificationValue {
     }
 
     public static class RainStrengthValue implements NotificationValue {
-        private float strength;
+        private final float strength;
 
         public RainStrengthValue(float strength) {
             if (strength > 1) {
@@ -147,7 +147,7 @@ public class ServerNotifyClientPacket implements Packet {
     }
 
     public static class ThunderStrengthValue implements NotificationValue {
-        private float strength;
+        private final float strength;
 
         public ThunderStrengthValue(float strength) {
             if (strength > 1) {

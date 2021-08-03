@@ -2,13 +2,13 @@ package com.github.steveice10.mc.protocol.util;
 
 public class NetworkChunkData {
 
-    private int mask;
-    private int extendedMask;
-    private boolean fullChunk;
-    private boolean sky;
-    private byte data[];
+    private final int mask;
+    private final int extendedMask;
+    private final boolean fullChunk;
+    private final boolean sky;
+    private final byte[] data;
 
-    public NetworkChunkData(int mask, int extendedMask, boolean fullChunk, boolean sky, byte data[]) {
+    public NetworkChunkData(int mask, int extendedMask, boolean fullChunk, boolean sky, byte[] data) {
         this.mask = mask;
         this.extendedMask = extendedMask;
         this.fullChunk = fullChunk;

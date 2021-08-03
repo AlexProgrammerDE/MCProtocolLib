@@ -2,8 +2,8 @@ package ch.spacebase.mc.auth.request;
 
 public class Agent {
 
-    private String name;
-    private int version;
+    private final String name;
+    private final int version;
 
     public Agent(String name, int version) {
         this.name = name;

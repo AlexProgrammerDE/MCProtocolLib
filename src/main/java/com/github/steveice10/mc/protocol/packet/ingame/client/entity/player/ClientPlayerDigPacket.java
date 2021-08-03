@@ -107,23 +107,23 @@ public class ClientPlayerDigPacket implements Packet {
         return false;
     }
 
-    public static enum Status {
+    public enum Status {
         START_DIGGING,
         CANCEL_DIGGING,
         FINISH_DIGGING,
         DROP_ITEM_STACK,
         DROP_ITEM,
-        SHOOT_ARROW_OR_FINISH_EATING;
+        SHOOT_ARROW_OR_FINISH_EATING
     }
 
-    public static enum Face {
+    public enum Face {
         BOTTOM,
         TOP,
         EAST,
         WEST,
         NORTH,
         SOUTH,
-        INVALID;
+        INVALID
     }
 
 }

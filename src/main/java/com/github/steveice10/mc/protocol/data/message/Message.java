@@ -30,7 +30,7 @@ public abstract class Message implements Cloneable {
             if (json.has("text")) {
                 msg = new TextMessage(json.get("text").getAsString());
             } else if (json.has("translate")) {
-                Message with[] = new Message[0];
+                Message[] with = new Message[0];
                 if (json.has("with")) {
                     JsonArray withJson = json.get("with").getAsJsonArray();
                     with = new Message[withJson.size()];
@@ -46,7 +46,7 @@ public abstract class Message implements Cloneable {
 
                 msg = new TranslationMessage(json.get("translate").getAsString(), with);
             } else {
-                throw new IllegalArgumentException("Unknown message type in json: " + json.toString());
+                throw new IllegalArgumentException("Unknown message type in json: " + json);
             }
 
             MessageStyle style = new MessageStyle();

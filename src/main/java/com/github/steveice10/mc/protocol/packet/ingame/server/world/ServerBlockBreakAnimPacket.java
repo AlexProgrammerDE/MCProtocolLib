@@ -73,7 +73,7 @@ public class ServerBlockBreakAnimPacket implements Packet {
         return false;
     }
 
-    public static enum Stage {
+    public enum Stage {
         STAGE_1,
         STAGE_2,
         STAGE_3,
@@ -84,7 +84,7 @@ public class ServerBlockBreakAnimPacket implements Packet {
         STAGE_8,
         STAGE_9,
         STAGE_10,
-        RESET;
+        RESET
     }
 
 }

@@ -15,16 +15,16 @@ import java.util.zip.Inflater;
 
 public class ServerMultiChunkDataPacket implements Packet {
 
-    private int x[];
-    private int z[];
-    private Chunk chunks[][];
-    private byte biomeData[][];
+    private int[] x;
+    private int[] z;
+    private Chunk[][] chunks;
+    private byte[][] biomeData;
 
     @SuppressWarnings("unused")
     private ServerMultiChunkDataPacket() {
     }
 
-    public ServerMultiChunkDataPacket(int x[], int z[], Chunk chunks[][], byte biomeData[][]) {
+    public ServerMultiChunkDataPacket(int[] x, int[] z, Chunk[][] chunks, byte[][] biomeData) {
         if (biomeData == null) {
             throw new IllegalArgumentException("BiomeData cannot be null.");
         }
@@ -36,7 +36,7 @@ public class ServerMultiChunkDataPacket implements Packet {
         boolean noSkylight = false;
         boolean skylight = false;
         for (int index = 0; index < chunks.length; index++) {
-            Chunk column[] = chunks[index];
+            Chunk[] column = chunks[index];
             if (column.length != 16) {
                 throw new IllegalArgumentException("Chunk columns must contain 16 chunks each.");
             }
@@ -90,7 +90,7 @@ public class ServerMultiChunkDataPacket implements Packet {
         short columns = in.readShort();
         int deflatedLength = in.readInt();
         boolean skylight = in.readBoolean();
-        byte deflatedBytes[] = in.readBytes(deflatedLength);
+        byte[] deflatedBytes = in.readBytes(deflatedLength);
         // Inflate chunk data.
         byte[] inflated = new byte[196864 * columns];
         Inflater inflater = new Inflater();
@@ -129,7 +129,7 @@ public class ServerMultiChunkDataPacket implements Packet {
             }
 
             // Copy column data into a new array.
-            byte dat[] = new byte[length];
+            byte[] dat = new byte[length];
             System.arraycopy(inflated, pos, dat, 0, length);
             // Read data into chunks and biome data.
             ParsedChunkData chunkData = NetUtil.dataToChunks(new NetworkChunkData(chunkMask, extendedChunkMask, true, skylight, dat));
@@ -144,14 +144,14 @@ public class ServerMultiChunkDataPacket implements Packet {
     @Override
     public void write(NetOutput out) throws IOException {
         // Prepare chunk data arrays.
-        int chunkMask[] = new int[this.chunks.length];
-        int extendedChunkMask[] = new int[this.chunks.length];
+        int[] chunkMask = new int[this.chunks.length];
+        int[] extendedChunkMask = new int[this.chunks.length];
         // Determine values to be written by cycling through columns.
         int pos = 0;
-        byte bytes[] = new byte[0];
+        byte[] bytes = new byte[0];
         boolean skylight = false;
         for (int count = 0; count < this.chunks.length; ++count) {
-            Chunk column[] = this.chunks[count];
+            Chunk[] column = this.chunks[count];
             // Convert chunks into network data.
             NetworkChunkData netData = NetUtil.chunksToData(new ParsedChunkData(column, this.biomeData[count]));
             if (bytes.length < pos + netData.getData().length) {
@@ -174,7 +174,7 @@ public class ServerMultiChunkDataPacket implements Packet {
 
         // Deflate chunk data.
         Deflater deflater = new Deflater(-1);
-        byte deflatedData[] = new byte[pos];
+        byte[] deflatedData = new byte[pos];
         int deflatedLength = pos;
         try {
             deflater.setInput(bytes, 0, pos);

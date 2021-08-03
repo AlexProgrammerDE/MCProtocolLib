@@ -61,7 +61,7 @@ public class ServerEntityEffectPacket implements Packet {
         return false;
     }
 
-    public static enum Effect {
+    public enum Effect {
         SPEED,
         SLOWNESS,
         DIG_SPEED,
@@ -84,7 +84,7 @@ public class ServerEntityEffectPacket implements Packet {
         WITHER_EFFECT,
         HEALTH_BOOST,
         ABSORPTION,
-        SATURATION;
+        SATURATION
     }
 
 }

@@ -5,9 +5,9 @@ import java.util.List;
 
 public class Attribute {
 
-    private String key;
-    private double value;
-    private List<AttributeModifier> modifiers;
+    private final String key;
+    private final double value;
+    private final List<AttributeModifier> modifiers;
 
     public Attribute(DefaultAttribute type) {
         this(type.getKey(), type.getDefault());

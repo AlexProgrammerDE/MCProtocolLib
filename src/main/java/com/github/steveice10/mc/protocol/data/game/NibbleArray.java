@@ -2,7 +2,7 @@ package com.github.steveice10.mc.protocol.data.game;
 
 public class NibbleArray {
 
-    private byte[] data;
+    private final byte[] data;
 
     public NibbleArray(int size) {
         this.data = new byte[size >> 1];

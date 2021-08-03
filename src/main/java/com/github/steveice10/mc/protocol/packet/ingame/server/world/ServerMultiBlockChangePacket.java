@@ -9,7 +9,7 @@ import java.io.IOException;
 
 public class ServerMultiBlockChangePacket implements Packet {
 
-    private BlockChangeRecord records[];
+    private BlockChangeRecord[] records;
 
     @SuppressWarnings("unused")
     private ServerMultiBlockChangePacket() {

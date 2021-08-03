@@ -8,7 +8,7 @@ import java.io.IOException;
 
 public class ServerDestroyEntitiesPacket implements Packet {
 
-    private int entityIds[];
+    private int[] entityIds;
 
     @SuppressWarnings("unused")
     private ServerDestroyEntitiesPacket() {

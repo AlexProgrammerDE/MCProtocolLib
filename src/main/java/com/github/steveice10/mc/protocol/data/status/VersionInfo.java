@@ -2,8 +2,8 @@ package com.github.steveice10.mc.protocol.data.status;
 
 public class VersionInfo {
 
-    private String name;
-    private int protocol;
+    private final String name;
+    private final int protocol;
 
     public VersionInfo(String name, int protocol) {
         this.name = name;

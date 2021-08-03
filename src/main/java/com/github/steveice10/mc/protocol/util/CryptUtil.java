@@ -35,7 +35,7 @@ public class CryptUtil {
         }
     }
 
-    public static PublicKey decodePublicKey(byte bytes[]) throws IOException {
+    public static PublicKey decodePublicKey(byte[] bytes) throws IOException {
         try {
             return KeyFactory.getInstance("RSA").generatePublic(new X509EncodedKeySpec(bytes));
         } catch (GeneralSecurityException e) {
@@ -69,7 +69,7 @@ public class CryptUtil {
 
     public static byte[] getServerIdHash(String serverId, PublicKey publicKey, SecretKey secretKey) {
         try {
-            return encrypt("SHA-1", new byte[][]{serverId.getBytes("ISO_8859_1"), secretKey.getEncoded(), publicKey.getEncoded()});
+            return encrypt("SHA-1", serverId.getBytes("ISO_8859_1"), secretKey.getEncoded(), publicKey.getEncoded());
         } catch (UnsupportedEncodingException e) {
             System.err.println("Failed to generate server id hash.");
             e.printStackTrace();
@@ -80,7 +80,7 @@ public class CryptUtil {
     private static byte[] encrypt(String encryption, byte[]... data) {
         try {
             MessageDigest digest = MessageDigest.getInstance(encryption);
-            for (byte array[] : data) {
+            for (byte[] array : data) {
                 digest.update(array);
             }
 

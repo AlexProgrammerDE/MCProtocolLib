@@ -2,17 +2,17 @@ package com.github.steveice10.mc.protocol.data.game;
 
 public class Chunk {
 
-    private byte blocks[];
-    private NibbleArray metadata;
-    private NibbleArray blocklight;
-    private NibbleArray skylight;
+    private final byte[] blocks;
+    private final NibbleArray metadata;
+    private final NibbleArray blocklight;
+    private final NibbleArray skylight;
     private NibbleArray extendedBlocks;
 
     public Chunk(boolean skylight, boolean extended) {
         this(new byte[4096], new NibbleArray(4096), new NibbleArray(4096), skylight ? new NibbleArray(4096) : null, extended ? new NibbleArray(4096) : null);
     }
 
-    public Chunk(byte blocks[], NibbleArray metadata, NibbleArray blocklight, NibbleArray skylight, NibbleArray extendedBlocks) {
+    public Chunk(byte[] blocks, NibbleArray metadata, NibbleArray blocklight, NibbleArray skylight, NibbleArray extendedBlocks) {
         this.blocks = blocks;
         this.metadata = metadata;
         this.blocklight = blocklight;

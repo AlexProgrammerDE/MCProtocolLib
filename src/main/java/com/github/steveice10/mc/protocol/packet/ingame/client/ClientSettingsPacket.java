@@ -77,17 +77,17 @@ public class ClientSettingsPacket implements Packet {
         return false;
     }
 
-    public static enum ChatVisibility {
+    public enum ChatVisibility {
         FULL,
         SYSTEM,
-        HIDDEN;
+        HIDDEN
     }
 
-    public static enum Difficulty {
+    public enum Difficulty {
         PEACEFUL,
         EASY,
         NORMAL,
-        HARD;
+        HARD
     }
 
 }

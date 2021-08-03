@@ -17,8 +17,8 @@ public class ServerChunkDataPacket implements Packet {
 
     private int x;
     private int z;
-    private Chunk chunks[];
-    private byte biomeData[];
+    private Chunk[] chunks;
+    private byte[] biomeData;
 
     @SuppressWarnings("unused")
     private ServerChunkDataPacket() {
@@ -42,7 +42,7 @@ public class ServerChunkDataPacket implements Packet {
      * @param chunks Array of chunks in the column. Length must be 16 but can contain null values.
      * @throws IllegalArgumentException If the chunk array length is not 16 or skylight arrays exist in some but not all chunks.
      */
-    public ServerChunkDataPacket(int x, int z, Chunk chunks[]) {
+    public ServerChunkDataPacket(int x, int z, Chunk[] chunks) {
         this(x, z, chunks, null);
     }
 
@@ -55,7 +55,7 @@ public class ServerChunkDataPacket implements Packet {
      * @param biomeData Array of biome data for the column.
      * @throws IllegalArgumentException If the chunk array length is not 16 or skylight arrays exist in some but not all chunks.
      */
-    public ServerChunkDataPacket(int x, int z, Chunk chunks[], byte biomeData[]) {
+    public ServerChunkDataPacket(int x, int z, Chunk[] chunks, byte[] biomeData) {
         if (chunks.length != 16) {
             throw new IllegalArgumentException("Chunks length must be 16.");
         }
@@ -110,7 +110,7 @@ public class ServerChunkDataPacket implements Packet {
         boolean fullChunk = in.readBoolean();
         int chunkMask = in.readShort();
         int extendedChunkMask = in.readShort();
-        byte deflated[] = in.readBytes(in.readInt());
+        byte[] deflated = in.readBytes(in.readInt());
         // Determine inflated data length.
         int chunkCount = 0;
         for (int count = 0; count < 16; count++) {
@@ -122,7 +122,7 @@ public class ServerChunkDataPacket implements Packet {
             len += 256;
         }
 
-        byte data[] = new byte[len];
+        byte[] data = new byte[len];
         // Inflate chunk data.
         Inflater inflater = new Inflater();
         inflater.setInput(deflated, 0, deflated.length);
@@ -146,7 +146,7 @@ public class ServerChunkDataPacket implements Packet {
         NetworkChunkData data = NetUtil.chunksToData(new ParsedChunkData(this.chunks, this.biomeData));
         // Deflate chunk data.
         Deflater deflater = new Deflater(-1);
-        byte deflated[] = new byte[data.getData().length];
+        byte[] deflated = new byte[data.getData().length];
         int len = data.getData().length;
         try {
             deflater.setInput(data.getData(), 0, data.getData().length);

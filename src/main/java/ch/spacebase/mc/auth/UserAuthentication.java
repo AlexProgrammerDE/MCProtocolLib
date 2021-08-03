@@ -23,8 +23,8 @@ public class UserAuthentication {
     private static final String STORAGE_KEY_USER_ID = "userid";
     private static final String STORAGE_KEY_ACCESS_TOKEN = "accessToken";
 
-    private String clientToken;
-    private Map<String, String> userProperties = new HashMap<String, String>();
+    private final String clientToken;
+    private final Map<String, String> userProperties = new HashMap<String, String>();
     private String userId;
     private String username;
     private String password;
@@ -164,7 +164,7 @@ public class UserAuthentication {
             AuthenticationRequest request = new AuthenticationRequest(this, this.username, this.password);
             AuthenticationResponse response = URLUtils.makeRequest(ROUTE_AUTHENTICATE, request, AuthenticationResponse.class);
             if (!response.getClientToken().equals(this.getClientToken())) {
-                throw new AuthenticationException("Server requested we change our client token. Don\'t know how to handle this!");
+                throw new AuthenticationException("Server requested we change our client token. Don't know how to handle this!");
             } else {
                 if (response.getUser() != null && response.getUser().getId() != null) {
                     this.userId = response.getUser().getId();
@@ -203,7 +203,7 @@ public class UserAuthentication {
             RefreshRequest request = new RefreshRequest(this);
             RefreshResponse response = URLUtils.makeRequest(ROUTE_REFRESH, request, RefreshResponse.class);
             if (!response.getClientToken().equals(this.getClientToken())) {
-                throw new AuthenticationException("Server requested we change our client token. Don\'t know how to handle this!");
+                throw new AuthenticationException("Server requested we change our client token. Don't know how to handle this!");
             } else {
                 if (response.getUser() != null && response.getUser().getId() != null) {
                     this.userId = response.getUser().getId();
@@ -247,14 +247,14 @@ public class UserAuthentication {
             RefreshRequest request = new RefreshRequest(this, profile);
             RefreshResponse response = URLUtils.makeRequest(ROUTE_REFRESH, request, RefreshResponse.class);
             if (!response.getClientToken().equals(this.getClientToken())) {
-                throw new AuthenticationException("Server requested we change our client token. Don\'t know how to handle this!");
+                throw new AuthenticationException("Server requested we change our client token. Don't know how to handle this!");
             } else {
                 this.isOnline = true;
                 this.accessToken = response.getAccessToken();
                 this.selectedProfile = response.getSelectedProfile();
             }
         } else {
-            throw new IllegalArgumentException("Invalid profile \'" + profile + "\'");
+            throw new IllegalArgumentException("Invalid profile '" + profile + "'");
         }
     }
 

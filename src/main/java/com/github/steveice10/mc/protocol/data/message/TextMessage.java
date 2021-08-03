@@ -6,7 +6,7 @@ import com.google.gson.JsonPrimitive;
 
 public class TextMessage extends Message {
 
-    private String text;
+    private final String text;
 
     public TextMessage(String text) {
         this.text = text;

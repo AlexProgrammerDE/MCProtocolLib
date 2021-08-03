@@ -2,9 +2,9 @@ package com.github.steveice10.mc.protocol.data.game;
 
 public class EntityMetadata {
 
-    private int id;
-    private Type type;
-    private Object value;
+    private final int id;
+    private final Type type;
+    private final Object value;
 
     public EntityMetadata(int id, Type type, Object value) {
         this.id = id;
@@ -24,14 +24,14 @@ public class EntityMetadata {
         return this.value;
     }
 
-    public static enum Type {
+    public enum Type {
         BYTE,
         SHORT,
         INT,
         FLOAT,
         STRING,
         ITEM,
-        COORDINATES;
+        COORDINATES
     }
 
 }

@@ -14,7 +14,7 @@ public class ServerTeamPacket implements Packet {
     private String prefix;
     private String suffix;
     private FriendlyFireMode friendlyFire;
-    private String players[];
+    private String[] players;
 
     @SuppressWarnings("unused")
     private ServerTeamPacket() {
@@ -25,7 +25,7 @@ public class ServerTeamPacket implements Packet {
         this.action = Action.REMOVE;
     }
 
-    public ServerTeamPacket(String name, Action action, String players[]) {
+    public ServerTeamPacket(String name, Action action, String[] players) {
         if (action != Action.ADD_PLAYER && action != Action.REMOVE_PLAYER) {
             throw new IllegalArgumentException("(name, action, players) constructor only valid for adding and removing players.");
         }
@@ -44,7 +44,7 @@ public class ServerTeamPacket implements Packet {
         this.action = Action.UPDATE;
     }
 
-    public ServerTeamPacket(String name, String displayName, String prefix, String suffix, FriendlyFireMode friendlyFire, String players[]) {
+    public ServerTeamPacket(String name, String displayName, String prefix, String suffix, FriendlyFireMode friendlyFire, String[] players) {
         this.name = name;
         this.displayName = displayName;
         this.prefix = prefix;
@@ -126,18 +126,18 @@ public class ServerTeamPacket implements Packet {
         return false;
     }
 
-    public static enum Action {
+    public enum Action {
         CREATE,
         REMOVE,
         UPDATE,
         ADD_PLAYER,
-        REMOVE_PLAYER;
+        REMOVE_PLAYER
     }
 
-    public static enum FriendlyFireMode {
+    public enum FriendlyFireMode {
         OFF,
         ON,
-        FRIENDLY_INVISIBLES_VISIBLE;
+        FRIENDLY_INVISIBLES_VISIBLE
     }
 
 }

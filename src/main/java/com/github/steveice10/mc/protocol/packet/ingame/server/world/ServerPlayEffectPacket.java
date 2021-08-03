@@ -283,7 +283,7 @@ public class ServerPlayEffectPacket implements Packet {
         return 0;
     }
 
-    public static enum SoundEffect implements Effect {
+    public enum SoundEffect implements Effect {
         CLICK,
         EMPTY_DISPENSER_CLICK,
         FIRE_PROJECTILE,
@@ -303,20 +303,20 @@ public class ServerPlayEffectPacket implements Packet {
         ENDER_DRAGON_DEATH,
         ANVIL_BREAK,
         ANVIL_USE,
-        ANVIL_LAND;
+        ANVIL_LAND
     }
 
-    public static enum ParticleEffect implements Effect {
+    public enum ParticleEffect implements Effect {
         SMOKE,
         BREAK_BLOCK,
         BREAK_SPLASH_POTION,
         BREAK_EYE_OF_ENDER,
         MOB_SPAWN,
         BONEMEAL_GROW,
-        HARD_LANDING_DUST;
+        HARD_LANDING_DUST
     }
 
-    public static enum SmokeData implements EffectData {
+    public enum SmokeData implements EffectData {
         SOUTH_EAST,
         SOUTH,
         SOUTH_WEST,
@@ -325,17 +325,17 @@ public class ServerPlayEffectPacket implements Packet {
         WEST,
         NORTH_EAST,
         NORTH,
-        NORTH_WEST;
+        NORTH_WEST
     }
 
-    public static interface Effect {
+    public interface Effect {
     }
 
-    public static interface EffectData {
+    public interface EffectData {
     }
 
     public static class RecordData implements EffectData {
-        private int recordId;
+        private final int recordId;
 
         public RecordData(int recordId) {
             this.recordId = recordId;
@@ -347,7 +347,7 @@ public class ServerPlayEffectPacket implements Packet {
     }
 
     public static class BreakBlockData implements EffectData {
-        private int blockId;
+        private final int blockId;
 
         public BreakBlockData(int blockId) {
             this.blockId = blockId;
@@ -359,7 +359,7 @@ public class ServerPlayEffectPacket implements Packet {
     }
 
     public static class BreakPotionData implements EffectData {
-        private int potionId;
+        private final int potionId;
 
         public BreakPotionData(int potionId) {
             this.potionId = potionId;
@@ -371,7 +371,7 @@ public class ServerPlayEffectPacket implements Packet {
     }
 
     public static class HardLandingData implements EffectData {
-        private int damagingDistance;
+        private final int damagingDistance;
 
         public HardLandingData(int damagingDistance) {
             this.damagingDistance = damagingDistance;

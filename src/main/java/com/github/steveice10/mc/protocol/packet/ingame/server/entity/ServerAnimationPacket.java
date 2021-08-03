@@ -45,13 +45,13 @@ public class ServerAnimationPacket implements Packet {
         return false;
     }
 
-    public static enum Animation {
+    public enum Animation {
         SWING_ARM,
         DAMAGE,
         LEAVE_BED,
         EAT_FOOD,
         CRITICAL_HIT,
-        ENCHANTMENT_CRITICAL_HIT;
+        ENCHANTMENT_CRITICAL_HIT
     }
 
 }

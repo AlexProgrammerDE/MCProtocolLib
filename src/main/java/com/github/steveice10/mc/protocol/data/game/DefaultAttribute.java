@@ -10,10 +10,10 @@ public class DefaultAttribute {
     public static final DefaultAttribute HORSE_JUMP_STRENGTH = new DefaultAttribute("generic.maxHealth", 0.7, 0, 2);
     public static final DefaultAttribute ZOMBIE_SPAWN_REINFORCEMENTS_CHANCE = new DefaultAttribute("generic.maxHealth", 0, 0, 1);
 
-    private String key;
-    private double def;
-    private double min;
-    private double max;
+    private final String key;
+    private final double def;
+    private final double min;
+    private final double max;
 
     private DefaultAttribute(String key, double def, double min, double max) {
         this.key = key;

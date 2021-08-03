@@ -96,25 +96,25 @@ public class ServerRespawnPacket implements Packet {
         return false;
     }
 
-    public static enum GameMode {
+    public enum GameMode {
         SURVIVAL,
         CREATIVE,
-        ADVENTURE;
+        ADVENTURE
     }
 
-    public static enum Difficulty {
+    public enum Difficulty {
         PEACEFUL,
         EASY,
         NORMAL,
-        HARD;
+        HARD
     }
 
-    public static enum WorldType {
+    public enum WorldType {
         DEFAULT,
         FLAT,
         LARGE_BIOMES,
         AMPLIFIED,
-        DEFAULT_1_1;
+        DEFAULT_1_1
     }
 
 }

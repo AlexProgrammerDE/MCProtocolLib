@@ -95,13 +95,13 @@ public class ClientPlayerPlaceBlockPacket implements Packet {
         return false;
     }
 
-    public static enum Face {
+    public enum Face {
         BOTTOM,
         TOP,
         EAST,
         WEST,
         NORTH,
-        SOUTH;
+        SOUTH
     }
 
 }

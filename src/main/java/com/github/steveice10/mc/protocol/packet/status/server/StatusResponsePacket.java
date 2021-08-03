@@ -1,11 +1,11 @@
 package com.github.steveice10.mc.protocol.packet.status.server;
 
 import ch.spacebase.mc.auth.GameProfile;
+import ch.spacebase.mc.auth.util.Base64;
 import com.github.steveice10.mc.protocol.data.message.Message;
 import com.github.steveice10.mc.protocol.data.status.PlayerInfo;
 import com.github.steveice10.mc.protocol.data.status.ServerStatusInfo;
 import com.github.steveice10.mc.protocol.data.status.VersionInfo;
-import ch.spacebase.mc.auth.util.Base64;
 import com.github.steveice10.packetlib.io.NetInput;
 import com.github.steveice10.packetlib.io.NetOutput;
 import com.github.steveice10.packetlib.packet.Packet;
@@ -19,6 +19,7 @@ import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 
 public class StatusResponsePacket implements Packet {
 
@@ -42,7 +43,7 @@ public class StatusResponsePacket implements Packet {
         JsonObject ver = obj.get("version").getAsJsonObject();
         VersionInfo version = new VersionInfo(ver.get("name").getAsString(), ver.get("protocol").getAsInt());
         JsonObject plrs = obj.get("players").getAsJsonObject();
-        GameProfile profiles[] = new GameProfile[0];
+        GameProfile[] profiles = new GameProfile[0];
         if (plrs.has("sample")) {
             JsonArray prof = plrs.get("sample").getAsJsonArray();
             if (prof.size() > 0) {
@@ -101,7 +102,7 @@ public class StatusResponsePacket implements Packet {
             str = str.substring("data:image/png;base64,".length());
         }
 
-        byte bytes[] = Base64.decode(str.getBytes("UTF-8"));
+        byte[] bytes = Base64.decode(str.getBytes(StandardCharsets.UTF_8));
         ByteArrayInputStream in = new ByteArrayInputStream(bytes);
         BufferedImage icon = ImageIO.read(in);
         in.close();
@@ -120,8 +121,8 @@ public class StatusResponsePacket implements Packet {
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         ImageIO.write(icon, "PNG", out);
         out.close();
-        byte encoded[] = Base64.encode(out.toByteArray());
-        return "data:image/png;base64," + new String(encoded, "UTF-8");
+        byte[] encoded = Base64.encode(out.toByteArray());
+        return "data:image/png;base64," + new String(encoded, StandardCharsets.UTF_8);
     }
 
     @Override

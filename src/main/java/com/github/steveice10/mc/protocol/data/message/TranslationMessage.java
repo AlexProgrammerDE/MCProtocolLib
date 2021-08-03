@@ -8,8 +8,8 @@ import java.util.Arrays;
 
 public class TranslationMessage extends Message {
 
-    private String translationKey;
-    private Message translationParams[];
+    private final String translationKey;
+    private Message[] translationParams;
 
     public TranslationMessage(String translationKey, Message... translationParams) {
         this.translationKey = translationKey;
@@ -25,7 +25,7 @@ public class TranslationMessage extends Message {
     }
 
     public Message[] getTranslationParams() {
-        Message copy[] = Arrays.copyOf(this.translationParams, this.translationParams.length);
+        Message[] copy = Arrays.copyOf(this.translationParams, this.translationParams.length);
         for (int index = 0; index < copy.length; index++) {
             copy[index] = copy[index].clone();
         }

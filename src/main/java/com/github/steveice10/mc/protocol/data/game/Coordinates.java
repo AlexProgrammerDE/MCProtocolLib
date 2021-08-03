@@ -2,9 +2,9 @@ package com.github.steveice10.mc.protocol.data.game;
 
 public class Coordinates {
 
-    private int x;
-    private int y;
-    private int z;
+    private final int x;
+    private final int y;
+    private final int z;
 
     public Coordinates(int x, int y, int z) {
         this.x = x;

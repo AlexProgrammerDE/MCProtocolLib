@@ -6,10 +6,10 @@ import ch.spacebase.mc.auth.UserAuthentication;
 @SuppressWarnings("unused")
 public class RefreshRequest {
 
-    private String clientToken;
-    private String accessToken;
-    private GameProfile selectedProfile;
-    private boolean requestUser;
+    private final String clientToken;
+    private final String accessToken;
+    private final GameProfile selectedProfile;
+    private final boolean requestUser;
 
     public RefreshRequest(UserAuthentication authService) {
         this(authService, null);

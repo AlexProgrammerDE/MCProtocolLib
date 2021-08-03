@@ -11,13 +11,13 @@ public class ClientUpdateSignPacket implements Packet {
     private int x;
     private int y;
     private int z;
-    private String lines[];
+    private String[] lines;
 
     @SuppressWarnings("unused")
     private ClientUpdateSignPacket() {
     }
 
-    public ClientUpdateSignPacket(int x, int y, int z, String lines[]) {
+    public ClientUpdateSignPacket(int x, int y, int z, String[] lines) {
         if (lines.length != 4) {
             throw new IllegalArgumentException("Lines must contain exactly 4 strings!");
         }

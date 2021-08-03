@@ -71,12 +71,12 @@ public class ServerUpdateTileEntityPacket implements Packet {
         return false;
     }
 
-    public static enum Type {
+    public enum Type {
         MOB_SPAWNER,
         COMMAND_BLOCK,
         BEACON,
         SKULL,
-        FLOWER_POT;
+        FLOWER_POT
     }
 
 }

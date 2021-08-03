@@ -33,10 +33,10 @@ import java.util.Random;
 
 public class ServerListener extends SessionAdapter {
 
-    private static KeyPair pair = CryptUtil.generateKeyPair();
+    private static final KeyPair pair = CryptUtil.generateKeyPair();
 
-    private byte verifyToken[] = new byte[4];
-    private String serverId = "";
+    private final byte[] verifyToken = new byte[4];
+    private final String serverId = "";
     private String username = "";
 
     private long lastPingTime = 0;
@@ -136,8 +136,8 @@ public class ServerListener extends SessionAdapter {
     }
 
     private class UserAuthThread extends Thread {
-        private Session session;
-        private SecretKey key;
+        private final Session session;
+        private final SecretKey key;
 
         public UserAuthThread(Session session, SecretKey key) {
             this.key = key;
@@ -170,7 +170,7 @@ public class ServerListener extends SessionAdapter {
     }
 
     private class KeepAliveThread extends Thread {
-        private Session session;
+        private final Session session;
 
         public KeepAliveThread(Session session) {
             this.session = session;

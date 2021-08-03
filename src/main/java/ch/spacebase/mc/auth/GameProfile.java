@@ -2,8 +2,8 @@ package ch.spacebase.mc.auth;
 
 public class GameProfile {
 
-    private String id;
-    private String name;
+    private final String id;
+    private final String name;
 
     public GameProfile(String id, String name) {
         if ((id == null || id.equals("")) && (name == null || name.equals(""))) {
@@ -32,7 +32,7 @@ public class GameProfile {
             return true;
         } else if (o != null && this.getClass() == o.getClass()) {
             GameProfile that = (GameProfile) o;
-            return !this.id.equals(that.id) ? false : this.name.equals(that.name);
+            return this.id.equals(that.id) && this.name.equals(that.name);
         } else {
             return false;
         }

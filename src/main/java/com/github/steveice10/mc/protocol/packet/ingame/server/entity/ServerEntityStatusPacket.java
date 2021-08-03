@@ -123,7 +123,7 @@ public class ServerEntityStatusPacket implements Packet {
         return false;
     }
 
-    public static enum Status {
+    public enum Status {
         HURT_OR_MINECART_SPAWNER_DELAY_RESET,
         LIVING_HURT,
         DEAD,
@@ -140,7 +140,7 @@ public class ServerEntityStatusPacket implements Packet {
         WITCH_MAGIC_PARTICLES,
         ZOMBIE_VILLAGER_SHAKING,
         FIREWORK_EXPLODING,
-        ANIMAL_HEARTS;
+        ANIMAL_HEARTS
     }
 
 }

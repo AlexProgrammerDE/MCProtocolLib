@@ -53,10 +53,10 @@ public class ServerScoreboardObjectivePacket implements Packet {
         return false;
     }
 
-    public static enum Action {
+    public enum Action {
         ADD,
         REMOVE,
-        UPDATE;
+        UPDATE
     }
 
 }

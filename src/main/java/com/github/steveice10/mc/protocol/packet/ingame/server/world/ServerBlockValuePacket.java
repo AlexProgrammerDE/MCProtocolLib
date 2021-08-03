@@ -217,52 +217,52 @@ public class ServerBlockValuePacket implements Packet {
         throw new IOException("Unmapped value: " + value);
     }
 
-    public static enum GenericValueType implements ValueType {
-        GENERIC;
+    public enum GenericValueType implements ValueType {
+        GENERIC
     }
 
-    public static enum NoteBlockValueType implements ValueType {
+    public enum NoteBlockValueType implements ValueType {
         HARP,
         DOUBLE_BASS,
         SNARE_DRUM,
         HI_HAT,
-        BASS_DRUM;
+        BASS_DRUM
     }
 
-    public static enum PistonValueType implements ValueType {
+    public enum PistonValueType implements ValueType {
         PUSHING,
-        PULLING;
+        PULLING
     }
 
-    public static enum ChestValueType implements ValueType {
-        VIEWING_PLAYER_COUNT;
+    public enum ChestValueType implements ValueType {
+        VIEWING_PLAYER_COUNT
     }
 
-    public static enum MobSpawnerValueType implements ValueType {
-        RESET_DELAY;
+    public enum MobSpawnerValueType implements ValueType {
+        RESET_DELAY
     }
 
-    public static enum PistonValue implements Value {
+    public enum PistonValue implements Value {
         DOWN,
         UP,
         SOUTH,
         WEST,
         NORTH,
-        EAST;
+        EAST
     }
 
-    public static enum MobSpawnerValue implements Value {
-        VALUE;
+    public enum MobSpawnerValue implements Value {
+        VALUE
     }
 
-    public static interface ValueType {
+    public interface ValueType {
     }
 
-    public static interface Value {
+    public interface Value {
     }
 
     public static class GenericValue implements Value {
-        private int value;
+        private final int value;
 
         public GenericValue(int value) {
             this.value = value;
@@ -274,7 +274,7 @@ public class ServerBlockValuePacket implements Packet {
     }
 
     public static class NoteBlockValue implements Value {
-        private int pitch;
+        private final int pitch;
 
         public NoteBlockValue(int pitch) {
             if (pitch < 0 || pitch > 24) {
@@ -290,7 +290,7 @@ public class ServerBlockValuePacket implements Packet {
     }
 
     public static class ChestValue implements Value {
-        private int viewers;
+        private final int viewers;
 
         public ChestValue(int viewers) {
             this.viewers = viewers;

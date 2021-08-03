@@ -57,12 +57,12 @@ public class ClientEntityActionPacket implements Packet {
         return false;
     }
 
-    public static enum Action {
+    public enum Action {
         CROUCH,
         UNCROUCH,
         LEAVE_BED,
         START_SPRINTING,
-        STOP_SPRINTING;
+        STOP_SPRINTING
     }
 
 }

@@ -4,5 +4,5 @@ public enum ProtocolMode {
     HANDSHAKE,
     LOGIN,
     GAME,
-    STATUS;
+    STATUS
 }

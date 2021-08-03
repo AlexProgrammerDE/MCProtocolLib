@@ -70,9 +70,9 @@ public class ServerUpdateScorePacket implements Packet {
         return false;
     }
 
-    public static enum Action {
+    public enum Action {
         ADD_OR_UPDATE,
-        REMOVE;
+        REMOVE
     }
 
 }

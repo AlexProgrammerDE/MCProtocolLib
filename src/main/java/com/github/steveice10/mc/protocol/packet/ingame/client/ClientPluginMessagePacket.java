@@ -9,13 +9,13 @@ import java.io.IOException;
 public class ClientPluginMessagePacket implements Packet {
 
     private String channel;
-    private byte data[];
+    private byte[] data;
 
     @SuppressWarnings("unused")
     private ClientPluginMessagePacket() {
     }
 
-    public ClientPluginMessagePacket(String channel, byte data[]) {
+    public ClientPluginMessagePacket(String channel, byte[] data) {
         this.channel = channel;
         this.data = data;
     }

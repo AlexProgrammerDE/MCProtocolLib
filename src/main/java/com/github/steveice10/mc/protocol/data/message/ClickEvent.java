@@ -2,8 +2,8 @@ package com.github.steveice10.mc.protocol.data.message;
 
 public class ClickEvent implements Cloneable {
 
-    private ClickAction action;
-    private String value;
+    private final ClickAction action;
+    private final String value;
 
     public ClickEvent(ClickAction action, String value) {
         this.action = action;

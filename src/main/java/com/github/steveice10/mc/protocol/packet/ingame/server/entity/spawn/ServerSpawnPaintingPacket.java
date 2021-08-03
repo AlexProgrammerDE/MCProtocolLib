@@ -77,16 +77,16 @@ public class ServerSpawnPaintingPacket implements Packet {
         return false;
     }
 
-    public static enum Direction {
+    public enum Direction {
         BOTTOM,
         TOP,
         EAST,
         WEST,
         NORTH,
-        SOUTH;
+        SOUTH
     }
 
-    public static enum Art {
+    public enum Art {
         Kebab,
         Aztec,
         Alban,
@@ -112,7 +112,7 @@ public class ServerSpawnPaintingPacket implements Packet {
         Pigscene,
         BurningSkull,
         Skeleton,
-        DonkeyKong;
+        DonkeyKong
     }
 
 }

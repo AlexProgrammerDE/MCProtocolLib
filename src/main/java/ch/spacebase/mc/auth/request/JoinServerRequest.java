@@ -3,9 +3,9 @@ package ch.spacebase.mc.auth.request;
 @SuppressWarnings("unused")
 public class JoinServerRequest {
 
-    private String accessToken;
-    private String selectedProfile;
-    private String serverId;
+    private final String accessToken;
+    private final String selectedProfile;
+    private final String serverId;
 
     public JoinServerRequest(String accessToken, String id, String serverId) {
         this.accessToken = accessToken;

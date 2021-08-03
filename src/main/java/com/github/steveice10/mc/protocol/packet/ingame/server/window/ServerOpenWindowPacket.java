@@ -80,7 +80,7 @@ public class ServerOpenWindowPacket implements Packet {
         return false;
     }
 
-    public static enum Type {
+    public enum Type {
         CHEST,
         CRAFTING_TABLE,
         FURNACE,
@@ -92,7 +92,7 @@ public class ServerOpenWindowPacket implements Packet {
         ANVIL,
         HOPPER,
         DROPPER,
-        HORSE_INVENTORY;
+        HORSE_INVENTORY
     }
 
 }

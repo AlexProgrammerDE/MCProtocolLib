@@ -45,10 +45,10 @@ public class ServerDisplayScoreboardPacket implements Packet {
         return false;
     }
 
-    public static enum Position {
+    public enum Position {
         PLAYER_LIST,
         SIDEBAR,
-        BELOW_NAME;
+        BELOW_NAME
     }
 
 }

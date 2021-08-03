@@ -39,14 +39,14 @@ public class ServerMapDataPacket implements Packet {
     @Override
     public void read(NetInput in) throws IOException {
         this.mapId = in.readVarInt();
-        byte data[] = in.readBytes(in.readShort());
+        byte[] data = in.readBytes(in.readShort());
         this.type = Type.values()[data[0]];
         switch (this.type) {
             case IMAGE:
                 byte x = data[1];
                 byte y = data[2];
                 byte height = (byte) (data.length - 3);
-                byte colors[] = new byte[height];
+                byte[] colors = new byte[height];
                 for (int index = 0; index < height; index++) {
                     colors[index] = data[index + 3];
                 }
@@ -74,7 +74,7 @@ public class ServerMapDataPacket implements Packet {
     @Override
     public void write(NetOutput out) throws IOException {
         out.writeVarInt(this.mapId);
-        byte data[] = null;
+        byte[] data = null;
         switch (this.type) {
             case IMAGE:
                 MapColumnUpdate column = (MapColumnUpdate) this.data;
@@ -117,20 +117,20 @@ public class ServerMapDataPacket implements Packet {
         return false;
     }
 
-    public static enum Type {
+    public enum Type {
         IMAGE,
         PLAYERS,
-        SCALE;
+        SCALE
     }
 
-    public static interface MapData {
+    public interface MapData {
     }
 
     public static class MapColumnUpdate implements MapData {
-        private byte x;
-        private byte y;
-        private byte height;
-        private byte colors[];
+        private final byte x;
+        private final byte y;
+        private final byte height;
+        private final byte[] colors;
 
         /**
          * Creates a new map column update instance.
@@ -140,7 +140,7 @@ public class ServerMapDataPacket implements Packet {
          * @param height        Height of the data's update range.
          * @param fullMapColors The full array of map color data, arranged in order of ascending Y value relative to the given Y value.
          */
-        public MapColumnUpdate(int x, int y, int height, byte colors[]) {
+        public MapColumnUpdate(int x, int y, int height, byte[] colors) {
             this.x = (byte) x;
             this.y = (byte) y;
             this.height = (byte) height;
@@ -177,10 +177,10 @@ public class ServerMapDataPacket implements Packet {
     }
 
     public static class MapPlayer {
-        private byte iconSize;
-        private byte iconRotation;
-        private byte centerX;
-        private byte centerZ;
+        private final byte iconSize;
+        private final byte iconRotation;
+        private final byte centerX;
+        private final byte centerZ;
 
         public MapPlayer(int iconSize, int iconRotation, int centerX, int centerZ) {
             this.iconSize = (byte) iconSize;
@@ -207,7 +207,7 @@ public class ServerMapDataPacket implements Packet {
     }
 
     public static class MapScale implements MapData {
-        private byte scale;
+        private final byte scale;
 
         public MapScale(int scale) {
             this.scale = (byte) scale;

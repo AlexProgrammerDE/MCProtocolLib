@@ -6,10 +6,10 @@ import java.awt.image.BufferedImage;
 
 public class ServerStatusInfo {
 
-    private VersionInfo version;
-    private PlayerInfo players;
-    private Message description;
-    private BufferedImage icon;
+    private final VersionInfo version;
+    private final PlayerInfo players;
+    private final Message description;
+    private final BufferedImage icon;
 
     public ServerStatusInfo(VersionInfo version, PlayerInfo players, Message description, BufferedImage icon) {
         this.version = version;

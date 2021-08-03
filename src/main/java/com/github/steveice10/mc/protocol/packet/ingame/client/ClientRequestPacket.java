@@ -37,10 +37,10 @@ public class ClientRequestPacket implements Packet {
         return false;
     }
 
-    public static enum Request {
+    public enum Request {
         RESPAWN,
         STATS,
-        OPEN_INVENTORY_ACHIEVEMENT;
+        OPEN_INVENTORY_ACHIEVEMENT
     }
 
 }

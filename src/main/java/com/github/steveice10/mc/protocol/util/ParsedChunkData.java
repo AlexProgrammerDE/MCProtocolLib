@@ -4,10 +4,10 @@ import com.github.steveice10.mc.protocol.data.game.Chunk;
 
 public class ParsedChunkData {
 
-    private Chunk chunks[];
-    private byte biomes[];
+    private final Chunk[] chunks;
+    private final byte[] biomes;
 
-    public ParsedChunkData(Chunk chunks[], byte biomes[]) {
+    public ParsedChunkData(Chunk[] chunks, byte[] biomes) {
         this.chunks = chunks;
         this.biomes = biomes;
     }

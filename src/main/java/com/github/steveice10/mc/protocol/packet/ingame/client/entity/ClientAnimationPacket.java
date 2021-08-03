@@ -45,8 +45,8 @@ public class ClientAnimationPacket implements Packet {
         return false;
     }
 
-    public static enum Animation {
-        SWING_ARM;
+    public enum Animation {
+        SWING_ARM
     }
 
 }

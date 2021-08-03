@@ -219,7 +219,7 @@ public class ServerSpawnObjectPacket implements Packet {
         return false;
     }
 
-    public static enum Type {
+    public enum Type {
         BOAT,
         ITEM,
         MINECART,
@@ -239,7 +239,7 @@ public class ServerSpawnObjectPacket implements Packet {
         EXP_BOTTLE,
         FIREWORK_ROCKET,
         LEASH_KNOT,
-        FISH_HOOK;
+        FISH_HOOK
     }
 
     public static class MinecartType {
@@ -274,8 +274,8 @@ public class ServerSpawnObjectPacket implements Packet {
     }
 
     public static class FallingBlockType {
-        private int id;
-        private int metadata;
+        private final int id;
+        private final int metadata;
 
         public FallingBlockType(int id, int metadata) {
             this.id = id;

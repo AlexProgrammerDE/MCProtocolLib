@@ -15,13 +15,14 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
 
 public class URLUtils {
 
-    private static Gson gson = new Gson();
+    private static final Gson gson = new Gson();
 
     public static URL constantURL(String url) {
         try {
@@ -35,7 +36,7 @@ public class URLUtils {
         try {
             return url.getQuery() != null && url.getQuery().length() > 0 ? new URL(url.getProtocol(), url.getHost(), url.getFile() + "&" + query) : new URL(url.getProtocol(), url.getHost(), url.getFile() + "?" + query);
         } catch (MalformedURLException e) {
-            throw new IllegalArgumentException("Concatenated URL was malformed: " + url.toString() + ", " + query);
+            throw new IllegalArgumentException("Concatenated URL was malformed: " + url + ", " + query);
         }
     }
 
@@ -117,7 +118,7 @@ public class URLUtils {
         }
 
         HttpURLConnection connection = createUrlConnection(url);
-        byte[] bytes = post.getBytes("UTF-8");
+        byte[] bytes = post.getBytes(StandardCharsets.UTF_8);
         connection.setRequestProperty("Content-Type", type + "; charset=utf-8");
         connection.setRequestProperty("Content-Length", "" + bytes.length);
         connection.setDoOutput(true);

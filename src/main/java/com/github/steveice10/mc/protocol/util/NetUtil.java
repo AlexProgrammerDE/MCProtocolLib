@@ -134,7 +134,7 @@ public class NetUtil {
     }
 
     public static ParsedChunkData dataToChunks(NetworkChunkData data) {
-        Chunk chunks[] = new Chunk[16];
+        Chunk[] chunks = new Chunk[16];
         int pos = 0;
         // 0 = Create chunks from mask and get blocks.
         // 1 = Get metadata.
@@ -184,7 +184,7 @@ public class NetUtil {
             }
         }
 
-        byte biomeData[] = null;
+        byte[] biomeData = null;
         if (data.isFullChunk()) {
             biomeData = new byte[256];
             System.arraycopy(data.getData(), pos, biomeData, 0, biomeData.length);
@@ -237,26 +237,26 @@ public class NetUtil {
                     }
 
                     if (pass == 2) {
-                        byte meta[] = chunk.getMetadata().getData();
+                        byte[] meta = chunk.getMetadata().getData();
                         System.arraycopy(meta, 0, data, pos, meta.length);
                         pos += meta.length;
                     }
 
                     if (pass == 3) {
-                        byte blocklight[] = chunk.getBlockLight().getData();
+                        byte[] blocklight = chunk.getBlockLight().getData();
                         System.arraycopy(blocklight, 0, data, pos, blocklight.length);
                         pos += blocklight.length;
                     }
 
                     if (pass == 4 && chunk.getSkyLight() != null) {
-                        byte skylight[] = chunk.getSkyLight().getData();
+                        byte[] skylight = chunk.getSkyLight().getData();
                         System.arraycopy(skylight, 0, data, pos, skylight.length);
                         pos += skylight.length;
                         sky = true;
                     }
 
                     if (pass == 5 && chunk.getExtendedBlocks() != null) {
-                        byte extended[] = chunk.getExtendedBlocks().getData();
+                        byte[] extended = chunk.getExtendedBlocks().getData();
                         System.arraycopy(extended, 0, data, pos, extended.length);
                         pos += extended.length;
                     }
@@ -278,9 +278,9 @@ public class NetUtil {
     }
 
     private static class NetInputStream extends InputStream {
-        private NetInput in;
+        private final NetInput in;
         private boolean readFirst;
-        private byte firstByte;
+        private final byte firstByte;
 
         public NetInputStream(NetInput in, byte firstByte) {
             this.in = in;
@@ -299,7 +299,7 @@ public class NetUtil {
     }
 
     private static class NetOutputStream extends OutputStream {
-        private NetOutput out;
+        private final NetOutput out;
 
         public NetOutputStream(NetOutput out) {
             this.out = out;

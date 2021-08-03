@@ -33,7 +33,7 @@ import java.math.BigInteger;
 public class ClientListener extends SessionAdapter {
 
     private SecretKey key;
-    private String accessToken;
+    private final String accessToken;
 
     public ClientListener(String accessToken) {
         this.accessToken = accessToken;

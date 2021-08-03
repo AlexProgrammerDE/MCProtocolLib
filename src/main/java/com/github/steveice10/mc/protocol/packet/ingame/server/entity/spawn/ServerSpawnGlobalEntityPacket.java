@@ -69,8 +69,8 @@ public class ServerSpawnGlobalEntityPacket implements Packet {
         return false;
     }
 
-    public static enum Type {
-        LIGHTNING_BOLT;
+    public enum Type {
+        LIGHTNING_BOLT
     }
 
 }

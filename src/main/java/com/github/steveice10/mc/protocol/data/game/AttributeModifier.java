@@ -4,9 +4,9 @@ import java.util.UUID;
 
 public class AttributeModifier {
 
-    private UUID uuid;
-    private double amount;
-    private int operation;
+    private final UUID uuid;
+    private final double amount;
+    private final int operation;
 
     public AttributeModifier(UUID uuid, double amount, int operation) {
         this.uuid = uuid;

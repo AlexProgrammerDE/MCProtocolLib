@@ -235,27 +235,27 @@ public class ClientWindowActionPacket implements Packet {
         throw new IOException("Unknown action param value: " + value);
     }
 
-    public static enum Action {
+    public enum Action {
         CLICK_ITEM,
         SHIFT_CLICK_ITEM,
         MOVE_TO_HOTBAR_SLOT,
         CREATIVE_GRAB_MAX_STACK,
         DROP_ITEM,
         SPREAD_ITEM,
-        FILL_STACK;
+        FILL_STACK
     }
 
-    public static enum ClickItemParam implements ActionParam {
+    public enum ClickItemParam implements ActionParam {
         LEFT_CLICK,
-        RIGHT_CLICK;
+        RIGHT_CLICK
     }
 
-    public static enum ShiftClickItemParam implements ActionParam {
+    public enum ShiftClickItemParam implements ActionParam {
         LEFT_CLICK,
-        RIGHT_CLICK;
+        RIGHT_CLICK
     }
 
-    public static enum MoveToHotbarParam implements ActionParam {
+    public enum MoveToHotbarParam implements ActionParam {
         SLOT_1,
         SLOT_2,
         SLOT_3,
@@ -264,34 +264,34 @@ public class ClientWindowActionPacket implements Packet {
         SLOT_6,
         SLOT_7,
         SLOT_8,
-        SLOT_9;
+        SLOT_9
     }
 
-    public static enum CreativeGrabParam implements ActionParam {
-        GRAB;
+    public enum CreativeGrabParam implements ActionParam {
+        GRAB
     }
 
-    public static enum DropItemParam implements ActionParam {
+    public enum DropItemParam implements ActionParam {
         DROP_FROM_SELECTED,
         DROP_SELECTED_STACK,
         LEFT_CLICK_OUTSIDE_NOT_HOLDING,
-        RIGHT_CLICK_OUTSIDE_NOT_HOLDING;
+        RIGHT_CLICK_OUTSIDE_NOT_HOLDING
     }
 
-    public static enum SpreadItemParam implements ActionParam {
+    public enum SpreadItemParam implements ActionParam {
         LEFT_MOUSE_BEGIN_DRAG,
         LEFT_MOUSE_ADD_SLOT,
         LEFT_MOUSE_END_DRAG,
         RIGHT_MOUSE_BEGIN_DRAG,
         RIGHT_MOUSE_ADD_SLOT,
-        RIGHT_MOUSE_END_DRAG;
+        RIGHT_MOUSE_END_DRAG
     }
 
-    public static enum FillStackParam implements ActionParam {
-        FILL;
+    public enum FillStackParam implements ActionParam {
+        FILL
     }
 
-    public static interface ActionParam {
+    public interface ActionParam {
     }
 
 }
