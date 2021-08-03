@@ -1,7 +1,7 @@
 package com.github.steveice10.mc.protocol.packet.status.server;
 
-import ch.spacebase.mc.auth.GameProfile;
-import ch.spacebase.mc.auth.util.Base64;
+import com.github.steveice10.mc.auth.data.GameProfile;
+import com.github.steveice10.mc.auth.util.Base64;
 import com.github.steveice10.mc.protocol.data.message.Message;
 import com.github.steveice10.mc.protocol.data.status.PlayerInfo;
 import com.github.steveice10.mc.protocol.data.status.ServerStatusInfo;
@@ -80,7 +80,7 @@ public class StatusResponsePacket implements Packet {
             for (GameProfile profile : this.info.getPlayerInfo().getPlayers()) {
                 JsonObject o = new JsonObject();
                 o.addProperty("name", profile.getName());
-                o.addProperty("id", profile.getId());
+                o.addProperty("id", profile.getIdAsString());
                 array.add(o);
             }
 

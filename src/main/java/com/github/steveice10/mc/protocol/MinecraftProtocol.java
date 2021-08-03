@@ -1,8 +1,8 @@
 package com.github.steveice10.mc.protocol;
 
-import ch.spacebase.mc.auth.GameProfile;
-import ch.spacebase.mc.auth.UserAuthentication;
-import ch.spacebase.mc.auth.exceptions.AuthenticationException;
+import com.github.steveice10.mc.auth.data.GameProfile;
+import com.github.steveice10.mc.auth.exception.request.RequestException;
+import com.github.steveice10.mc.auth.service.AuthenticationService;
 import com.github.steveice10.mc.protocol.packet.handshake.client.HandshakePacket;
 import com.github.steveice10.mc.protocol.packet.ingame.client.*;
 import com.github.steveice10.mc.protocol.packet.ingame.client.entity.ClientAnimationPacket;
@@ -75,10 +75,10 @@ public class MinecraftProtocol extends PacketProtocol {
         this.clientListener = new ClientListener("");
     }
 
-    public MinecraftProtocol(String username, String using, boolean token) throws AuthenticationException {
+    public MinecraftProtocol(String username, String using, boolean token) throws RequestException {
         this(ProtocolMode.LOGIN);
         String clientToken = UUID.randomUUID().toString();
-        UserAuthentication auth = new UserAuthentication(clientToken);
+        AuthenticationService auth = new AuthenticationService(clientToken);
         auth.setUsername(username);
         if (token) {
             auth.setAccessToken(using);

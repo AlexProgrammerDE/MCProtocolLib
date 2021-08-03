@@ -1,7 +1,7 @@
 package com.github.steveice10.mc.protocol.test;
 
-import ch.spacebase.mc.auth.GameProfile;
-import ch.spacebase.mc.auth.exceptions.AuthenticationException;
+import com.github.steveice10.mc.auth.data.GameProfile;
+import com.github.steveice10.mc.auth.exception.request.RequestException;
 import com.github.steveice10.mc.protocol.MinecraftProtocol;
 import com.github.steveice10.mc.protocol.ProtocolConstants;
 import com.github.steveice10.mc.protocol.ProtocolMode;
@@ -123,7 +123,7 @@ public class Test {
         if (VERIFY_USERS) {
             try {
                 protocol = new MinecraftProtocol(USERNAME, PASSWORD, false);
-            } catch (AuthenticationException e) {
+            } catch (RequestException e) {
                 e.printStackTrace();
                 return;
             }

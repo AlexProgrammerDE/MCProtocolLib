@@ -1,6 +1,6 @@
 package com.github.steveice10.mc.protocol.data.status;
 
-import ch.spacebase.mc.auth.GameProfile;
+import com.github.steveice10.mc.auth.data.GameProfile;
 
 public class PlayerInfo {
 

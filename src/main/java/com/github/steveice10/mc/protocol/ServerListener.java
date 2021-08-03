@@ -1,8 +1,8 @@
 package com.github.steveice10.mc.protocol;
 
-import ch.spacebase.mc.auth.GameProfile;
-import ch.spacebase.mc.auth.SessionService;
-import ch.spacebase.mc.auth.exceptions.AuthenticationUnavailableException;
+import com.github.steveice10.mc.auth.data.GameProfile;
+import com.github.steveice10.mc.auth.exception.request.RequestException;
+import com.github.steveice10.mc.auth.service.SessionService;
 import com.github.steveice10.mc.protocol.data.status.ServerStatusInfo;
 import com.github.steveice10.mc.protocol.data.status.handler.ServerInfoBuilder;
 import com.github.steveice10.mc.protocol.packet.handshake.client.HandshakePacket;
@@ -150,9 +150,9 @@ public class ServerListener extends SessionAdapter {
             try {
                 String serverHash = new BigInteger(CryptUtil.getServerIdHash(serverId, pair.getPublic(), this.key)).toString(16);
                 SessionService service = new SessionService();
-                GameProfile profile = service.hasJoinedServer(new GameProfile(null, username), serverHash);
+                GameProfile profile = service.getProfileByServer(username, serverHash);
                 if (profile != null) {
-                    this.session.send(new LoginSuccessPacket(profile.getId(), profile.getName()));
+                    this.session.send(new LoginSuccessPacket(profile.getIdAsString(), profile.getName()));
                     this.session.setFlag(ProtocolConstants.PROFILE_KEY, profile);
                     protocol.setMode(ProtocolMode.GAME, false, this.session);
                     new KeepAliveThread(this.session).start();
@@ -163,7 +163,7 @@ public class ServerListener extends SessionAdapter {
                 } else {
                     this.session.disconnect("Failed to verify username!");
                 }
-            } catch (AuthenticationUnavailableException e) {
+            } catch (RequestException e) {
                 this.session.disconnect("Authentication servers are down. Please try again later, sorry!");
             }
         }

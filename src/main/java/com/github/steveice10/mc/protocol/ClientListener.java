@@ -1,10 +1,8 @@
 package com.github.steveice10.mc.protocol;
 
-import ch.spacebase.mc.auth.GameProfile;
-import ch.spacebase.mc.auth.SessionService;
-import ch.spacebase.mc.auth.exceptions.AuthenticationException;
-import ch.spacebase.mc.auth.exceptions.AuthenticationUnavailableException;
-import ch.spacebase.mc.auth.exceptions.InvalidCredentialsException;
+import com.github.steveice10.mc.auth.data.GameProfile;
+import com.github.steveice10.mc.auth.exception.request.RequestException;
+import com.github.steveice10.mc.auth.service.SessionService;
 import com.github.steveice10.mc.protocol.data.status.ServerStatusInfo;
 import com.github.steveice10.mc.protocol.data.status.handler.ServerInfoHandler;
 import com.github.steveice10.mc.protocol.data.status.handler.ServerPingTimeHandler;
@@ -51,14 +49,8 @@ public class ClientListener extends SessionAdapter {
                 String serverHash = new BigInteger(CryptUtil.getServerIdHash(packet.getServerId(), packet.getPublicKey(), this.key)).toString(16);
                 try {
                     new SessionService().joinServer(profile, this.accessToken, serverHash);
-                } catch (AuthenticationUnavailableException e) {
-                    event.getSession().disconnect("Login failed: Authentication service unavailable.");
-                    return;
-                } catch (InvalidCredentialsException e) {
-                    event.getSession().disconnect("Login failed: Invalid login session.");
-                    return;
-                } catch (AuthenticationException e) {
-                    event.getSession().disconnect("Login failed: Authentication error: " + e.getMessage());
+                } catch (RequestException e) {
+                    event.getSession().disconnect("Login failed: Request error: " + e.getMessage());
                     return;
                 }
 
