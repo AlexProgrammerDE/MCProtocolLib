@@ -9,9 +9,9 @@ import ch.spacebase.mc.protocol.data.game.Chunk;
 import ch.spacebase.mc.util.ParsedChunkData;
 import ch.spacebase.mc.util.NetworkChunkData;
 import ch.spacebase.mc.util.NetUtil;
-import ch.spacebase.packetlib.io.NetInput;
-import ch.spacebase.packetlib.io.NetOutput;
-import ch.spacebase.packetlib.packet.Packet;
+import com.github.steveice10.packetlib.io.NetInput;
+import com.github.steveice10.packetlib.io.NetOutput;
+import com.github.steveice10.packetlib.packet.Packet;
 
 public class ServerChunkDataPacket implements Packet {
 	

@@ -7,9 +7,9 @@ import java.security.PublicKey;
 import javax.crypto.SecretKey;
 
 import ch.spacebase.mc.util.CryptUtil;
-import ch.spacebase.packetlib.io.NetInput;
-import ch.spacebase.packetlib.io.NetOutput;
-import ch.spacebase.packetlib.packet.Packet;
+import com.github.steveice10.packetlib.io.NetInput;
+import com.github.steveice10.packetlib.io.NetOutput;
+import com.github.steveice10.packetlib.packet.Packet;
 
 public class EncryptionResponsePacket implements Packet {
 	
@@ -35,14 +35,16 @@ public class EncryptionResponsePacket implements Packet {
 
 	@Override
 	public void read(NetInput in) throws IOException {
-		this.sharedKey = in.readPrefixedBytes();
-		this.verifyToken = in.readPrefixedBytes();
+		this.sharedKey = in.readBytes(in.readVarInt());
+		this.verifyToken = in.readBytes(in.readVarInt());
 	}
 
 	@Override
 	public void write(NetOutput out) throws IOException {
-		out.writePrefixedBytes(this.sharedKey);
-		out.writePrefixedBytes(this.verifyToken);
+		out.writeVarInt(this.sharedKey.length);
+		out.writeBytes(this.sharedKey);
+		out.writeVarInt(this.verifyToken.length);
+		out.writeBytes(this.verifyToken);
 	}
 	
 	@Override

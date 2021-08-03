@@ -1,6 +1,6 @@
 package ch.spacebase.mc.protocol.data.game;
 
-import ch.spacebase.opennbt.tag.CompoundTag;
+import com.github.steveice10.opennbt.tag.builtin.CompoundTag;
 
 public class ItemStack {
 

@@ -1,6 +1,6 @@
 package ch.spacebase.mc.protocol;
 
-import ch.spacebase.packetlib.Session;
+import com.github.steveice10.packetlib.Session;
 
 public interface ServerLoginHandler {
 	

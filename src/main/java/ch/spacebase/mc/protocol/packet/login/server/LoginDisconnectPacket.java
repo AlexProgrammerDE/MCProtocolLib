@@ -4,9 +4,9 @@ import java.io.IOException;
 
 import ch.spacebase.mc.protocol.data.message.Message;
 import ch.spacebase.mc.protocol.data.message.TextMessage;
-import ch.spacebase.packetlib.io.NetInput;
-import ch.spacebase.packetlib.io.NetOutput;
-import ch.spacebase.packetlib.packet.Packet;
+import com.github.steveice10.packetlib.io.NetInput;
+import com.github.steveice10.packetlib.io.NetOutput;
+import com.github.steveice10.packetlib.packet.Packet;
 
 public class LoginDisconnectPacket implements Packet {
 	

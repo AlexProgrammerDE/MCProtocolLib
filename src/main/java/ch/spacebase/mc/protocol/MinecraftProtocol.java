@@ -106,16 +106,25 @@ import ch.spacebase.mc.protocol.packet.status.client.StatusPingPacket;
 import ch.spacebase.mc.protocol.packet.status.client.StatusQueryPacket;
 import ch.spacebase.mc.protocol.packet.status.server.StatusPongPacket;
 import ch.spacebase.mc.protocol.packet.status.server.StatusResponsePacket;
-import ch.spacebase.packetlib.Client;
-import ch.spacebase.packetlib.Server;
-import ch.spacebase.packetlib.Session;
-import ch.spacebase.packetlib.crypt.AESEncryption;
-import ch.spacebase.packetlib.crypt.PacketEncryption;
-import ch.spacebase.packetlib.packet.PacketProtocol;
+import com.github.steveice10.packetlib.Client;
+import com.github.steveice10.packetlib.Server;
+import com.github.steveice10.packetlib.Session;
+import com.github.steveice10.packetlib.crypt.AESEncryption;
+import com.github.steveice10.packetlib.crypt.PacketEncryption;
+import com.github.steveice10.packetlib.packet.DefaultPacketHeader;
+import com.github.steveice10.packetlib.packet.PacketHeader;
+import com.github.steveice10.packetlib.packet.PacketProtocol;
+import com.github.steveice10.packetlib.Client;
+import com.github.steveice10.packetlib.Server;
+import com.github.steveice10.packetlib.Session;
+import com.github.steveice10.packetlib.crypt.AESEncryption;
+import com.github.steveice10.packetlib.crypt.PacketEncryption;
+import com.github.steveice10.packetlib.packet.PacketProtocol;
 
 public class MinecraftProtocol extends PacketProtocol {
 	
 	private ProtocolMode mode = ProtocolMode.HANDSHAKE;
+	private final PacketHeader packetHeader = new DefaultPacketHeader();
 	private AESEncryption encrypt = null;
 	
 	private GameProfile profile = null;
@@ -159,7 +168,17 @@ public class MinecraftProtocol extends PacketProtocol {
 		this.profile = auth.getSelectedProfile();
 		this.clientListener = new ClientListener(auth.getAccessToken());
 	}
-	
+
+	@Override
+	public String getSRVRecordPrefix() {
+		return "_minecraft";
+	}
+
+	@Override
+	public PacketHeader getPacketHeader() {
+		return this.packetHeader;
+	}
+
 	@Override
 	public PacketEncryption getEncryption() {
 		return this.encrypt;

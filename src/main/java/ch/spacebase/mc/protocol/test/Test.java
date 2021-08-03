@@ -25,15 +25,15 @@ import ch.spacebase.mc.protocol.packet.ingame.server.ServerJoinGamePacket;
 import ch.spacebase.mc.protocol.packet.ingame.server.ServerJoinGamePacket.Difficulty;
 import ch.spacebase.mc.protocol.packet.ingame.server.ServerJoinGamePacket.GameMode;
 import ch.spacebase.mc.protocol.packet.ingame.server.ServerJoinGamePacket.WorldType;
-import ch.spacebase.packetlib.Client;
-import ch.spacebase.packetlib.Server;
-import ch.spacebase.packetlib.Session;
-import ch.spacebase.packetlib.event.server.ServerAdapter;
-import ch.spacebase.packetlib.event.server.SessionAddedEvent;
-import ch.spacebase.packetlib.event.session.DisconnectedEvent;
-import ch.spacebase.packetlib.event.session.PacketReceivedEvent;
-import ch.spacebase.packetlib.event.session.SessionAdapter;
-import ch.spacebase.packetlib.tcp.TcpSessionFactory;
+import com.github.steveice10.packetlib.Client;
+import com.github.steveice10.packetlib.Server;
+import com.github.steveice10.packetlib.Session;
+import com.github.steveice10.packetlib.event.server.ServerAdapter;
+import com.github.steveice10.packetlib.event.server.SessionAddedEvent;
+import com.github.steveice10.packetlib.event.session.DisconnectedEvent;
+import com.github.steveice10.packetlib.event.session.PacketReceivedEvent;
+import com.github.steveice10.packetlib.event.session.SessionAdapter;
+import com.github.steveice10.packetlib.tcp.TcpSessionFactory;
 
 public class Test {
 	

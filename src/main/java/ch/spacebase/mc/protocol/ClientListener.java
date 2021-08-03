@@ -26,10 +26,10 @@ import ch.spacebase.mc.protocol.packet.status.client.StatusQueryPacket;
 import ch.spacebase.mc.protocol.packet.status.server.StatusPongPacket;
 import ch.spacebase.mc.protocol.packet.status.server.StatusResponsePacket;
 import ch.spacebase.mc.util.CryptUtil;
-import ch.spacebase.packetlib.event.session.ConnectedEvent;
-import ch.spacebase.packetlib.event.session.PacketReceivedEvent;
-import ch.spacebase.packetlib.event.session.PacketSentEvent;
-import ch.spacebase.packetlib.event.session.SessionAdapter;
+import com.github.steveice10.packetlib.event.session.ConnectedEvent;
+import com.github.steveice10.packetlib.event.session.PacketReceivedEvent;
+import com.github.steveice10.packetlib.event.session.PacketSentEvent;
+import com.github.steveice10.packetlib.event.session.SessionAdapter;
 
 public class ClientListener extends SessionAdapter {
 

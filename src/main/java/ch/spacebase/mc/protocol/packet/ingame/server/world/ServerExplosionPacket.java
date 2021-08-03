@@ -4,9 +4,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import ch.spacebase.packetlib.io.NetInput;
-import ch.spacebase.packetlib.io.NetOutput;
-import ch.spacebase.packetlib.packet.Packet;
+import com.github.steveice10.packetlib.io.NetInput;
+import com.github.steveice10.packetlib.io.NetOutput;
+import com.github.steveice10.packetlib.packet.Packet;
 
 public class ServerExplosionPacket implements Packet {
 
