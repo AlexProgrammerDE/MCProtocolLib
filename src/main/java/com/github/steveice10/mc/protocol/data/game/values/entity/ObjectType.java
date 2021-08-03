@@ -23,6 +23,6 @@ public enum ObjectType {
     FIREWORK_ROCKET,
     LEASH_KNOT,
     ARMOR_STAND,
-    FISH_HOOK;
+    FISH_HOOK
 
 }

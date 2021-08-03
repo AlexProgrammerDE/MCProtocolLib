@@ -4,6 +4,6 @@ public enum ClientRequest {
 
     RESPAWN,
     STATS,
-    OPEN_INVENTORY_ACHIEVEMENT;
+    OPEN_INVENTORY_ACHIEVEMENT
 
 }

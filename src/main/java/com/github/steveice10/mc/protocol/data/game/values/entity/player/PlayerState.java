@@ -8,6 +8,6 @@ public enum PlayerState {
     START_SPRINTING,
     STOP_SPRINTING,
     RIDING_JUMP,
-    OPEN_INVENTORY;
+    OPEN_INVENTORY
 
 }

@@ -60,7 +60,7 @@ public class ServerPlaySoundPacket implements Packet {
     public void read(NetInput in) throws IOException {
         String value = in.readString();
         this.sound = MagicValues.key(GenericSound.class, value);
-        if(this.sound == null) {
+        if (this.sound == null) {
             this.sound = new CustomSound(value);
         }
 
@@ -74,9 +74,9 @@ public class ServerPlaySoundPacket implements Packet {
     @Override
     public void write(NetOutput out) throws IOException {
         String value = "";
-        if(this.sound instanceof CustomSound) {
+        if (this.sound instanceof CustomSound) {
             value = ((CustomSound) this.sound).getName();
-        } else if(this.sound instanceof GenericSound) {
+        } else if (this.sound instanceof GenericSound) {
             value = MagicValues.value(String.class, (GenericSound) this.sound);
         }
 
@@ -86,11 +86,11 @@ public class ServerPlaySoundPacket implements Packet {
         out.writeInt((int) (this.z * 8));
         out.writeFloat(this.volume);
         int pitch = (int) (this.pitch * 63);
-        if(pitch > 255) {
+        if (pitch > 255) {
             pitch = 255;
         }
 
-        if(pitch < 0) {
+        if (pitch < 0) {
             pitch = 0;
         }
 

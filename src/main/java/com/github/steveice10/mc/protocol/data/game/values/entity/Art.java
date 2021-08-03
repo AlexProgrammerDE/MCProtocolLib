@@ -27,6 +27,6 @@ public enum Art {
     PIG_SCENE,
     BURNING_SKULL,
     SKELETON,
-    DONKEY_KONG;
+    DONKEY_KONG
 
 }

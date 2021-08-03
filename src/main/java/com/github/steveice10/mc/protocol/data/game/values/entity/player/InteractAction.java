@@ -4,6 +4,6 @@ public enum InteractAction {
 
     INTERACT,
     ATTACK,
-    INTERACT_AT;
+    INTERACT_AT
 
 }

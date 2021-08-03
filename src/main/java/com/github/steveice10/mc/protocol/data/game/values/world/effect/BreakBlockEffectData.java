@@ -2,7 +2,7 @@ package com.github.steveice10.mc.protocol.data.game.values.world.effect;
 
 public class BreakBlockEffectData implements WorldEffectData {
 
-    private int blockId;
+    private final int blockId;
 
     public BreakBlockEffectData(int blockId) {
         this.blockId = blockId;
@@ -14,14 +14,12 @@ public class BreakBlockEffectData implements WorldEffectData {
 
     @Override
     public boolean equals(Object o) {
-        if(this == o) return true;
-        if(o == null || getClass() != o.getClass()) return false;
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
 
         BreakBlockEffectData that = (BreakBlockEffectData) o;
 
-        if(blockId != that.blockId) return false;
-
-        return true;
+        return blockId == that.blockId;
     }
 
     @Override

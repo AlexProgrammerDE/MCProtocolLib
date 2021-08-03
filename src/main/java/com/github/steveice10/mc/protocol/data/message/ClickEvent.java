@@ -2,8 +2,8 @@ package com.github.steveice10.mc.protocol.data.message;
 
 public class ClickEvent implements Cloneable {
 
-    private ClickAction action;
-    private String value;
+    private final ClickAction action;
+    private final String value;
 
     public ClickEvent(ClickAction action, String value) {
         this.action = action;
@@ -25,15 +25,13 @@ public class ClickEvent implements Cloneable {
 
     @Override
     public boolean equals(Object o) {
-        if(this == o) return true;
-        if(o == null || getClass() != o.getClass()) return false;
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
 
         ClickEvent that = (ClickEvent) o;
 
-        if(action != that.action) return false;
-        if(!value.equals(that.value)) return false;
-
-        return true;
+        if (action != that.action) return false;
+        return value.equals(that.value);
     }
 
     @Override

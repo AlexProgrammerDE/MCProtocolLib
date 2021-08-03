@@ -1,45 +1,13 @@
 package com.github.steveice10.mc.protocol.data.game.values;
 
-import com.github.steveice10.mc.protocol.data.game.values.entity.Art;
-import com.github.steveice10.mc.protocol.data.game.values.entity.AttributeType;
-import com.github.steveice10.mc.protocol.data.game.values.entity.Effect;
-import com.github.steveice10.mc.protocol.data.game.values.entity.EntityStatus;
-import com.github.steveice10.mc.protocol.data.game.values.entity.GlobalEntityType;
-import com.github.steveice10.mc.protocol.data.game.values.entity.HangingDirection;
-import com.github.steveice10.mc.protocol.data.game.values.entity.MetadataType;
-import com.github.steveice10.mc.protocol.data.game.values.entity.MinecartType;
-import com.github.steveice10.mc.protocol.data.game.values.entity.MobType;
-import com.github.steveice10.mc.protocol.data.game.values.entity.ModifierOperation;
-import com.github.steveice10.mc.protocol.data.game.values.entity.ModifierType;
-import com.github.steveice10.mc.protocol.data.game.values.entity.ObjectType;
-import com.github.steveice10.mc.protocol.data.game.values.entity.player.Animation;
-import com.github.steveice10.mc.protocol.data.game.values.entity.player.BlockBreakStage;
-import com.github.steveice10.mc.protocol.data.game.values.entity.player.CombatState;
-import com.github.steveice10.mc.protocol.data.game.values.entity.player.GameMode;
-import com.github.steveice10.mc.protocol.data.game.values.entity.player.InteractAction;
-import com.github.steveice10.mc.protocol.data.game.values.entity.player.PlayerAction;
-import com.github.steveice10.mc.protocol.data.game.values.entity.player.PlayerState;
-import com.github.steveice10.mc.protocol.data.game.values.entity.player.PositionElement;
-import com.github.steveice10.mc.protocol.data.game.values.scoreboard.NameTagVisibility;
-import com.github.steveice10.mc.protocol.data.game.values.scoreboard.ObjectiveAction;
-import com.github.steveice10.mc.protocol.data.game.values.scoreboard.ScoreType;
-import com.github.steveice10.mc.protocol.data.game.values.scoreboard.ScoreboardAction;
-import com.github.steveice10.mc.protocol.data.game.values.scoreboard.ScoreboardPosition;
-import com.github.steveice10.mc.protocol.data.game.values.scoreboard.TeamAction;
-import com.github.steveice10.mc.protocol.data.game.values.scoreboard.TeamColor;
+import com.github.steveice10.mc.protocol.data.game.values.entity.*;
+import com.github.steveice10.mc.protocol.data.game.values.entity.player.*;
+import com.github.steveice10.mc.protocol.data.game.values.scoreboard.*;
 import com.github.steveice10.mc.protocol.data.game.values.setting.ChatVisibility;
 import com.github.steveice10.mc.protocol.data.game.values.setting.Difficulty;
 import com.github.steveice10.mc.protocol.data.game.values.statistic.Achievement;
 import com.github.steveice10.mc.protocol.data.game.values.statistic.GenericStatistic;
-import com.github.steveice10.mc.protocol.data.game.values.window.ClickItemParam;
-import com.github.steveice10.mc.protocol.data.game.values.window.CreativeGrabParam;
-import com.github.steveice10.mc.protocol.data.game.values.window.DropItemParam;
-import com.github.steveice10.mc.protocol.data.game.values.window.FillStackParam;
-import com.github.steveice10.mc.protocol.data.game.values.window.MoveToHotbarParam;
-import com.github.steveice10.mc.protocol.data.game.values.window.ShiftClickItemParam;
-import com.github.steveice10.mc.protocol.data.game.values.window.SpreadItemParam;
-import com.github.steveice10.mc.protocol.data.game.values.window.WindowAction;
-import com.github.steveice10.mc.protocol.data.game.values.window.WindowType;
+import com.github.steveice10.mc.protocol.data.game.values.window.*;
 import com.github.steveice10.mc.protocol.data.game.values.window.property.AnvilProperty;
 import com.github.steveice10.mc.protocol.data.game.values.window.property.BrewingStandProperty;
 import com.github.steveice10.mc.protocol.data.game.values.window.property.EnchantmentTableProperty;
@@ -49,12 +17,7 @@ import com.github.steveice10.mc.protocol.data.game.values.world.Particle;
 import com.github.steveice10.mc.protocol.data.game.values.world.WorldBorderAction;
 import com.github.steveice10.mc.protocol.data.game.values.world.WorldType;
 import com.github.steveice10.mc.protocol.data.game.values.world.block.UpdatedTileType;
-import com.github.steveice10.mc.protocol.data.game.values.world.block.value.ChestValueType;
-import com.github.steveice10.mc.protocol.data.game.values.world.block.value.GenericBlockValueType;
-import com.github.steveice10.mc.protocol.data.game.values.world.block.value.MobSpawnerValueType;
-import com.github.steveice10.mc.protocol.data.game.values.world.block.value.NoteBlockValueType;
-import com.github.steveice10.mc.protocol.data.game.values.world.block.value.PistonValue;
-import com.github.steveice10.mc.protocol.data.game.values.world.block.value.PistonValueType;
+import com.github.steveice10.mc.protocol.data.game.values.world.block.value.*;
 import com.github.steveice10.mc.protocol.data.game.values.world.effect.ParticleEffect;
 import com.github.steveice10.mc.protocol.data.game.values.world.effect.SmokeEffectData;
 import com.github.steveice10.mc.protocol.data.game.values.world.effect.SoundEffect;
@@ -887,17 +850,17 @@ public class MagicValues {
         values.put(key, value);
     }
 
-    @SuppressWarnings({ "unchecked" })
+    @SuppressWarnings({"unchecked"})
     public static <T extends Enum<?>> T key(Class<T> keyType, Object value) {
-        for(Enum<?> key : values.keySet()) {
+        for (Enum<?> key : values.keySet()) {
             Object val = values.get(key);
-            if(keyType.isAssignableFrom(key.getClass())) {
-                if(val == value || val.equals(value)) {
+            if (keyType.isAssignableFrom(key.getClass())) {
+                if (val == value || val.equals(value)) {
                     return (T) key;
-                } else if(Number.class.isAssignableFrom(val.getClass()) && Number.class.isAssignableFrom(value.getClass())) {
+                } else if (Number.class.isAssignableFrom(val.getClass()) && Number.class.isAssignableFrom(value.getClass())) {
                     Number num = (Number) val;
                     Number num2 = (Number) value;
-                    if(num.doubleValue() == num2.doubleValue()) {
+                    if (num.doubleValue() == num2.doubleValue()) {
                         return (T) key;
                     }
                 }
@@ -910,21 +873,21 @@ public class MagicValues {
     @SuppressWarnings("unchecked")
     public static <T> T value(Class<T> valueType, Enum<?> key) {
         Object val = values.get(key);
-        if(val != null) {
-            if(valueType.isAssignableFrom(val.getClass())) {
+        if (val != null) {
+            if (valueType.isAssignableFrom(val.getClass())) {
                 return (T) val;
-            } else if(Number.class.isAssignableFrom(val.getClass())) {
-                if(valueType == Byte.class) {
+            } else if (Number.class.isAssignableFrom(val.getClass())) {
+                if (valueType == Byte.class) {
                     return (T) (Object) ((Number) val).byteValue();
-                } else if(valueType == Short.class) {
+                } else if (valueType == Short.class) {
                     return (T) (Object) ((Number) val).shortValue();
-                } else if(valueType == Integer.class) {
+                } else if (valueType == Integer.class) {
                     return (T) (Object) ((Number) val).intValue();
-                } else if(valueType == Long.class) {
+                } else if (valueType == Long.class) {
                     return (T) (Object) ((Number) val).longValue();
-                } else if(valueType == Float.class) {
+                } else if (valueType == Float.class) {
                     return (T) (Object) ((Number) val).floatValue();
-                } else if(valueType == Double.class) {
+                } else if (valueType == Double.class) {
                     return (T) (Object) ((Number) val).doubleValue();
                 }
             }

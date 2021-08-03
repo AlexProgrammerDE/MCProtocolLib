@@ -54,11 +54,11 @@ public class ClientSteerVehiclePacket implements Packet {
         out.writeFloat(this.sideways);
         out.writeFloat(this.forward);
         byte flags = 0;
-        if(this.jump) {
+        if (this.jump) {
             flags = (byte) (flags | 1);
         }
 
-        if(this.dismount) {
+        if (this.dismount) {
             flags = (byte) (flags | 2);
         }
 

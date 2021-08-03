@@ -51,13 +51,13 @@ public class ClientPlayerMovementPacket implements Packet {
 
     @Override
     public void read(NetInput in) throws IOException {
-        if(this.pos) {
+        if (this.pos) {
             this.x = in.readDouble();
             this.y = in.readDouble();
             this.z = in.readDouble();
         }
 
-        if(this.rot) {
+        if (this.rot) {
             this.yaw = in.readFloat();
             this.pitch = in.readFloat();
         }
@@ -67,13 +67,13 @@ public class ClientPlayerMovementPacket implements Packet {
 
     @Override
     public void write(NetOutput out) throws IOException {
-        if(this.pos) {
+        if (this.pos) {
             out.writeDouble(this.x);
             out.writeDouble(this.y);
             out.writeDouble(this.z);
         }
 
-        if(this.rot) {
+        if (this.rot) {
             out.writeFloat(this.yaw);
             out.writeFloat(this.pitch);
         }

@@ -10,6 +10,6 @@ public enum ClientNotification {
     DEMO_MESSAGE,
     ARROW_HIT_PLAYER,
     RAIN_STRENGTH,
-    THUNDER_STRENGTH;
+    THUNDER_STRENGTH
 
 }

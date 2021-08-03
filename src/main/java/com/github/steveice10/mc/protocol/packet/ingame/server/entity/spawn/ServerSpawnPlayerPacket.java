@@ -19,13 +19,13 @@ public class ServerSpawnPlayerPacket implements Packet {
     private float yaw;
     private float pitch;
     private int currentItem;
-    private EntityMetadata metadata[];
+    private EntityMetadata[] metadata;
 
     @SuppressWarnings("unused")
     private ServerSpawnPlayerPacket() {
     }
 
-    public ServerSpawnPlayerPacket(int entityId, UUID uuid, double x, double y, double z, float yaw, float pitch, int currentItem, EntityMetadata metadata[]) {
+    public ServerSpawnPlayerPacket(int entityId, UUID uuid, double x, double y, double z, float yaw, float pitch, int currentItem, EntityMetadata[] metadata) {
         this.entityId = entityId;
         this.uuid = uuid;
         this.x = x;

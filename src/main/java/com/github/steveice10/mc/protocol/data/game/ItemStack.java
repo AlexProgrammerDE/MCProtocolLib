@@ -4,10 +4,10 @@ import com.github.steveice10.opennbt.tag.builtin.CompoundTag;
 
 public class ItemStack {
 
-    private int id;
-    private int amount;
-    private int data;
-    private CompoundTag nbt;
+    private final int id;
+    private final int amount;
+    private final int data;
+    private final CompoundTag nbt;
 
     public ItemStack(int id) {
         this(id, 1);
@@ -46,17 +46,15 @@ public class ItemStack {
 
     @Override
     public boolean equals(Object o) {
-        if(this == o) return true;
-        if(o == null || getClass() != o.getClass()) return false;
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
 
         ItemStack itemStack = (ItemStack) o;
 
-        if(amount != itemStack.amount) return false;
-        if(data != itemStack.data) return false;
-        if(id != itemStack.id) return false;
-        if(nbt != null ? !nbt.equals(itemStack.nbt) : itemStack.nbt != null) return false;
-
-        return true;
+        if (amount != itemStack.amount) return false;
+        if (data != itemStack.data) return false;
+        if (id != itemStack.id) return false;
+        return nbt != null ? nbt.equals(itemStack.nbt) : itemStack.nbt == null;
     }
 
     @Override

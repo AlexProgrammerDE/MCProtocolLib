@@ -2,14 +2,14 @@ package com.github.steveice10.mc.protocol.data.game.values.world.notify;
 
 public class ThunderStrengthValue implements ClientNotificationValue {
 
-    private float strength;
+    private final float strength;
 
     public ThunderStrengthValue(float strength) {
-        if(strength > 1) {
+        if (strength > 1) {
             strength = 1;
         }
 
-        if(strength < 0) {
+        if (strength < 0) {
             strength = 0;
         }
 
@@ -22,14 +22,12 @@ public class ThunderStrengthValue implements ClientNotificationValue {
 
     @Override
     public boolean equals(Object o) {
-        if(this == o) return true;
-        if(o == null || getClass() != o.getClass()) return false;
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
 
         ThunderStrengthValue that = (ThunderStrengthValue) o;
 
-        if(Float.compare(that.strength, strength) != 0) return false;
-
-        return true;
+        return Float.compare(that.strength, strength) == 0;
     }
 
     @Override

@@ -19,7 +19,7 @@ public class ServerSpawnParticlePacket implements Packet {
     private float offsetZ;
     private float velocityOffset;
     private int amount;
-    private int data[];
+    private int[] data;
 
     @SuppressWarnings("unused")
     private ServerSpawnParticlePacket() {
@@ -37,7 +37,7 @@ public class ServerSpawnParticlePacket implements Packet {
         this.velocityOffset = velocityOffset;
         this.amount = amount;
         this.data = data;
-        if(this.data.length != particle.getDataLength()) {
+        if (this.data.length != particle.getDataLength()) {
             throw new IllegalArgumentException("Data array length must be equal to particle's data length.");
         }
     }
@@ -99,7 +99,7 @@ public class ServerSpawnParticlePacket implements Packet {
         this.velocityOffset = in.readFloat();
         this.amount = in.readInt();
         this.data = new int[this.particle.getDataLength()];
-        for(int index = 0; index < this.data.length; index++) {
+        for (int index = 0; index < this.data.length; index++) {
             this.data[index] = in.readVarInt();
         }
     }
@@ -116,7 +116,7 @@ public class ServerSpawnParticlePacket implements Packet {
         out.writeFloat(this.offsetZ);
         out.writeFloat(this.velocityOffset);
         out.writeInt(this.amount);
-        for(int index = 0; index < this.particle.getDataLength(); index++) {
+        for (int index = 0; index < this.particle.getDataLength(); index++) {
             out.writeVarInt(this.data[index]);
         }
     }

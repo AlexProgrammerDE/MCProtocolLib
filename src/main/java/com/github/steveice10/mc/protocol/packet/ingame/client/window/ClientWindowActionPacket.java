@@ -2,15 +2,7 @@ package com.github.steveice10.mc.protocol.packet.ingame.client.window;
 
 import com.github.steveice10.mc.protocol.data.game.ItemStack;
 import com.github.steveice10.mc.protocol.data.game.values.MagicValues;
-import com.github.steveice10.mc.protocol.data.game.values.window.ClickItemParam;
-import com.github.steveice10.mc.protocol.data.game.values.window.CreativeGrabParam;
-import com.github.steveice10.mc.protocol.data.game.values.window.DropItemParam;
-import com.github.steveice10.mc.protocol.data.game.values.window.FillStackParam;
-import com.github.steveice10.mc.protocol.data.game.values.window.MoveToHotbarParam;
-import com.github.steveice10.mc.protocol.data.game.values.window.ShiftClickItemParam;
-import com.github.steveice10.mc.protocol.data.game.values.window.SpreadItemParam;
-import com.github.steveice10.mc.protocol.data.game.values.window.WindowAction;
-import com.github.steveice10.mc.protocol.data.game.values.window.WindowActionParam;
+import com.github.steveice10.mc.protocol.data.game.values.window.*;
 import com.github.steveice10.mc.protocol.util.NetUtil;
 import com.github.steveice10.packetlib.io.NetInput;
 import com.github.steveice10.packetlib.io.NetOutput;
@@ -72,19 +64,19 @@ public class ClientWindowActionPacket implements Packet {
         this.actionId = in.readShort();
         this.action = MagicValues.key(WindowAction.class, in.readByte());
         this.clicked = NetUtil.readItem(in);
-        if(this.action == WindowAction.CLICK_ITEM) {
+        if (this.action == WindowAction.CLICK_ITEM) {
             this.param = MagicValues.key(ClickItemParam.class, param);
-        } else if(this.action == WindowAction.SHIFT_CLICK_ITEM) {
+        } else if (this.action == WindowAction.SHIFT_CLICK_ITEM) {
             this.param = MagicValues.key(ShiftClickItemParam.class, param);
-        } else if(this.action == WindowAction.MOVE_TO_HOTBAR_SLOT) {
+        } else if (this.action == WindowAction.MOVE_TO_HOTBAR_SLOT) {
             this.param = MagicValues.key(MoveToHotbarParam.class, param);
-        } else if(this.action == WindowAction.CREATIVE_GRAB_MAX_STACK) {
+        } else if (this.action == WindowAction.CREATIVE_GRAB_MAX_STACK) {
             this.param = MagicValues.key(CreativeGrabParam.class, param);
-        } else if(this.action == WindowAction.DROP_ITEM) {
+        } else if (this.action == WindowAction.DROP_ITEM) {
             this.param = MagicValues.key(DropItemParam.class, param + (this.slot != -999 ? 2 : 0));
-        } else if(this.action == WindowAction.SPREAD_ITEM) {
+        } else if (this.action == WindowAction.SPREAD_ITEM) {
             this.param = MagicValues.key(SpreadItemParam.class, param);
-        } else if(this.action == WindowAction.FILL_STACK) {
+        } else if (this.action == WindowAction.FILL_STACK) {
             this.param = MagicValues.key(FillStackParam.class, param);
         }
     }
@@ -94,19 +86,19 @@ public class ClientWindowActionPacket implements Packet {
         out.writeByte(this.windowId);
         out.writeShort(this.slot);
         int param = 0;
-        if(this.action == WindowAction.CLICK_ITEM) {
+        if (this.action == WindowAction.CLICK_ITEM) {
             param = MagicValues.value(Integer.class, (Enum<?>) this.param);
-        } else if(this.action == WindowAction.SHIFT_CLICK_ITEM) {
+        } else if (this.action == WindowAction.SHIFT_CLICK_ITEM) {
             param = MagicValues.value(Integer.class, (Enum<?>) this.param);
-        } else if(this.action == WindowAction.MOVE_TO_HOTBAR_SLOT) {
+        } else if (this.action == WindowAction.MOVE_TO_HOTBAR_SLOT) {
             param = MagicValues.value(Integer.class, (Enum<?>) this.param);
-        } else if(this.action == WindowAction.CREATIVE_GRAB_MAX_STACK) {
+        } else if (this.action == WindowAction.CREATIVE_GRAB_MAX_STACK) {
             param = MagicValues.value(Integer.class, (Enum<?>) this.param);
-        } else if(this.action == WindowAction.DROP_ITEM) {
+        } else if (this.action == WindowAction.DROP_ITEM) {
             param = MagicValues.value(Integer.class, (Enum<?>) this.param) + (this.slot != -999 ? 2 : 0);
-        } else if(this.action == WindowAction.SPREAD_ITEM) {
+        } else if (this.action == WindowAction.SPREAD_ITEM) {
             param = MagicValues.value(Integer.class, (Enum<?>) this.param);
-        } else if(this.action == WindowAction.FILL_STACK) {
+        } else if (this.action == WindowAction.FILL_STACK) {
             param = MagicValues.value(Integer.class, (Enum<?>) this.param);
         }
 

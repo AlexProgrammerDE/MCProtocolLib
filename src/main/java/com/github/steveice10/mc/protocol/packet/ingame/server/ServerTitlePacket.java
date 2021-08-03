@@ -29,7 +29,7 @@ public class ServerTitlePacket implements Packet {
     }
 
     public ServerTitlePacket(Message title, boolean sub) {
-        if(sub) {
+        if (sub) {
             this.action = TitleAction.SUBTITLE;
             this.subtitle = title;
         } else {
@@ -46,7 +46,7 @@ public class ServerTitlePacket implements Packet {
     }
 
     public ServerTitlePacket(boolean clear) {
-        if(clear) {
+        if (clear) {
             this.action = TitleAction.CLEAR;
         } else {
             this.action = TitleAction.RESET;
@@ -80,7 +80,7 @@ public class ServerTitlePacket implements Packet {
     @Override
     public void read(NetInput in) throws IOException {
         this.action = MagicValues.key(TitleAction.class, in.readVarInt());
-        switch(this.action) {
+        switch (this.action) {
             case TITLE:
                 this.title = Message.fromString(in.readString());
                 break;
@@ -102,7 +102,7 @@ public class ServerTitlePacket implements Packet {
     @Override
     public void write(NetOutput out) throws IOException {
         out.writeVarInt(MagicValues.value(Integer.class, this.action));
-        switch(this.action) {
+        switch (this.action) {
             case TITLE:
                 out.writeString(this.title.toJsonString());
                 break;

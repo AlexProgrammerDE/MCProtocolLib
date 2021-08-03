@@ -6,10 +6,10 @@ import java.awt.image.BufferedImage;
 
 public class ServerStatusInfo {
 
-    private VersionInfo version;
-    private PlayerInfo players;
-    private Message description;
-    private BufferedImage icon;
+    private final VersionInfo version;
+    private final PlayerInfo players;
+    private final Message description;
+    private final BufferedImage icon;
 
     public ServerStatusInfo(VersionInfo version, PlayerInfo players, Message description, BufferedImage icon) {
         this.version = version;
@@ -36,17 +36,15 @@ public class ServerStatusInfo {
 
     @Override
     public boolean equals(Object o) {
-        if(this == o) return true;
-        if(o == null || getClass() != o.getClass()) return false;
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
 
         ServerStatusInfo that = (ServerStatusInfo) o;
 
-        if(!description.equals(that.description)) return false;
-        if(icon != null ? !icon.equals(that.icon) : that.icon != null) return false;
-        if(!players.equals(that.players)) return false;
-        if(!version.equals(that.version)) return false;
-
-        return true;
+        if (!description.equals(that.description)) return false;
+        if (icon != null ? !icon.equals(that.icon) : that.icon != null) return false;
+        if (!players.equals(that.players)) return false;
+        return version.equals(that.version);
     }
 
     @Override

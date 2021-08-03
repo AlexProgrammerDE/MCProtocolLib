@@ -5,5 +5,5 @@ public enum TitleAction {
     SUBTITLE,
     TIMES,
     CLEAR,
-    RESET;
+    RESET
 }

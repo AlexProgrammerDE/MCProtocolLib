@@ -6,6 +6,6 @@ public enum NoteBlockValueType implements BlockValueType {
     DOUBLE_BASS,
     SNARE_DRUM,
     HI_HAT,
-    BASS_DRUM;
+    BASS_DRUM
 
 }

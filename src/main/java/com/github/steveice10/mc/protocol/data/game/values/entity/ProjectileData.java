@@ -2,7 +2,7 @@ package com.github.steveice10.mc.protocol.data.game.values.entity;
 
 public class ProjectileData implements ObjectData {
 
-    private int ownerId;
+    private final int ownerId;
 
     public ProjectileData(int ownerId) {
         this.ownerId = ownerId;
@@ -14,14 +14,12 @@ public class ProjectileData implements ObjectData {
 
     @Override
     public boolean equals(Object o) {
-        if(this == o) return true;
-        if(o == null || getClass() != o.getClass()) return false;
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
 
         ProjectileData that = (ProjectileData) o;
 
-        if(ownerId != that.ownerId) return false;
-
-        return true;
+        return ownerId == that.ownerId;
     }
 
     @Override

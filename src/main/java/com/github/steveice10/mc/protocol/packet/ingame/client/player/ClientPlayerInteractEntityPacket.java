@@ -45,7 +45,7 @@ public class ClientPlayerInteractEntityPacket implements Packet {
     public void read(NetInput in) throws IOException {
         this.entityId = in.readVarInt();
         this.action = MagicValues.key(InteractAction.class, in.readVarInt());
-        if(this.action == InteractAction.INTERACT_AT) {
+        if (this.action == InteractAction.INTERACT_AT) {
             this.targetX = in.readFloat();
             this.targetY = in.readFloat();
             this.targetZ = in.readFloat();
@@ -56,7 +56,7 @@ public class ClientPlayerInteractEntityPacket implements Packet {
     public void write(NetOutput out) throws IOException {
         out.writeVarInt(this.entityId);
         out.writeVarInt(MagicValues.value(Integer.class, this.action));
-        if(this.action == InteractAction.INTERACT_AT) {
+        if (this.action == InteractAction.INTERACT_AT) {
             out.writeFloat(this.targetX);
             out.writeFloat(this.targetY);
             out.writeFloat(this.targetZ);

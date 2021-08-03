@@ -9,6 +9,6 @@ public enum MetadataType {
     STRING,
     ITEM,
     POSITION,
-    ROTATION;
+    ROTATION
 
 }

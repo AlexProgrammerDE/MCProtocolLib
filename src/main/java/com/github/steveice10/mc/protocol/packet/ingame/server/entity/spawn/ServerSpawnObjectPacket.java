@@ -1,13 +1,7 @@
 package com.github.steveice10.mc.protocol.packet.ingame.server.entity.spawn;
 
 import com.github.steveice10.mc.protocol.data.game.values.MagicValues;
-import com.github.steveice10.mc.protocol.data.game.values.entity.FallingBlockData;
-import com.github.steveice10.mc.protocol.data.game.values.entity.HangingDirection;
-import com.github.steveice10.mc.protocol.data.game.values.entity.MinecartType;
-import com.github.steveice10.mc.protocol.data.game.values.entity.ObjectData;
-import com.github.steveice10.mc.protocol.data.game.values.entity.ObjectType;
-import com.github.steveice10.mc.protocol.data.game.values.entity.ProjectileData;
-import com.github.steveice10.mc.protocol.data.game.values.entity.SplashPotionData;
+import com.github.steveice10.mc.protocol.data.game.values.entity.*;
 import com.github.steveice10.packetlib.io.NetInput;
 import com.github.steveice10.packetlib.io.NetOutput;
 import com.github.steveice10.packetlib.packet.Packet;
@@ -113,16 +107,16 @@ public class ServerSpawnObjectPacket implements Packet {
         this.pitch = in.readByte() * 360 / 256f;
         this.yaw = in.readByte() * 360 / 256f;
         int data = in.readInt();
-        if(data > 0) {
-            if(this.type == ObjectType.MINECART) {
+        if (data > 0) {
+            if (this.type == ObjectType.MINECART) {
                 this.data = MagicValues.key(MinecartType.class, data);
-            } else if(this.type == ObjectType.ITEM_FRAME) {
+            } else if (this.type == ObjectType.ITEM_FRAME) {
                 this.data = MagicValues.key(HangingDirection.class, data);
-            } else if(this.type == ObjectType.FALLING_BLOCK) {
+            } else if (this.type == ObjectType.FALLING_BLOCK) {
                 this.data = new FallingBlockData(data & 65535, data >> 16);
-            } else if(this.type == ObjectType.POTION) {
+            } else if (this.type == ObjectType.POTION) {
                 this.data = new SplashPotionData(data);
-            } else if(this.type == ObjectType.ARROW || this.type == ObjectType.BLAZE_FIREBALL || this.type == ObjectType.FISH_HOOK || this.type == ObjectType.GHAST_FIREBALL || this.type == ObjectType.WITHER_HEAD_PROJECTILE) {
+            } else if (this.type == ObjectType.ARROW || this.type == ObjectType.BLAZE_FIREBALL || this.type == ObjectType.FISH_HOOK || this.type == ObjectType.GHAST_FIREBALL || this.type == ObjectType.WITHER_HEAD_PROJECTILE) {
                 this.data = new ProjectileData(data);
             } else {
                 this.data = new ObjectData() {
@@ -145,16 +139,16 @@ public class ServerSpawnObjectPacket implements Packet {
         out.writeByte((byte) (this.pitch * 256 / 360));
         out.writeByte((byte) (this.yaw * 256 / 360));
         int data = 0;
-        if(this.data != null) {
-            if(this.data instanceof MinecartType) {
+        if (this.data != null) {
+            if (this.data instanceof MinecartType) {
                 data = MagicValues.value(Integer.class, (Enum<?>) this.data);
-            } else if(this.data instanceof HangingDirection) {
+            } else if (this.data instanceof HangingDirection) {
                 data = MagicValues.value(Integer.class, (Enum<?>) this.data);
-            } else if(this.data instanceof FallingBlockData) {
+            } else if (this.data instanceof FallingBlockData) {
                 data = ((FallingBlockData) this.data).getId() | ((FallingBlockData) this.data).getMetadata() << 16;
-            } else if(this.data instanceof SplashPotionData) {
+            } else if (this.data instanceof SplashPotionData) {
                 data = ((SplashPotionData) this.data).getPotionData();
-            } else if(this.data instanceof ProjectileData) {
+            } else if (this.data instanceof ProjectileData) {
                 data = ((ProjectileData) this.data).getOwnerId();
             } else {
                 data = 1;
@@ -162,7 +156,7 @@ public class ServerSpawnObjectPacket implements Packet {
         }
 
         out.writeInt(data);
-        if(data > 0) {
+        if (data > 0) {
             out.writeShort((int) (this.motX * 8000));
             out.writeShort((int) (this.motY * 8000));
             out.writeShort((int) (this.motZ * 8000));

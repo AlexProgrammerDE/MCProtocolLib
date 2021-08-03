@@ -2,7 +2,7 @@ package com.github.steveice10.mc.protocol.data.game.values.world.effect;
 
 public class BreakPotionEffectData implements WorldEffectData {
 
-    private int potionId;
+    private final int potionId;
 
     public BreakPotionEffectData(int potionId) {
         this.potionId = potionId;
@@ -14,14 +14,12 @@ public class BreakPotionEffectData implements WorldEffectData {
 
     @Override
     public boolean equals(Object o) {
-        if(this == o) return true;
-        if(o == null || getClass() != o.getClass()) return false;
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
 
         BreakPotionEffectData that = (BreakPotionEffectData) o;
 
-        if(potionId != that.potionId) return false;
-
-        return true;
+        return potionId == that.potionId;
     }
 
     @Override

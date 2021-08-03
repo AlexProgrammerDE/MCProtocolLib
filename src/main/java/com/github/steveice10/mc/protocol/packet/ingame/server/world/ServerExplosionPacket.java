@@ -75,7 +75,7 @@ public class ServerExplosionPacket implements Packet {
         this.radius = in.readFloat();
         this.exploded = new ArrayList<ExplodedBlockRecord>();
         int length = in.readInt();
-        for(int count = 0; count < length; count++) {
+        for (int count = 0; count < length; count++) {
             this.exploded.add(new ExplodedBlockRecord(in.readByte(), in.readByte(), in.readByte()));
         }
 
@@ -91,7 +91,7 @@ public class ServerExplosionPacket implements Packet {
         out.writeFloat(this.z);
         out.writeFloat(this.radius);
         out.writeInt(this.exploded.size());
-        for(ExplodedBlockRecord record : this.exploded) {
+        for (ExplodedBlockRecord record : this.exploded) {
             out.writeByte(record.getX());
             out.writeByte(record.getY());
             out.writeByte(record.getZ());

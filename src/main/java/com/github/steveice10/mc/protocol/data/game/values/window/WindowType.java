@@ -14,6 +14,6 @@ public enum WindowType {
     FURNACE,
     HOPPER,
     VILLAGER,
-    HORSE;
+    HORSE
 
 }

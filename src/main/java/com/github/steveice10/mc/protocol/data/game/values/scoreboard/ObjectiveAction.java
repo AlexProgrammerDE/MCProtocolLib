@@ -4,6 +4,6 @@ public enum ObjectiveAction {
 
     ADD,
     REMOVE,
-    UPDATE;
+    UPDATE
 
 }

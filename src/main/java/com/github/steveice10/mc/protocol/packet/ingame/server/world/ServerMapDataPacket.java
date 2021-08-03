@@ -12,7 +12,7 @@ public class ServerMapDataPacket implements Packet {
 
     private int mapId;
     private byte scale;
-    private MapPlayer players[];
+    private MapPlayer[] players;
 
     private MapData data;
 
@@ -20,11 +20,11 @@ public class ServerMapDataPacket implements Packet {
     private ServerMapDataPacket() {
     }
 
-    public ServerMapDataPacket(int mapId, byte scale, MapPlayer players[]) {
+    public ServerMapDataPacket(int mapId, byte scale, MapPlayer[] players) {
         this(mapId, scale, players, null);
     }
 
-    public ServerMapDataPacket(int mapId, byte scale, MapPlayer players[], MapData data) {
+    public ServerMapDataPacket(int mapId, byte scale, MapPlayer[] players, MapData data) {
         this.mapId = mapId;
         this.scale = scale;
         this.players = players;
@@ -52,7 +52,7 @@ public class ServerMapDataPacket implements Packet {
         this.mapId = in.readVarInt();
         this.scale = in.readByte();
         this.players = new MapPlayer[in.readVarInt()];
-        for(int index = 0; index < this.players.length; index++) {
+        for (int index = 0; index < this.players.length; index++) {
             int data = in.readUnsignedByte();
             int size = (data >> 4) & 15;
             int rotation = data & 15;
@@ -62,11 +62,11 @@ public class ServerMapDataPacket implements Packet {
         }
 
         int columns = in.readUnsignedByte();
-        if(columns > 0) {
+        if (columns > 0) {
             int rows = in.readUnsignedByte();
             int x = in.readUnsignedByte();
             int y = in.readUnsignedByte();
-            byte data[] = in.readBytes(in.readVarInt());
+            byte[] data = in.readBytes(in.readVarInt());
             this.data = new MapData(columns, rows, x, y, data);
         }
     }
@@ -76,14 +76,14 @@ public class ServerMapDataPacket implements Packet {
         out.writeVarInt(this.mapId);
         out.writeByte(this.scale);
         out.writeVarInt(this.players.length);
-        for(int index = 0; index < this.players.length; index++) {
+        for (int index = 0; index < this.players.length; index++) {
             MapPlayer player = this.players[index];
             out.writeByte((player.getIconSize() & 15) << 4 | player.getIconRotation() & 15);
             out.writeByte(player.getCenterX());
             out.writeByte(player.getCenterZ());
         }
 
-        if(this.data != null && this.data.getColumns() != 0) {
+        if (this.data != null && this.data.getColumns() != 0) {
             out.writeByte(this.data.getColumns());
             out.writeByte(this.data.getRows());
             out.writeByte(this.data.getX());

@@ -8,6 +8,6 @@ public enum WindowAction {
     CREATIVE_GRAB_MAX_STACK,
     DROP_ITEM,
     SPREAD_ITEM,
-    FILL_STACK;
+    FILL_STACK
 
 }

@@ -22,6 +22,6 @@ public enum SoundEffect implements WorldEffect {
     ENDER_DRAGON_DEATH,
     ANVIL_BREAK,
     ANVIL_USE,
-    ANVIL_LAND;
+    ANVIL_LAND
 
 }

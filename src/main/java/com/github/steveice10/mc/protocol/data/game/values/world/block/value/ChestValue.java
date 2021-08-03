@@ -2,7 +2,7 @@ package com.github.steveice10.mc.protocol.data.game.values.world.block.value;
 
 public class ChestValue implements BlockValue {
 
-    private int viewers;
+    private final int viewers;
 
     public ChestValue(int viewers) {
         this.viewers = viewers;
@@ -14,14 +14,12 @@ public class ChestValue implements BlockValue {
 
     @Override
     public boolean equals(Object o) {
-        if(this == o) return true;
-        if(o == null || getClass() != o.getClass()) return false;
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
 
         ChestValue that = (ChestValue) o;
 
-        if(viewers != that.viewers) return false;
-
-        return true;
+        return viewers == that.viewers;
     }
 
     @Override

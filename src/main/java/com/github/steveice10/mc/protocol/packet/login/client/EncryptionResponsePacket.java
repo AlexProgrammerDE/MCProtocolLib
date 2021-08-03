@@ -12,14 +12,14 @@ import java.security.PublicKey;
 
 public class EncryptionResponsePacket implements Packet {
 
-    private byte sharedKey[];
-    private byte verifyToken[];
+    private byte[] sharedKey;
+    private byte[] verifyToken;
 
     @SuppressWarnings("unused")
     private EncryptionResponsePacket() {
     }
 
-    public EncryptionResponsePacket(SecretKey secretKey, PublicKey publicKey, byte verifyToken[]) {
+    public EncryptionResponsePacket(SecretKey secretKey, PublicKey publicKey, byte[] verifyToken) {
         this.sharedKey = CryptUtil.encryptData(publicKey, secretKey.getEncoded());
         this.verifyToken = CryptUtil.encryptData(publicKey, verifyToken);
     }

@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 public class ShortArray3d {
 
-    private short[] data;
+    private final short[] data;
 
     public ShortArray3d(int size) {
         this.data = new short[size];
@@ -52,14 +52,12 @@ public class ShortArray3d {
 
     @Override
     public boolean equals(Object o) {
-        if(this == o) return true;
-        if(o == null || getClass() != o.getClass()) return false;
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
 
         ShortArray3d that = (ShortArray3d) o;
 
-        if(!Arrays.equals(data, that.data)) return false;
-
-        return true;
+        return Arrays.equals(data, that.data);
     }
 
     @Override

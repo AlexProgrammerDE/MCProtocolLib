@@ -24,6 +24,6 @@ public enum GenericStatistic implements Statistic {
     PLAYERS_KILLED,
     FISH_CAUGHT,
     JUNK_FISHED,
-    TREASURE_FISHED;
+    TREASURE_FISHED
 
 }

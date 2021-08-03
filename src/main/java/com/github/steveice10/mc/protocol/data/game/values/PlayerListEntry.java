@@ -5,7 +5,7 @@ import com.github.steveice10.mc.protocol.data.game.values.entity.player.GameMode
 import com.github.steveice10.mc.protocol.data.message.Message;
 
 public class PlayerListEntry {
-    private GameProfile profile;
+    private final GameProfile profile;
 
     private GameMode gameMode;
     private int ping;
@@ -55,17 +55,15 @@ public class PlayerListEntry {
 
     @Override
     public boolean equals(Object o) {
-        if(this == o) return true;
-        if(o == null || getClass() != o.getClass()) return false;
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
 
         PlayerListEntry entry = (PlayerListEntry) o;
 
-        if(ping != entry.ping) return false;
-        if(displayName != null ? !displayName.equals(entry.displayName) : entry.displayName != null) return false;
-        if(gameMode != entry.gameMode) return false;
-        if(!profile.equals(entry.profile)) return false;
-
-        return true;
+        if (ping != entry.ping) return false;
+        if (displayName != null ? !displayName.equals(entry.displayName) : entry.displayName != null) return false;
+        if (gameMode != entry.gameMode) return false;
+        return profile.equals(entry.profile);
     }
 
     @Override

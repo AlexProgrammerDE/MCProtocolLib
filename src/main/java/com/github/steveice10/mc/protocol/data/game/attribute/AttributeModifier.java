@@ -8,10 +8,10 @@ import java.util.UUID;
 
 public class AttributeModifier {
 
-    private ModifierType type;
-    private UUID uuid;
-    private double amount;
-    private ModifierOperation operation;
+    private final ModifierType type;
+    private final UUID uuid;
+    private final double amount;
+    private final ModifierOperation operation;
 
     public AttributeModifier(ModifierType type, double amount, ModifierOperation operation) {
         this.type = type;
@@ -45,16 +45,14 @@ public class AttributeModifier {
 
     @Override
     public boolean equals(Object o) {
-        if(this == o) return true;
-        if(o == null || getClass() != o.getClass()) return false;
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
 
         AttributeModifier that = (AttributeModifier) o;
 
-        if(Double.compare(that.amount, amount) != 0) return false;
-        if(operation != that.operation) return false;
-        if(type != that.type) return false;
-
-        return true;
+        if (Double.compare(that.amount, amount) != 0) return false;
+        if (operation != that.operation) return false;
+        return type == that.type;
     }
 
     @Override

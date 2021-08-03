@@ -11,23 +11,32 @@ import java.io.IOException;
 
 public class ServerUpdateSignPacket implements Packet {
     private Position position;
-    private Message lines[];
+    private Message[] lines;
 
     @SuppressWarnings("unused")
     private ServerUpdateSignPacket() {
     }
 
-    public ServerUpdateSignPacket(Position position, String lines[]) {
+    public ServerUpdateSignPacket(Position position, String[] lines) {
         this(position, toMessages(lines));
     }
 
-    public ServerUpdateSignPacket(Position position, Message lines[]) {
-        if(lines.length != 4) {
+    public ServerUpdateSignPacket(Position position, Message[] lines) {
+        if (lines.length != 4) {
             throw new IllegalArgumentException("Lines must contain exactly 4 strings!");
         }
 
         this.position = position;
         this.lines = lines;
+    }
+
+    private static Message[] toMessages(String[] lines) {
+        Message[] messages = new Message[lines.length];
+        for (int index = 0; index < lines.length; index++) {
+            messages[index] = Message.fromString(lines[index]);
+        }
+
+        return messages;
     }
 
     public Position getPosition() {
@@ -42,7 +51,7 @@ public class ServerUpdateSignPacket implements Packet {
     public void read(NetInput in) throws IOException {
         this.position = NetUtil.readPosition(in);
         this.lines = new Message[4];
-        for(int count = 0; count < this.lines.length; count++) {
+        for (int count = 0; count < this.lines.length; count++) {
             this.lines[count] = Message.fromString(in.readString());
         }
     }
@@ -50,7 +59,7 @@ public class ServerUpdateSignPacket implements Packet {
     @Override
     public void write(NetOutput out) throws IOException {
         NetUtil.writePosition(out, this.position);
-        for(Message line : this.lines) {
+        for (Message line : this.lines) {
             out.writeString(line.toJsonString());
         }
     }
@@ -58,14 +67,5 @@ public class ServerUpdateSignPacket implements Packet {
     @Override
     public boolean isPriority() {
         return false;
-    }
-
-    private static Message[] toMessages(String lines[]) {
-        Message messages[] = new Message[lines.length];
-        for(int index = 0; index < lines.length; index++) {
-            messages[index] = Message.fromString(lines[index]);
-        }
-
-        return messages;
     }
 }

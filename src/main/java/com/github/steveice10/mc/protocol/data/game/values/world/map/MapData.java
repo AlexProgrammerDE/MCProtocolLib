@@ -3,13 +3,13 @@ package com.github.steveice10.mc.protocol.data.game.values.world.map;
 import java.util.Arrays;
 
 public class MapData {
-    private int columns;
-    private int rows;
-    private int x;
-    private int y;
-    private byte data[];
+    private final int columns;
+    private final int rows;
+    private final int x;
+    private final int y;
+    private final byte[] data;
 
-    public MapData(int columns, int rows, int x, int y, byte data[]) {
+    public MapData(int columns, int rows, int x, int y, byte[] data) {
         this.columns = columns;
         this.rows = rows;
         this.x = x;
@@ -39,18 +39,16 @@ public class MapData {
 
     @Override
     public boolean equals(Object o) {
-        if(this == o) return true;
-        if(o == null || getClass() != o.getClass()) return false;
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
 
         MapData mapData = (MapData) o;
 
-        if(columns != mapData.columns) return false;
-        if(rows != mapData.rows) return false;
-        if(x != mapData.x) return false;
-        if(y != mapData.y) return false;
-        if(!Arrays.equals(data, mapData.data)) return false;
-
-        return true;
+        if (columns != mapData.columns) return false;
+        if (rows != mapData.rows) return false;
+        if (x != mapData.x) return false;
+        if (y != mapData.y) return false;
+        return Arrays.equals(data, mapData.data);
     }
 
     @Override

@@ -4,8 +4,8 @@ import com.github.steveice10.mc.protocol.data.game.Position;
 
 public class BlockChangeRecord {
 
-    private Position position;
-    private int block;
+    private final Position position;
+    private final int block;
 
     public BlockChangeRecord(Position position, int block) {
         this.position = position;
@@ -22,15 +22,13 @@ public class BlockChangeRecord {
 
     @Override
     public boolean equals(Object o) {
-        if(this == o) return true;
-        if(o == null || getClass() != o.getClass()) return false;
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
 
         BlockChangeRecord record = (BlockChangeRecord) o;
 
-        if(block != record.block) return false;
-        if(!position.equals(record.position)) return false;
-
-        return true;
+        if (block != record.block) return false;
+        return position.equals(record.position);
     }
 
     @Override

@@ -12,35 +12,35 @@ import java.io.IOException;
 
 public class ServerMultiChunkDataPacket implements Packet {
 
-    private int x[];
-    private int z[];
-    private Chunk chunks[][];
-    private byte biomeData[][];
+    private int[] x;
+    private int[] z;
+    private Chunk[][] chunks;
+    private byte[][] biomeData;
 
     @SuppressWarnings("unused")
     private ServerMultiChunkDataPacket() {
     }
 
-    public ServerMultiChunkDataPacket(int x[], int z[], Chunk chunks[][], byte biomeData[][]) {
-        if(biomeData == null) {
+    public ServerMultiChunkDataPacket(int[] x, int[] z, Chunk[][] chunks, byte[][] biomeData) {
+        if (biomeData == null) {
             throw new IllegalArgumentException("BiomeData cannot be null.");
         }
 
-        if(x.length != chunks.length || z.length != chunks.length) {
+        if (x.length != chunks.length || z.length != chunks.length) {
             throw new IllegalArgumentException("X, Z, and Chunk arrays must be equal in length.");
         }
 
         boolean noSkylight = false;
         boolean skylight = false;
-        for(int index = 0; index < chunks.length; index++) {
-            Chunk column[] = chunks[index];
-            if(column.length != 16) {
+        for (int index = 0; index < chunks.length; index++) {
+            Chunk[] column = chunks[index];
+            if (column.length != 16) {
                 throw new IllegalArgumentException("Chunk columns must contain 16 chunks each.");
             }
 
-            for(int y = 0; y < column.length; y++) {
-                if(column[y] != null) {
-                    if(column[y].getSkyLight() == null) {
+            for (int y = 0; y < column.length; y++) {
+                if (column[y] != null) {
+                    if (column[y].getSkyLight() == null) {
                         noSkylight = true;
                     } else {
                         skylight = true;
@@ -49,7 +49,7 @@ public class ServerMultiChunkDataPacket implements Packet {
             }
         }
 
-        if(noSkylight && skylight) {
+        if (noSkylight && skylight) {
             throw new IllegalArgumentException("Either all chunks must have skylight values or none must have them.");
         }
 
@@ -88,17 +88,17 @@ public class ServerMultiChunkDataPacket implements Packet {
         this.chunks = new Chunk[columns][];
         this.biomeData = new byte[columns][];
         NetworkChunkData[] data = new NetworkChunkData[columns];
-        for(int column = 0; column < columns; column++) {
+        for (int column = 0; column < columns; column++) {
             this.x[column] = in.readInt();
             this.z[column] = in.readInt();
             int mask = in.readUnsignedShort();
             int chunks = Integer.bitCount(mask);
             int length = (chunks * ((4096 * 2) + 2048)) + (skylight ? chunks * 2048 : 0) + 256;
-            byte dat[] = new byte[length];
+            byte[] dat = new byte[length];
             data[column] = new NetworkChunkData(mask, true, skylight, dat);
         }
 
-        for(int column = 0; column < columns; column++) {
+        for (int column = 0; column < columns; column++) {
             in.readBytes(data[column].getData());
             ParsedChunkData chunkData = NetUtil.dataToChunks(data[column], false);
             this.chunks[column] = chunkData.getChunks();
@@ -109,23 +109,23 @@ public class ServerMultiChunkDataPacket implements Packet {
     @Override
     public void write(NetOutput out) throws IOException {
         boolean skylight = false;
-        NetworkChunkData data[] = new NetworkChunkData[this.chunks.length];
-        for(int column = 0; column < this.chunks.length; column++) {
+        NetworkChunkData[] data = new NetworkChunkData[this.chunks.length];
+        for (int column = 0; column < this.chunks.length; column++) {
             data[column] = NetUtil.chunksToData(new ParsedChunkData(this.chunks[column], this.biomeData[column]));
-            if(data[column].hasSkyLight()) {
+            if (data[column].hasSkyLight()) {
                 skylight = true;
             }
         }
 
         out.writeBoolean(skylight);
         out.writeVarInt(this.chunks.length);
-        for(int column = 0; column < this.x.length; column++) {
+        for (int column = 0; column < this.x.length; column++) {
             out.writeInt(this.x[column]);
             out.writeInt(this.z[column]);
             out.writeShort(data[column].getMask());
         }
 
-        for(int column = 0; column < this.x.length; column++) {
+        for (int column = 0; column < this.x.length; column++) {
             out.writeBytes(data[column].getData());
         }
     }

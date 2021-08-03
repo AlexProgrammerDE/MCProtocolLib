@@ -8,6 +8,6 @@ public enum ParticleEffect implements WorldEffect {
     BREAK_EYE_OF_ENDER,
     MOB_SPAWN,
     BONEMEAL_GROW,
-    HARD_LANDING_DUST;
+    HARD_LANDING_DUST
 
 }

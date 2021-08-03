@@ -40,7 +40,7 @@ public class ClientTabCompletePacket implements Packet {
     public void write(NetOutput out) throws IOException {
         out.writeString(this.text);
         out.writeBoolean(this.position != null);
-        if(this.position != null) {
+        if (this.position != null) {
             NetUtil.writePosition(out, this.position);
         }
     }

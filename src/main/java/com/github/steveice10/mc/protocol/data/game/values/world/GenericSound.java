@@ -204,6 +204,6 @@ public enum GenericSound implements Sound {
     RABBIT_HOP,
     RABBIT_HURT,
     RABBIT_DEATH,
-    MOB_ATTACK;
+    MOB_ATTACK
 
 }

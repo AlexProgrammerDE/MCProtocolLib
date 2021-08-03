@@ -1,9 +1,9 @@
 package com.github.steveice10.mc.protocol.data.game;
 
 public class Rotation {
-    private float pitch;
-    private float yaw;
-    private float roll;
+    private final float pitch;
+    private final float yaw;
+    private final float roll;
 
     public Rotation() {
         this(0, 0, 0);
@@ -29,16 +29,14 @@ public class Rotation {
 
     @Override
     public boolean equals(Object o) {
-        if(this == o) return true;
-        if(o == null || getClass() != o.getClass()) return false;
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
 
         Rotation rotation = (Rotation) o;
 
-        if(Float.compare(rotation.pitch, pitch) != 0) return false;
-        if(Float.compare(rotation.roll, roll) != 0) return false;
-        if(Float.compare(rotation.yaw, yaw) != 0) return false;
-
-        return true;
+        if (Float.compare(rotation.pitch, pitch) != 0) return false;
+        if (Float.compare(rotation.roll, roll) != 0) return false;
+        return Float.compare(rotation.yaw, yaw) == 0;
     }
 
     @Override

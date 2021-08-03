@@ -21,6 +21,6 @@ public enum ScoreboardPosition {
     SIDEBAR_TEAM_RED,
     SIDEBAR_TEAM_LIGHT_PURPLE,
     SIDEBAR_TEAM_YELLOW,
-    SIDEBAR_TEAM_WHITE;
+    SIDEBAR_TEAM_WHITE
 
 }

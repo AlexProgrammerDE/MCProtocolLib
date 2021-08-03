@@ -58,7 +58,7 @@ public class ServerOpenWindowPacket implements Packet {
         this.type = MagicValues.key(WindowType.class, in.readString());
         this.name = in.readString();
         this.slots = in.readUnsignedByte();
-        if(this.type == WindowType.HORSE) {
+        if (this.type == WindowType.HORSE) {
             this.ownerEntityId = in.readInt();
         }
     }
@@ -69,7 +69,7 @@ public class ServerOpenWindowPacket implements Packet {
         out.writeString(MagicValues.value(String.class, this.type));
         out.writeString(this.name);
         out.writeByte(this.slots);
-        if(this.type == WindowType.HORSE) {
+        if (this.type == WindowType.HORSE) {
             out.writeInt(this.ownerEntityId);
         }
     }

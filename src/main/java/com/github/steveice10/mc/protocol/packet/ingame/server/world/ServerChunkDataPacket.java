@@ -14,8 +14,8 @@ public class ServerChunkDataPacket implements Packet {
 
     private int x;
     private int z;
-    private Chunk chunks[];
-    private byte biomeData[];
+    private Chunk[] chunks;
+    private byte[] biomeData;
 
     @SuppressWarnings("unused")
     private ServerChunkDataPacket() {
@@ -39,7 +39,7 @@ public class ServerChunkDataPacket implements Packet {
      * @param chunks Array of chunks in the column. Length must be 16 but can contain null values.
      * @throws IllegalArgumentException If the chunk array length is not 16 or skylight arrays exist in some but not all chunks.
      */
-    public ServerChunkDataPacket(int x, int z, Chunk chunks[]) {
+    public ServerChunkDataPacket(int x, int z, Chunk[] chunks) {
         this(x, z, chunks, null);
     }
 
@@ -52,16 +52,16 @@ public class ServerChunkDataPacket implements Packet {
      * @param biomeData Array of biome data for the column.
      * @throws IllegalArgumentException If the chunk array length is not 16 or skylight arrays exist in some but not all chunks.
      */
-    public ServerChunkDataPacket(int x, int z, Chunk chunks[], byte biomeData[]) {
-        if(chunks.length != 16) {
+    public ServerChunkDataPacket(int x, int z, Chunk[] chunks, byte[] biomeData) {
+        if (chunks.length != 16) {
             throw new IllegalArgumentException("Chunks length must be 16.");
         }
 
         boolean noSkylight = false;
         boolean skylight = false;
-        for(int index = 0; index < chunks.length; index++) {
-            if(chunks[index] != null) {
-                if(chunks[index].getSkyLight() == null) {
+        for (int index = 0; index < chunks.length; index++) {
+            if (chunks[index] != null) {
+                if (chunks[index].getSkyLight() == null) {
                     noSkylight = true;
                 } else {
                     skylight = true;
@@ -69,7 +69,7 @@ public class ServerChunkDataPacket implements Packet {
             }
         }
 
-        if(noSkylight && skylight) {
+        if (noSkylight && skylight) {
             throw new IllegalArgumentException("Either all chunks must have skylight values or none must have them.");
         }
 
@@ -105,7 +105,7 @@ public class ServerChunkDataPacket implements Packet {
         this.z = in.readInt();
         boolean fullChunk = in.readBoolean();
         int chunkMask = in.readUnsignedShort();
-        byte data[] = in.readBytes(in.readVarInt());
+        byte[] data = in.readBytes(in.readVarInt());
         ParsedChunkData chunkData = NetUtil.dataToChunks(new NetworkChunkData(chunkMask, fullChunk, false, data), true);
         this.chunks = chunkData.getChunks();
         this.biomeData = chunkData.getBiomes();

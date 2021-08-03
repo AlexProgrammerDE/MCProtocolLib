@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 public class NibbleArray3d {
 
-    private byte[] data;
+    private final byte[] data;
 
     public NibbleArray3d(int size) {
         this.data = new byte[size >> 1];
@@ -29,7 +29,7 @@ public class NibbleArray3d {
         int key = y << 8 | z << 4 | x;
         int index = key >> 1;
         int part = key & 1;
-        if(part == 0) {
+        if (part == 0) {
             this.data[index] = (byte) (this.data[index] & 240 | val & 15);
         } else {
             this.data[index] = (byte) (this.data[index] & 15 | (val & 15) << 4);
@@ -37,10 +37,10 @@ public class NibbleArray3d {
     }
 
     public void fill(int val) {
-        for(int index = 0; index < this.data.length << 1; index++) {
+        for (int index = 0; index < this.data.length << 1; index++) {
             int ind = index >> 1;
             int part = index & 1;
-            if(part == 0) {
+            if (part == 0) {
                 this.data[ind] = (byte) (this.data[ind] & 240 | val & 15);
             } else {
                 this.data[ind] = (byte) (this.data[ind] & 15 | (val & 15) << 4);
@@ -50,14 +50,12 @@ public class NibbleArray3d {
 
     @Override
     public boolean equals(Object o) {
-        if(this == o) return true;
-        if(o == null || getClass() != o.getClass()) return false;
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
 
         NibbleArray3d that = (NibbleArray3d) o;
 
-        if(!Arrays.equals(data, that.data)) return false;
-
-        return true;
+        return Arrays.equals(data, that.data);
     }
 
     @Override

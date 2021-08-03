@@ -2,7 +2,7 @@ package com.github.steveice10.mc.protocol.data.game.values.world.effect;
 
 public class HardLandingEffectData implements WorldEffectData {
 
-    private int damagingDistance;
+    private final int damagingDistance;
 
     public HardLandingEffectData(int damagingDistance) {
         this.damagingDistance = damagingDistance;
@@ -14,14 +14,12 @@ public class HardLandingEffectData implements WorldEffectData {
 
     @Override
     public boolean equals(Object o) {
-        if(this == o) return true;
-        if(o == null || getClass() != o.getClass()) return false;
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
 
         HardLandingEffectData that = (HardLandingEffectData) o;
 
-        if(damagingDistance != that.damagingDistance) return false;
-
-        return true;
+        return damagingDistance == that.damagingDistance;
     }
 
     @Override

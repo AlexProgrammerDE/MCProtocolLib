@@ -2,18 +2,7 @@ package com.github.steveice10.mc.protocol.packet.ingame.server.world;
 
 import com.github.steveice10.mc.protocol.data.game.Position;
 import com.github.steveice10.mc.protocol.data.game.values.MagicValues;
-import com.github.steveice10.mc.protocol.data.game.values.world.block.value.BlockValue;
-import com.github.steveice10.mc.protocol.data.game.values.world.block.value.BlockValueType;
-import com.github.steveice10.mc.protocol.data.game.values.world.block.value.ChestValue;
-import com.github.steveice10.mc.protocol.data.game.values.world.block.value.ChestValueType;
-import com.github.steveice10.mc.protocol.data.game.values.world.block.value.GenericBlockValue;
-import com.github.steveice10.mc.protocol.data.game.values.world.block.value.GenericBlockValueType;
-import com.github.steveice10.mc.protocol.data.game.values.world.block.value.MobSpawnerValue;
-import com.github.steveice10.mc.protocol.data.game.values.world.block.value.MobSpawnerValueType;
-import com.github.steveice10.mc.protocol.data.game.values.world.block.value.NoteBlockValue;
-import com.github.steveice10.mc.protocol.data.game.values.world.block.value.NoteBlockValueType;
-import com.github.steveice10.mc.protocol.data.game.values.world.block.value.PistonValue;
-import com.github.steveice10.mc.protocol.data.game.values.world.block.value.PistonValueType;
+import com.github.steveice10.mc.protocol.data.game.values.world.block.value.*;
 import com.github.steveice10.mc.protocol.util.NetUtil;
 import com.github.steveice10.packetlib.io.NetInput;
 import com.github.steveice10.packetlib.io.NetOutput;
@@ -67,26 +56,26 @@ public class ServerBlockValuePacket implements Packet {
     public void read(NetInput in) throws IOException {
         this.position = NetUtil.readPosition(in);
         int type = in.readUnsignedByte();
-        if(this.blockId == NOTE_BLOCK) {
+        if (this.blockId == NOTE_BLOCK) {
             this.type = MagicValues.key(NoteBlockValueType.class, type);
-        } else if(this.blockId == STICKY_PISTON || this.blockId == PISTON) {
+        } else if (this.blockId == STICKY_PISTON || this.blockId == PISTON) {
             this.type = MagicValues.key(PistonValueType.class, type);
-        } else if(this.blockId == MOB_SPAWNER) {
+        } else if (this.blockId == MOB_SPAWNER) {
             this.type = MagicValues.key(MobSpawnerValueType.class, type);
-        } else if(this.blockId == CHEST || this.blockId == ENDER_CHEST || this.blockId == TRAPPED_CHEST) {
+        } else if (this.blockId == CHEST || this.blockId == ENDER_CHEST || this.blockId == TRAPPED_CHEST) {
             this.type = MagicValues.key(ChestValueType.class, type);
         } else {
             this.type = MagicValues.key(GenericBlockValueType.class, type);
         }
 
         int value = in.readUnsignedByte();
-        if(this.blockId == NOTE_BLOCK) {
+        if (this.blockId == NOTE_BLOCK) {
             this.value = new NoteBlockValue(value);
-        } else if(this.blockId == STICKY_PISTON || this.blockId == PISTON) {
+        } else if (this.blockId == STICKY_PISTON || this.blockId == PISTON) {
             this.value = MagicValues.key(PistonValue.class, value);
-        } else if(this.blockId == MOB_SPAWNER) {
+        } else if (this.blockId == MOB_SPAWNER) {
             this.value = new MobSpawnerValue();
-        } else if(this.blockId == CHEST || this.blockId == ENDER_CHEST || this.blockId == TRAPPED_CHEST) {
+        } else if (this.blockId == CHEST || this.blockId == ENDER_CHEST || this.blockId == TRAPPED_CHEST) {
             this.value = new ChestValue(value);
         } else {
             this.value = new GenericBlockValue(value);
@@ -99,29 +88,29 @@ public class ServerBlockValuePacket implements Packet {
     public void write(NetOutput out) throws IOException {
         NetUtil.writePosition(out, this.position);
         int type = 0;
-        if(this.type instanceof NoteBlockValueType) {
+        if (this.type instanceof NoteBlockValueType) {
             type = MagicValues.value(Integer.class, (NoteBlockValueType) this.type);
-        } else if(this.type instanceof PistonValueType) {
+        } else if (this.type instanceof PistonValueType) {
             type = MagicValues.value(Integer.class, (PistonValueType) this.type);
-        } else if(this.type instanceof MobSpawnerValueType) {
+        } else if (this.type instanceof MobSpawnerValueType) {
             type = MagicValues.value(Integer.class, (MobSpawnerValueType) this.type);
-        } else if(this.type instanceof ChestValueType) {
+        } else if (this.type instanceof ChestValueType) {
             type = MagicValues.value(Integer.class, (ChestValueType) this.type);
-        } else if(this.type instanceof GenericBlockValueType) {
+        } else if (this.type instanceof GenericBlockValueType) {
             type = MagicValues.value(Integer.class, (GenericBlockValueType) this.type);
         }
 
         out.writeByte(type);
         int val = 0;
-        if(this.value instanceof NoteBlockValue) {
+        if (this.value instanceof NoteBlockValue) {
             val = ((NoteBlockValue) this.value).getPitch();
-        } else if(this.value instanceof PistonValue) {
+        } else if (this.value instanceof PistonValue) {
             val = MagicValues.value(Integer.class, (PistonValue) this.value);
-        } else if(this.value instanceof MobSpawnerValue) {
+        } else if (this.value instanceof MobSpawnerValue) {
             val = 0;
-        } else if(this.value instanceof ChestValue) {
+        } else if (this.value instanceof ChestValue) {
             val = ((ChestValue) this.value).getViewers();
-        } else if(this.value instanceof GenericBlockValue) {
+        } else if (this.value instanceof GenericBlockValue) {
             val = ((GenericBlockValue) this.value).getValue();
         }
 

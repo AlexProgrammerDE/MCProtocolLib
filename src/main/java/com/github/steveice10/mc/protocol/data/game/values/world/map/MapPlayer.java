@@ -2,10 +2,10 @@ package com.github.steveice10.mc.protocol.data.game.values.world.map;
 
 public class MapPlayer {
 
-    private int centerX;
-    private int centerZ;
-    private int iconSize;
-    private int iconRotation;
+    private final int centerX;
+    private final int centerZ;
+    private final int iconSize;
+    private final int iconRotation;
 
     public MapPlayer(int centerX, int centerZ, int iconSize, int iconRotation) {
         this.centerX = centerX;
@@ -32,17 +32,15 @@ public class MapPlayer {
 
     @Override
     public boolean equals(Object o) {
-        if(this == o) return true;
-        if(o == null || getClass() != o.getClass()) return false;
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
 
         MapPlayer mapPlayer = (MapPlayer) o;
 
-        if(centerX != mapPlayer.centerX) return false;
-        if(centerZ != mapPlayer.centerZ) return false;
-        if(iconRotation != mapPlayer.iconRotation) return false;
-        if(iconSize != mapPlayer.iconSize) return false;
-
-        return true;
+        if (centerX != mapPlayer.centerX) return false;
+        if (centerZ != mapPlayer.centerZ) return false;
+        if (iconRotation != mapPlayer.iconRotation) return false;
+        return iconSize == mapPlayer.iconSize;
     }
 
     @Override

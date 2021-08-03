@@ -2,15 +2,7 @@ package com.github.steveice10.mc.protocol.packet.ingame.server.world;
 
 import com.github.steveice10.mc.protocol.data.game.Position;
 import com.github.steveice10.mc.protocol.data.game.values.MagicValues;
-import com.github.steveice10.mc.protocol.data.game.values.world.effect.BreakBlockEffectData;
-import com.github.steveice10.mc.protocol.data.game.values.world.effect.BreakPotionEffectData;
-import com.github.steveice10.mc.protocol.data.game.values.world.effect.HardLandingEffectData;
-import com.github.steveice10.mc.protocol.data.game.values.world.effect.ParticleEffect;
-import com.github.steveice10.mc.protocol.data.game.values.world.effect.RecordEffectData;
-import com.github.steveice10.mc.protocol.data.game.values.world.effect.SmokeEffectData;
-import com.github.steveice10.mc.protocol.data.game.values.world.effect.SoundEffect;
-import com.github.steveice10.mc.protocol.data.game.values.world.effect.WorldEffect;
-import com.github.steveice10.mc.protocol.data.game.values.world.effect.WorldEffectData;
+import com.github.steveice10.mc.protocol.data.game.values.world.effect.*;
 import com.github.steveice10.mc.protocol.util.NetUtil;
 import com.github.steveice10.packetlib.io.NetInput;
 import com.github.steveice10.packetlib.io.NetOutput;
@@ -59,7 +51,7 @@ public class ServerPlayEffectPacket implements Packet {
     @Override
     public void read(NetInput in) throws IOException {
         int id = in.readInt();
-        if(id >= 2000) {
+        if (id >= 2000) {
             this.effect = MagicValues.key(ParticleEffect.class, id);
         } else {
             this.effect = MagicValues.key(SoundEffect.class, id);
@@ -67,15 +59,15 @@ public class ServerPlayEffectPacket implements Packet {
 
         this.position = NetUtil.readPosition(in);
         int value = in.readInt();
-        if(this.effect == SoundEffect.PLAY_RECORD) {
+        if (this.effect == SoundEffect.PLAY_RECORD) {
             this.data = new RecordEffectData(value);
-        } else if(this.effect == ParticleEffect.SMOKE) {
+        } else if (this.effect == ParticleEffect.SMOKE) {
             this.data = MagicValues.key(SmokeEffectData.class, value);
-        } else if(this.effect == ParticleEffect.BREAK_BLOCK) {
+        } else if (this.effect == ParticleEffect.BREAK_BLOCK) {
             this.data = new BreakBlockEffectData(value);
-        } else if(this.effect == ParticleEffect.BREAK_SPLASH_POTION) {
+        } else if (this.effect == ParticleEffect.BREAK_SPLASH_POTION) {
             this.data = new BreakPotionEffectData(value);
-        } else if(this.effect == ParticleEffect.HARD_LANDING_DUST) {
+        } else if (this.effect == ParticleEffect.HARD_LANDING_DUST) {
             this.data = new HardLandingEffectData(value);
         }
 
@@ -85,24 +77,24 @@ public class ServerPlayEffectPacket implements Packet {
     @Override
     public void write(NetOutput out) throws IOException {
         int id = 0;
-        if(this.effect instanceof ParticleEffect) {
+        if (this.effect instanceof ParticleEffect) {
             id = MagicValues.value(Integer.class, (ParticleEffect) this.effect);
-        } else if(this.effect instanceof SoundEffect) {
+        } else if (this.effect instanceof SoundEffect) {
             id = MagicValues.value(Integer.class, (SoundEffect) this.effect);
         }
 
         out.writeInt(id);
         NetUtil.writePosition(out, this.position);
         int value = 0;
-        if(this.data instanceof RecordEffectData) {
+        if (this.data instanceof RecordEffectData) {
             value = ((RecordEffectData) this.data).getRecordId();
-        } else if(this.data instanceof SmokeEffectData) {
+        } else if (this.data instanceof SmokeEffectData) {
             value = MagicValues.value(Integer.class, (SmokeEffectData) this.data);
-        } else if(this.data instanceof BreakBlockEffectData) {
+        } else if (this.data instanceof BreakBlockEffectData) {
             value = ((BreakBlockEffectData) this.data).getBlockId();
-        } else if(this.data instanceof BreakPotionEffectData) {
+        } else if (this.data instanceof BreakPotionEffectData) {
             value = ((BreakPotionEffectData) this.data).getPotionId();
-        } else if(this.data instanceof HardLandingEffectData) {
+        } else if (this.data instanceof HardLandingEffectData) {
             value = ((HardLandingEffectData) this.data).getDamagingDistance();
         }
 

@@ -60,9 +60,9 @@ public class ClientSettingsPacket implements Packet {
         this.chatColors = in.readBoolean();
         this.visibleParts = new ArrayList<SkinPart>();
         int flags = in.readUnsignedByte();
-        for(SkinPart part : SkinPart.values()) {
+        for (SkinPart part : SkinPart.values()) {
             int bit = 1 << part.ordinal();
-            if((flags & bit) == bit) {
+            if ((flags & bit) == bit) {
                 this.visibleParts.add(part);
             }
         }
@@ -75,7 +75,7 @@ public class ClientSettingsPacket implements Packet {
         out.writeByte(MagicValues.value(Integer.class, this.chatVisibility));
         out.writeBoolean(this.chatColors);
         int flags = 0;
-        for(SkinPart part : this.visibleParts) {
+        for (SkinPart part : this.visibleParts) {
             flags |= 1 << part.ordinal();
         }
 

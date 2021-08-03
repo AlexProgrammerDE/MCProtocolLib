@@ -8,6 +8,6 @@ public enum MinecartType implements ObjectData {
     TNT,
     MOB_SPAWNER,
     HOPPER,
-    COMMAND_BLOCK;
+    COMMAND_BLOCK
 
 }

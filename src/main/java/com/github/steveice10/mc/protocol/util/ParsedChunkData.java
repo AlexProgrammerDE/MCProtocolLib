@@ -6,10 +6,10 @@ import java.util.Arrays;
 
 public class ParsedChunkData {
 
-    private Chunk chunks[];
-    private byte biomes[];
+    private final Chunk[] chunks;
+    private final byte[] biomes;
 
-    public ParsedChunkData(Chunk chunks[], byte biomes[]) {
+    public ParsedChunkData(Chunk[] chunks, byte[] biomes) {
         this.chunks = chunks;
         this.biomes = biomes;
     }
@@ -24,15 +24,13 @@ public class ParsedChunkData {
 
     @Override
     public boolean equals(Object o) {
-        if(this == o) return true;
-        if(o == null || getClass() != o.getClass()) return false;
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
 
         ParsedChunkData that = (ParsedChunkData) o;
 
-        if(!Arrays.equals(biomes, that.biomes)) return false;
-        if(!Arrays.equals(chunks, that.chunks)) return false;
-
-        return true;
+        if (!Arrays.equals(biomes, that.biomes)) return false;
+        return Arrays.equals(chunks, that.chunks);
     }
 
     @Override

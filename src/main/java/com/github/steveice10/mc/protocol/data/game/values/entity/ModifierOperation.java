@@ -4,6 +4,6 @@ public enum ModifierOperation {
 
     ADD,
     ADD_MULTIPLIED,
-    MULTIPLY;
+    MULTIPLY
 
 }

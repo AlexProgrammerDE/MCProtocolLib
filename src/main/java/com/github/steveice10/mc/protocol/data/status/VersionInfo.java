@@ -2,8 +2,8 @@ package com.github.steveice10.mc.protocol.data.status;
 
 public class VersionInfo {
 
-    private String name;
-    private int protocol;
+    private final String name;
+    private final int protocol;
 
     public VersionInfo(String name, int protocol) {
         this.name = name;
@@ -20,15 +20,13 @@ public class VersionInfo {
 
     @Override
     public boolean equals(Object o) {
-        if(this == o) return true;
-        if(o == null || getClass() != o.getClass()) return false;
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
 
         VersionInfo that = (VersionInfo) o;
 
-        if(protocol != that.protocol) return false;
-        if(!name.equals(that.name)) return false;
-
-        return true;
+        if (protocol != that.protocol) return false;
+        return name.equals(that.name);
     }
 
     @Override

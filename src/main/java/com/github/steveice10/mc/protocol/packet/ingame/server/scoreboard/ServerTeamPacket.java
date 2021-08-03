@@ -21,7 +21,7 @@ public class ServerTeamPacket implements Packet {
     private boolean seeFriendlyInvisibles;
     private NameTagVisibility nameTagVisibility;
     private TeamColor color;
-    private String players[];
+    private String[] players;
 
     @SuppressWarnings("unused")
     private ServerTeamPacket() {
@@ -32,8 +32,8 @@ public class ServerTeamPacket implements Packet {
         this.action = TeamAction.REMOVE;
     }
 
-    public ServerTeamPacket(String name, TeamAction action, String players[]) {
-        if(action != TeamAction.ADD_PLAYER && action != TeamAction.REMOVE_PLAYER) {
+    public ServerTeamPacket(String name, TeamAction action, String[] players) {
+        if (action != TeamAction.ADD_PLAYER && action != TeamAction.REMOVE_PLAYER) {
             throw new IllegalArgumentException("(name, action, players) constructor only valid for adding and removing players.");
         }
 
@@ -54,7 +54,7 @@ public class ServerTeamPacket implements Packet {
         this.action = TeamAction.UPDATE;
     }
 
-    public ServerTeamPacket(String name, String displayName, String prefix, String suffix, boolean friendlyFire, boolean seeFriendlyInvisibles, NameTagVisibility nameTagVisibility, TeamColor color, String players[]) {
+    public ServerTeamPacket(String name, String displayName, String prefix, String suffix, boolean friendlyFire, boolean seeFriendlyInvisibles, NameTagVisibility nameTagVisibility, TeamColor color, String[] players) {
         this.name = name;
         this.displayName = displayName;
         this.prefix = prefix;
@@ -111,7 +111,7 @@ public class ServerTeamPacket implements Packet {
     public void read(NetInput in) throws IOException {
         this.name = in.readString();
         this.action = MagicValues.key(TeamAction.class, in.readByte());
-        if(this.action == TeamAction.CREATE || this.action == TeamAction.UPDATE) {
+        if (this.action == TeamAction.CREATE || this.action == TeamAction.UPDATE) {
             this.displayName = in.readString();
             this.prefix = in.readString();
             this.suffix = in.readString();
@@ -122,9 +122,9 @@ public class ServerTeamPacket implements Packet {
             this.color = MagicValues.key(TeamColor.class, in.readByte());
         }
 
-        if(this.action == TeamAction.CREATE || this.action == TeamAction.ADD_PLAYER || this.action == TeamAction.REMOVE_PLAYER) {
+        if (this.action == TeamAction.CREATE || this.action == TeamAction.ADD_PLAYER || this.action == TeamAction.REMOVE_PLAYER) {
             this.players = new String[in.readVarInt()];
-            for(int index = 0; index < this.players.length; index++) {
+            for (int index = 0; index < this.players.length; index++) {
                 this.players[index] = in.readString();
             }
         }
@@ -134,15 +134,15 @@ public class ServerTeamPacket implements Packet {
     public void write(NetOutput out) throws IOException {
         out.writeString(this.name);
         out.writeByte(MagicValues.value(Integer.class, this.action));
-        if(this.action == TeamAction.CREATE || this.action == TeamAction.UPDATE) {
+        if (this.action == TeamAction.CREATE || this.action == TeamAction.UPDATE) {
             out.writeString(this.displayName);
             out.writeString(this.prefix);
             out.writeString(this.suffix);
             byte flags = 0;
-            if(this.friendlyFire) {
+            if (this.friendlyFire) {
                 flags |= 0x1;
             }
-            if(this.seeFriendlyInvisibles) {
+            if (this.seeFriendlyInvisibles) {
                 flags |= 0x2;
             }
             out.writeByte(flags);
@@ -150,10 +150,10 @@ public class ServerTeamPacket implements Packet {
             out.writeByte(MagicValues.value(Integer.class, this.color));
         }
 
-        if(this.action == TeamAction.CREATE || this.action == TeamAction.ADD_PLAYER || this.action == TeamAction.REMOVE_PLAYER) {
+        if (this.action == TeamAction.CREATE || this.action == TeamAction.ADD_PLAYER || this.action == TeamAction.REMOVE_PLAYER) {
             out.writeVarInt(this.players.length);
-            for(String player : this.players) {
-                if(player != null) {
+            for (String player : this.players) {
+                if (player != null) {
                     out.writeString(player);
                 }
             }

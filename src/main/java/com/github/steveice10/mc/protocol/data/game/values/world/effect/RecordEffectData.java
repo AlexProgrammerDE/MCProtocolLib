@@ -2,7 +2,7 @@ package com.github.steveice10.mc.protocol.data.game.values.world.effect;
 
 public class RecordEffectData implements WorldEffectData {
 
-    private int recordId;
+    private final int recordId;
 
     public RecordEffectData(int recordId) {
         this.recordId = recordId;
@@ -14,14 +14,12 @@ public class RecordEffectData implements WorldEffectData {
 
     @Override
     public boolean equals(Object o) {
-        if(this == o) return true;
-        if(o == null || getClass() != o.getClass()) return false;
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
 
         RecordEffectData that = (RecordEffectData) o;
 
-        if(recordId != that.recordId) return false;
-
-        return true;
+        return recordId == that.recordId;
     }
 
     @Override

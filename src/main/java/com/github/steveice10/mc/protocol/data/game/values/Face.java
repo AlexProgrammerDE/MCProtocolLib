@@ -8,6 +8,6 @@ public enum Face {
     WEST,
     NORTH,
     SOUTH,
-    INVALID;
+    INVALID
 
 }

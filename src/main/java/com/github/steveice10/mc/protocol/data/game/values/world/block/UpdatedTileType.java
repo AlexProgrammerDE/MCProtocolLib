@@ -7,6 +7,6 @@ public enum UpdatedTileType {
     BEACON,
     SKULL,
     FLOWER_POT,
-    BANNER;
+    BANNER
 
 }

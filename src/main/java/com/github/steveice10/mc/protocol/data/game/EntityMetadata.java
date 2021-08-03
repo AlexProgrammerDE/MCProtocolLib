@@ -4,9 +4,9 @@ import com.github.steveice10.mc.protocol.data.game.values.entity.MetadataType;
 
 public class EntityMetadata {
 
-    private int id;
-    private MetadataType type;
-    private Object value;
+    private final int id;
+    private final MetadataType type;
+    private final Object value;
 
     public EntityMetadata(int id, MetadataType type, Object value) {
         this.id = id;
@@ -28,16 +28,14 @@ public class EntityMetadata {
 
     @Override
     public boolean equals(Object o) {
-        if(this == o) return true;
-        if(o == null || getClass() != o.getClass()) return false;
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
 
         EntityMetadata metadata = (EntityMetadata) o;
 
-        if(id != metadata.id) return false;
-        if(type != metadata.type) return false;
-        if(!value.equals(metadata.value)) return false;
-
-        return true;
+        if (id != metadata.id) return false;
+        if (type != metadata.type) return false;
+        return value.equals(metadata.value);
     }
 
     @Override

@@ -2,9 +2,9 @@ package com.github.steveice10.mc.protocol.data.game;
 
 public class Chunk {
 
-    private ShortArray3d blocks;
-    private NibbleArray3d blocklight;
-    private NibbleArray3d skylight;
+    private final ShortArray3d blocks;
+    private final NibbleArray3d blocklight;
+    private final NibbleArray3d skylight;
 
     public Chunk(boolean skylight) {
         this(new ShortArray3d(4096), new NibbleArray3d(4096), skylight ? new NibbleArray3d(4096) : null);
@@ -29,8 +29,8 @@ public class Chunk {
     }
 
     public boolean isEmpty() {
-        for(short block : this.blocks.getData()) {
-            if(block != 0) {
+        for (short block : this.blocks.getData()) {
+            if (block != 0) {
                 return false;
             }
         }
@@ -40,16 +40,14 @@ public class Chunk {
 
     @Override
     public boolean equals(Object o) {
-        if(this == o) return true;
-        if(o == null || getClass() != o.getClass()) return false;
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
 
         Chunk chunk = (Chunk) o;
 
-        if(!blocklight.equals(chunk.blocklight)) return false;
-        if(!blocks.equals(chunk.blocks)) return false;
-        if(skylight != null ? !skylight.equals(chunk.skylight) : chunk.skylight != null) return false;
-
-        return true;
+        if (!blocklight.equals(chunk.blocklight)) return false;
+        if (!blocks.equals(chunk.blocks)) return false;
+        return skylight != null ? skylight.equals(chunk.skylight) : chunk.skylight == null;
     }
 
     @Override

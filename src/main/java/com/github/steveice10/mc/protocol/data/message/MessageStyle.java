@@ -22,33 +22,57 @@ public class MessageStyle implements Cloneable {
         return this.color;
     }
 
+    public MessageStyle setColor(ChatColor color) {
+        this.color = color;
+        return this;
+    }
+
     public List<ChatFormat> getFormats() {
         return new ArrayList<ChatFormat>(this.formats);
+    }
+
+    public MessageStyle setFormats(List<ChatFormat> formats) {
+        this.formats = new ArrayList<ChatFormat>(formats);
+        return this;
     }
 
     public ClickEvent getClickEvent() {
         return this.click;
     }
 
+    public MessageStyle setClickEvent(ClickEvent event) {
+        this.click = event;
+        return this;
+    }
+
     public HoverEvent getHoverEvent() {
         return this.hover;
+    }
+
+    public MessageStyle setHoverEvent(HoverEvent event) {
+        this.hover = event;
+        return this;
     }
 
     public String getInsertion() {
         return this.insertion;
     }
 
+    public MessageStyle setInsertion(String insertion) {
+        this.insertion = insertion;
+        return this;
+    }
+
     public MessageStyle getParent() {
         return this.parent;
     }
 
-    public MessageStyle setColor(ChatColor color) {
-        this.color = color;
-        return this;
-    }
+    protected MessageStyle setParent(MessageStyle parent) {
+        if (parent == null) {
+            parent = DEFAULT;
+        }
 
-    public MessageStyle setFormats(List<ChatFormat> formats) {
-        this.formats = new ArrayList<ChatFormat>(formats);
+        this.parent = parent;
         return this;
     }
 
@@ -67,30 +91,6 @@ public class MessageStyle implements Cloneable {
         return this;
     }
 
-    public MessageStyle setClickEvent(ClickEvent event) {
-        this.click = event;
-        return this;
-    }
-
-    public MessageStyle setHoverEvent(HoverEvent event) {
-        this.hover = event;
-        return this;
-    }
-
-    public MessageStyle setInsertion(String insertion) {
-        this.insertion = insertion;
-        return this;
-    }
-
-    protected MessageStyle setParent(MessageStyle parent) {
-        if(parent == null) {
-            parent = DEFAULT;
-        }
-
-        this.parent = parent;
-        return this;
-    }
-
     @Override
     public String toString() {
         return "MessageStyle{color=" + this.color + ",formats=" + this.formats + ",clickEvent=" + this.click + ",hoverEvent=" + this.hover + ",insertion=" + this.insertion + "}";
@@ -103,19 +103,17 @@ public class MessageStyle implements Cloneable {
 
     @Override
     public boolean equals(Object o) {
-        if(this == o) return true;
-        if(o == null || getClass() != o.getClass()) return false;
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
 
         MessageStyle style = (MessageStyle) o;
 
-        if(click != null ? !click.equals(style.click) : style.click != null) return false;
-        if(color != style.color) return false;
-        if(!formats.equals(style.formats)) return false;
-        if(hover != null ? !hover.equals(style.hover) : style.hover != null) return false;
-        if(insertion != null ? !insertion.equals(style.insertion) : style.insertion != null) return false;
-        if(!parent.equals(style.parent)) return false;
-
-        return true;
+        if (click != null ? !click.equals(style.click) : style.click != null) return false;
+        if (color != style.color) return false;
+        if (!formats.equals(style.formats)) return false;
+        if (hover != null ? !hover.equals(style.hover) : style.hover != null) return false;
+        if (insertion != null ? !insertion.equals(style.insertion) : style.insertion != null) return false;
+        return parent.equals(style.parent);
     }
 
     @Override
