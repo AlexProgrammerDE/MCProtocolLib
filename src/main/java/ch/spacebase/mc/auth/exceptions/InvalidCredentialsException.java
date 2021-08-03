@@ -1,23 +1,21 @@
 package ch.spacebase.mc.auth.exceptions;
 
-import ch.spacebase.mc.auth.exceptions.AuthenticationException;
-
 public class InvalidCredentialsException extends AuthenticationException {
 
-	private static final long serialVersionUID = 1L;
-	
-	public InvalidCredentialsException() {
-	}
+    private static final long serialVersionUID = 1L;
 
-	public InvalidCredentialsException(String message) {
-		super(message);
-	}
+    public InvalidCredentialsException() {
+    }
 
-	public InvalidCredentialsException(String message, Throwable cause) {
-		super(message, cause);
-	}
+    public InvalidCredentialsException(String message) {
+        super(message);
+    }
 
-	public InvalidCredentialsException(Throwable cause) {
-		super(cause);
-	}
+    public InvalidCredentialsException(String message, Throwable cause) {
+        super(message, cause);
+    }
+
+    public InvalidCredentialsException(Throwable cause) {
+        super(cause);
+    }
 }

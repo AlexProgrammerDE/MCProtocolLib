@@ -2,20 +2,20 @@ package ch.spacebase.mc.auth.response;
 
 public class Response {
 
-	private String error;
-	private String errorMessage;
-	private String cause;
+    private String error;
+    private String errorMessage;
+    private String cause;
 
-	public String getError() {
-		return this.error;
-	}
+    public String getError() {
+        return this.error;
+    }
 
-	public String getCause() {
-		return this.cause;
-	}
+    public String getCause() {
+        return this.cause;
+    }
 
-	public String getErrorMessage() {
-		return this.errorMessage;
-	}
-	
+    public String getErrorMessage() {
+        return this.errorMessage;
+    }
+
 }

@@ -4,6 +4,6 @@ import ch.spacebase.mc.protocol.data.status.ServerStatusInfo;
 
 public interface ServerInfoBuilder {
 
-	public ServerStatusInfo buildInfo();
-	
+    public ServerStatusInfo buildInfo();
+
 }

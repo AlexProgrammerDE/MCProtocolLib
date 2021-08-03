@@ -5,6 +5,6 @@ import ch.spacebase.mc.protocol.data.status.ServerStatusInfo;
 
 public interface ServerInfoHandler {
 
-	public void handle(ServerStatusInfo info);
-	
+    public void handle(ServerStatusInfo info);
+
 }
