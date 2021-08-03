@@ -9,7 +9,7 @@ import java.io.IOException;
 
 public class ServerEntityDestroyPacket implements Packet {
 
-    private int entityIds[];
+    private int[] entityIds;
 
     @SuppressWarnings("unused")
     private ServerEntityDestroyPacket() {
@@ -26,7 +26,7 @@ public class ServerEntityDestroyPacket implements Packet {
     @Override
     public void read(NetInput in) throws IOException {
         this.entityIds = new int[in.readVarInt()];
-        for(int index = 0; index < this.entityIds.length; index++) {
+        for (int index = 0; index < this.entityIds.length; index++) {
             this.entityIds[index] = in.readVarInt();
         }
     }
@@ -34,7 +34,7 @@ public class ServerEntityDestroyPacket implements Packet {
     @Override
     public void write(NetOutput out) throws IOException {
         out.writeVarInt(this.entityIds.length);
-        for(int entityId : this.entityIds) {
+        for (int entityId : this.entityIds) {
             out.writeVarInt(entityId);
         }
     }

@@ -1,10 +1,10 @@
 package com.github.steveice10.mc.protocol.data.game.world.block.value;
 
 public class NoteBlockValue implements BlockValue {
-    private int pitch;
+    private final int pitch;
 
     public NoteBlockValue(int pitch) {
-        if(pitch < 0 || pitch > 24) {
+        if (pitch < 0 || pitch > 24) {
             throw new IllegalArgumentException("Pitch must be between 0 and 24.");
         }
 

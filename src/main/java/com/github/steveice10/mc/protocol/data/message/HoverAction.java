@@ -6,19 +6,19 @@ public enum HoverAction {
     SHOW_ACHIEVEMENT,
     SHOW_ENTITY;
 
-    @Override
-    public String toString() {
-        return this.name().toLowerCase();
-    }
-
     public static HoverAction byName(String name) {
         name = name.toLowerCase();
-        for(HoverAction action : values()) {
-            if(action.toString().equals(name)) {
+        for (HoverAction action : values()) {
+            if (action.toString().equals(name)) {
                 return action;
             }
         }
 
         return null;
+    }
+
+    @Override
+    public String toString() {
+        return this.name().toLowerCase();
     }
 }

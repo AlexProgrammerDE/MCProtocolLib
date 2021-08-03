@@ -1,7 +1,7 @@
 package com.github.steveice10.mc.protocol.data.game.entity.type.object;
 
 public class ProjectileData implements ObjectData {
-    private int ownerId;
+    private final int ownerId;
 
     public ProjectileData(int ownerId) {
         this.ownerId = ownerId;

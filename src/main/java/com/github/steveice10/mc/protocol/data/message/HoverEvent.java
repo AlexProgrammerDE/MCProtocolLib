@@ -1,8 +1,8 @@
 package com.github.steveice10.mc.protocol.data.message;
 
 public class HoverEvent implements Cloneable {
-    private HoverAction action;
-    private Message value;
+    private final HoverAction action;
+    private final Message value;
 
     public HoverEvent(HoverAction action, Message value) {
         this.action = action;

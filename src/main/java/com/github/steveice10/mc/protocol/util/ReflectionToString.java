@@ -14,7 +14,9 @@ public class ReflectionToString {
     }
 
     private static String memberToString(Object o) {
-        if (o == null) { return "null"; }
+        if (o == null) {
+            return "null";
+        }
 
         if (o.getClass().isArray()) {
             int length = Array.getLength(o);
@@ -23,7 +25,9 @@ public class ReflectionToString {
             } else {
                 StringBuilder builder = new StringBuilder("[");
                 for (int i = 0; i < length; i++) {
-                    if (i > 0) { builder.append(", "); }
+                    if (i > 0) {
+                        builder.append(", ");
+                    }
                     builder.append(memberToString(Array.get(o, i)));
                 }
                 return builder.append(']').toString();
@@ -34,7 +38,9 @@ public class ReflectionToString {
     }
 
     public static String toString(Object o) {
-        if (o == null) { return "null"; }
+        if (o == null) {
+            return "null";
+        }
 
         try {
             StringBuilder builder = new StringBuilder(o.getClass().getSimpleName()).append('(');
@@ -43,7 +49,9 @@ public class ReflectionToString {
             List<Field> allDeclaredFields = getAllDeclaredFields(o.getClass());
 
             for (int i = 0; i < allDeclaredFields.size(); i++) {
-                if (i > 0) { builder.append(", "); }
+                if (i > 0) {
+                    builder.append(", ");
+                }
 
                 Field field = allDeclaredFields.get(i);
                 field.setAccessible(true);
@@ -53,7 +61,7 @@ public class ReflectionToString {
             }
             return builder.append(')').toString();
         } catch (Throwable e) {
-            return o.getClass().getSimpleName() + '@' + Integer.toHexString(o.hashCode()) + '(' + e.toString() + ')';
+            return o.getClass().getSimpleName() + '@' + Integer.toHexString(o.hashCode()) + '(' + e + ')';
         }
     }
 

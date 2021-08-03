@@ -28,6 +28,6 @@ public enum Effect {
     GLOWING,
     LEVITATION,
     LUCK,
-    BAD_LUCK;
+    BAD_LUCK
 
 }

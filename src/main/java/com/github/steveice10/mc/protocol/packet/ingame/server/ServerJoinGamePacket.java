@@ -87,7 +87,7 @@ public class ServerJoinGamePacket implements Packet {
     public void write(NetOutput out) throws IOException {
         out.writeInt(this.entityId);
         int gamemode = MagicValues.value(Integer.class, this.gamemode);
-        if(this.hardcore) {
+        if (this.hardcore) {
             gamemode |= 8;
         }
 

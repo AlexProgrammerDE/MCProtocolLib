@@ -459,5 +459,5 @@ public enum BuiltinSound implements Sound {
     RECORD_WARD,
     UI_BUTTON_CLICK,
     WEATHER_RAIN,
-    WEATHER_RAIN_ABOVE;
+    WEATHER_RAIN_ABOVE
 }

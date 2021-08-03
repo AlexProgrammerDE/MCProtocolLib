@@ -63,7 +63,7 @@ public class ServerWorldBorderPacket implements Packet {
     }
 
     public ServerWorldBorderPacket(int warning, boolean time) {
-        if(time) {
+        if (time) {
             this.action = WorldBorderAction.SET_WARNING_TIME;
             this.warningTime = warning;
         } else {
@@ -115,16 +115,16 @@ public class ServerWorldBorderPacket implements Packet {
     @Override
     public void read(NetInput in) throws IOException {
         this.action = MagicValues.key(WorldBorderAction.class, in.readVarInt());
-        if(this.action == WorldBorderAction.SET_SIZE) {
+        if (this.action == WorldBorderAction.SET_SIZE) {
             this.radius = in.readDouble();
-        } else if(this.action == WorldBorderAction.LERP_SIZE) {
+        } else if (this.action == WorldBorderAction.LERP_SIZE) {
             this.oldRadius = in.readDouble();
             this.newRadius = in.readDouble();
             this.speed = in.readVarLong();
-        } else if(this.action == WorldBorderAction.SET_CENTER) {
+        } else if (this.action == WorldBorderAction.SET_CENTER) {
             this.centerX = in.readDouble();
             this.centerY = in.readDouble();
-        } else if(this.action == WorldBorderAction.INITIALIZE) {
+        } else if (this.action == WorldBorderAction.INITIALIZE) {
             this.centerX = in.readDouble();
             this.centerY = in.readDouble();
             this.oldRadius = in.readDouble();
@@ -133,9 +133,9 @@ public class ServerWorldBorderPacket implements Packet {
             this.portalTeleportBoundary = in.readVarInt();
             this.warningTime = in.readVarInt();
             this.warningBlocks = in.readVarInt();
-        } else if(this.action == WorldBorderAction.SET_WARNING_TIME) {
+        } else if (this.action == WorldBorderAction.SET_WARNING_TIME) {
             this.warningTime = in.readVarInt();
-        } else if(this.action == WorldBorderAction.SET_WARNING_BLOCKS) {
+        } else if (this.action == WorldBorderAction.SET_WARNING_BLOCKS) {
             this.warningBlocks = in.readVarInt();
         }
     }
@@ -143,16 +143,16 @@ public class ServerWorldBorderPacket implements Packet {
     @Override
     public void write(NetOutput out) throws IOException {
         out.writeVarInt(MagicValues.value(Integer.class, this.action));
-        if(this.action == WorldBorderAction.SET_SIZE) {
+        if (this.action == WorldBorderAction.SET_SIZE) {
             out.writeDouble(this.radius);
-        } else if(this.action == WorldBorderAction.LERP_SIZE) {
+        } else if (this.action == WorldBorderAction.LERP_SIZE) {
             out.writeDouble(this.oldRadius);
             out.writeDouble(this.newRadius);
             out.writeVarLong(this.speed);
-        } else if(this.action == WorldBorderAction.SET_CENTER) {
+        } else if (this.action == WorldBorderAction.SET_CENTER) {
             out.writeDouble(this.centerX);
             out.writeDouble(this.centerY);
-        } else if(this.action == WorldBorderAction.INITIALIZE) {
+        } else if (this.action == WorldBorderAction.INITIALIZE) {
             out.writeDouble(this.centerX);
             out.writeDouble(this.centerY);
             out.writeDouble(this.oldRadius);
@@ -161,9 +161,9 @@ public class ServerWorldBorderPacket implements Packet {
             out.writeVarInt(this.portalTeleportBoundary);
             out.writeVarInt(this.warningTime);
             out.writeVarInt(this.warningBlocks);
-        } else if(this.action == WorldBorderAction.SET_WARNING_TIME) {
+        } else if (this.action == WorldBorderAction.SET_WARNING_TIME) {
             out.writeVarInt(this.warningTime);
-        } else if(this.action == WorldBorderAction.SET_WARNING_BLOCKS) {
+        } else if (this.action == WorldBorderAction.SET_WARNING_BLOCKS) {
             out.writeVarInt(this.warningBlocks);
         }
     }

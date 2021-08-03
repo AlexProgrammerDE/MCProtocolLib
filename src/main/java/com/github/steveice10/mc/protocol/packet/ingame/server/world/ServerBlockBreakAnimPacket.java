@@ -45,7 +45,7 @@ public class ServerBlockBreakAnimPacket implements Packet {
         this.position = NetUtil.readPosition(in);
         try {
             this.stage = MagicValues.key(BlockBreakStage.class, in.readUnsignedByte());
-        } catch(IllegalArgumentException e) {
+        } catch (IllegalArgumentException e) {
             this.stage = BlockBreakStage.RESET;
         }
     }

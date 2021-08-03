@@ -33,7 +33,7 @@ public class ServerChunkDataPacket implements Packet {
         int z = in.readInt();
         boolean fullChunk = in.readBoolean();
         int chunkMask = in.readVarInt();
-        byte data[] = in.readBytes(in.readVarInt());
+        byte[] data = in.readBytes(in.readVarInt());
         CompoundTag[] tileEntities = new CompoundTag[in.readVarInt()];
         for (int i = 0; i < tileEntities.length; i++) {
             tileEntities[i] = NetUtil.readNBT(in);

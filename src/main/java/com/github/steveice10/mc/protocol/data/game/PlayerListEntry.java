@@ -6,7 +6,7 @@ import com.github.steveice10.mc.protocol.data.message.Message;
 import com.github.steveice10.mc.protocol.util.ReflectionToString;
 
 public class PlayerListEntry {
-    private GameProfile profile;
+    private final GameProfile profile;
 
     private GameMode gameMode;
     private int ping;

@@ -2,7 +2,7 @@ package com.github.steveice10.mc.protocol.data.game.entity.type.object;
 
 public class SplashPotionData implements ObjectData {
 
-    private int potionData;
+    private final int potionData;
 
     public SplashPotionData(int potionData) {
         this.potionData = potionData;
@@ -14,14 +14,12 @@ public class SplashPotionData implements ObjectData {
 
     @Override
     public boolean equals(Object o) {
-        if(this == o) return true;
-        if(o == null || getClass() != o.getClass()) return false;
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
 
         SplashPotionData that = (SplashPotionData) o;
 
-        if(potionData != that.potionData) return false;
-
-        return true;
+        return potionData == that.potionData;
     }
 
     @Override

@@ -15,10 +15,9 @@ public class ServerEntityMovementPacket implements Packet {
     protected double moveZ;
     protected float yaw;
     protected float pitch;
-    private boolean onGround;
-
     protected boolean pos = false;
     protected boolean rot = false;
+    private boolean onGround;
 
     protected ServerEntityMovementPacket() {
     }
@@ -59,18 +58,18 @@ public class ServerEntityMovementPacket implements Packet {
     @Override
     public void read(NetInput in) throws IOException {
         this.entityId = in.readVarInt();
-        if(this.pos) {
+        if (this.pos) {
             this.moveX = in.readShort() / 4096D;
             this.moveY = in.readShort() / 4096D;
             this.moveZ = in.readShort() / 4096D;
         }
 
-        if(this.rot) {
+        if (this.rot) {
             this.yaw = in.readByte() * 360 / 256f;
             this.pitch = in.readByte() * 360 / 256f;
         }
 
-        if(this.pos || this.rot) {
+        if (this.pos || this.rot) {
             this.onGround = in.readBoolean();
         }
     }
@@ -78,18 +77,18 @@ public class ServerEntityMovementPacket implements Packet {
     @Override
     public void write(NetOutput out) throws IOException {
         out.writeVarInt(this.entityId);
-        if(this.pos) {
+        if (this.pos) {
             out.writeShort((int) (this.moveX * 4096));
             out.writeShort((int) (this.moveY * 4096));
             out.writeShort((int) (this.moveZ * 4096));
         }
 
-        if(this.rot) {
+        if (this.rot) {
             out.writeByte((byte) (this.yaw * 256 / 360));
             out.writeByte((byte) (this.pitch * 256 / 360));
         }
 
-        if(this.pos || this.rot) {
+        if (this.pos || this.rot) {
             out.writeBoolean(this.onGround);
         }
     }

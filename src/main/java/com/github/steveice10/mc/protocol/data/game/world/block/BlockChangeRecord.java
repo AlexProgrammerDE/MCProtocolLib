@@ -3,8 +3,8 @@ package com.github.steveice10.mc.protocol.data.game.world.block;
 import com.github.steveice10.mc.protocol.data.game.entity.metadata.Position;
 
 public class BlockChangeRecord {
-    private Position position;
-    private BlockState block;
+    private final Position position;
+    private final BlockState block;
 
     public BlockChangeRecord(Position position, BlockState block) {
         this.position = position;

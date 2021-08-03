@@ -1,14 +1,14 @@
 package com.github.steveice10.mc.protocol.data.game.world.notify;
 
 public class RainStrengthValue implements ClientNotificationValue {
-    private float strength;
+    private final float strength;
 
     public RainStrengthValue(float strength) {
-        if(strength > 1) {
+        if (strength > 1) {
             strength = 1;
         }
 
-        if(strength < 0) {
+        if (strength < 0) {
             strength = 0;
         }
 

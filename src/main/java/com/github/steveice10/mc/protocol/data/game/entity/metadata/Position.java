@@ -3,9 +3,9 @@ package com.github.steveice10.mc.protocol.data.game.entity.metadata;
 import com.github.steveice10.mc.protocol.util.ReflectionToString;
 
 public class Position {
-    private int x;
-    private int y;
-    private int z;
+    private final int x;
+    private final int y;
+    private final int z;
 
     public Position(int x, int y, int z) {
         this.x = x;

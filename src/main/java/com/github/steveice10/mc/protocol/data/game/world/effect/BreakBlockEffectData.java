@@ -3,7 +3,7 @@ package com.github.steveice10.mc.protocol.data.game.world.effect;
 import com.github.steveice10.mc.protocol.data.game.world.block.BlockState;
 
 public class BreakBlockEffectData implements WorldEffectData {
-    private BlockState blockState;
+    private final BlockState blockState;
 
     public BreakBlockEffectData(BlockState blockState) {
         this.blockState = blockState;

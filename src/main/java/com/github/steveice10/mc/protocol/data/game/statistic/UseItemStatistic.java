@@ -2,7 +2,7 @@ package com.github.steveice10.mc.protocol.data.game.statistic;
 
 public class UseItemStatistic implements Statistic {
 
-    private int id;
+    private final int id;
 
     public UseItemStatistic(int id) {
         this.id = id;
@@ -14,14 +14,12 @@ public class UseItemStatistic implements Statistic {
 
     @Override
     public boolean equals(Object o) {
-        if(this == o) return true;
-        if(o == null || getClass() != o.getClass()) return false;
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
 
         UseItemStatistic that = (UseItemStatistic) o;
 
-        if(id != that.id) return false;
-
-        return true;
+        return id == that.id;
     }
 
     @Override

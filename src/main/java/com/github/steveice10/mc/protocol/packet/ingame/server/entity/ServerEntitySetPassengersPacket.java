@@ -10,7 +10,7 @@ import java.io.IOException;
 public class ServerEntitySetPassengersPacket implements Packet {
 
     private int entityId;
-    private int passengerIds[];
+    private int[] passengerIds;
 
     @SuppressWarnings("unused")
     private ServerEntitySetPassengersPacket() {
@@ -33,7 +33,7 @@ public class ServerEntitySetPassengersPacket implements Packet {
     public void read(NetInput in) throws IOException {
         this.entityId = in.readVarInt();
         this.passengerIds = new int[in.readVarInt()];
-        for(int index = 0; index < this.passengerIds.length; index++) {
+        for (int index = 0; index < this.passengerIds.length; index++) {
             this.passengerIds[index] = in.readVarInt();
         }
     }
@@ -42,7 +42,7 @@ public class ServerEntitySetPassengersPacket implements Packet {
     public void write(NetOutput out) throws IOException {
         out.writeVarInt(this.entityId);
         out.writeVarInt(this.passengerIds.length);
-        for(int entityId : this.passengerIds) {
+        for (int entityId : this.passengerIds) {
             out.writeVarInt(entityId);
         }
     }

@@ -36,5 +36,5 @@ public enum MobType {
     HORSE,
     RABBIT,
     POLAR_BEAR,
-    VILLAGER;
+    VILLAGER
 }

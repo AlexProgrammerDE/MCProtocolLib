@@ -1,9 +1,9 @@
 package com.github.steveice10.mc.protocol.data.game.entity.metadata;
 
 public class Rotation {
-    private float pitch;
-    private float yaw;
-    private float roll;
+    private final float pitch;
+    private final float yaw;
+    private final float roll;
 
     public Rotation() {
         this(0, 0, 0);

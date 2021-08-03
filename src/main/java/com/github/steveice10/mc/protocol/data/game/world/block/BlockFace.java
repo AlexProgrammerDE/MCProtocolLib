@@ -7,5 +7,5 @@ public enum BlockFace {
     SOUTH,
     WEST,
     EAST,
-    SPECIAL;
+    SPECIAL
 }

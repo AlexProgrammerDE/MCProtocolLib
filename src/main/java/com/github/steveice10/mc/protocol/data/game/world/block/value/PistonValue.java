@@ -6,5 +6,5 @@ public enum PistonValue implements BlockValue {
     SOUTH,
     WEST,
     NORTH,
-    EAST;
+    EAST
 }

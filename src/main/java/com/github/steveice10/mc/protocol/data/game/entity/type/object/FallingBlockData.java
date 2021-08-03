@@ -2,8 +2,8 @@ package com.github.steveice10.mc.protocol.data.game.entity.type.object;
 
 public class FallingBlockData implements ObjectData {
 
-    private int id;
-    private int metadata;
+    private final int id;
+    private final int metadata;
 
     public FallingBlockData(int id, int metadata) {
         this.id = id;
@@ -20,15 +20,13 @@ public class FallingBlockData implements ObjectData {
 
     @Override
     public boolean equals(Object o) {
-        if(this == o) return true;
-        if(o == null || getClass() != o.getClass()) return false;
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
 
         FallingBlockData that = (FallingBlockData) o;
 
-        if(id != that.id) return false;
-        if(metadata != that.metadata) return false;
-
-        return true;
+        if (id != that.id) return false;
+        return metadata == that.metadata;
     }
 
     @Override

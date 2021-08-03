@@ -27,7 +27,7 @@ public class ServerScoreboardObjectivePacket implements Packet {
     }
 
     public ServerScoreboardObjectivePacket(String name, ObjectiveAction action, String displayName, ScoreType type) {
-        if(action != ObjectiveAction.ADD && action != ObjectiveAction.UPDATE) {
+        if (action != ObjectiveAction.ADD && action != ObjectiveAction.UPDATE) {
             throw new IllegalArgumentException("(name, action, displayName) constructor only valid for adding and updating objectives.");
         }
 
@@ -57,7 +57,7 @@ public class ServerScoreboardObjectivePacket implements Packet {
     public void read(NetInput in) throws IOException {
         this.name = in.readString();
         this.action = MagicValues.key(ObjectiveAction.class, in.readByte());
-        if(this.action == ObjectiveAction.ADD || this.action == ObjectiveAction.UPDATE) {
+        if (this.action == ObjectiveAction.ADD || this.action == ObjectiveAction.UPDATE) {
             this.displayName = in.readString();
             this.type = MagicValues.key(ScoreType.class, in.readString());
         }
@@ -67,7 +67,7 @@ public class ServerScoreboardObjectivePacket implements Packet {
     public void write(NetOutput out) throws IOException {
         out.writeString(this.name);
         out.writeByte(MagicValues.value(Integer.class, this.action));
-        if(this.action == ObjectiveAction.ADD || this.action == ObjectiveAction.UPDATE) {
+        if (this.action == ObjectiveAction.ADD || this.action == ObjectiveAction.UPDATE) {
             out.writeString(this.displayName);
             out.writeString(MagicValues.value(String.class, this.type));
         }

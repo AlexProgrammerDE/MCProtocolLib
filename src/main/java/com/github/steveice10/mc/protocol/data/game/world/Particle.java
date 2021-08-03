@@ -48,13 +48,13 @@ public enum Particle {
     DAMAGE_INDICATOR,
     SWEEP_ATTACK;
 
-    private int dataLength;
+    private final int dataLength;
 
-    private Particle() {
+    Particle() {
         this(0);
     }
 
-    private Particle(int dataLength) {
+    Particle(int dataLength) {
         this.dataLength = dataLength;
     }
 

@@ -1,7 +1,7 @@
 package com.github.steveice10.mc.protocol.data.game.world.effect;
 
 public class BonemealGrowEffectData implements WorldEffectData {
-    private int particleCount;
+    private final int particleCount;
 
     public BonemealGrowEffectData(int particleCount) {
         this.particleCount = particleCount;

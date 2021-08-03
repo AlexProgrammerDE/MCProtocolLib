@@ -1,13 +1,7 @@
 package com.github.steveice10.mc.protocol.packet.ingame.server;
 
 import com.github.steveice10.mc.protocol.data.MagicValues;
-import com.github.steveice10.mc.protocol.data.game.statistic.Achievement;
-import com.github.steveice10.mc.protocol.data.game.statistic.BreakBlockStatistic;
-import com.github.steveice10.mc.protocol.data.game.statistic.BreakItemStatistic;
-import com.github.steveice10.mc.protocol.data.game.statistic.CraftItemStatistic;
-import com.github.steveice10.mc.protocol.data.game.statistic.GenericStatistic;
-import com.github.steveice10.mc.protocol.data.game.statistic.Statistic;
-import com.github.steveice10.mc.protocol.data.game.statistic.UseItemStatistic;
+import com.github.steveice10.mc.protocol.data.game.statistic.*;
 import com.github.steveice10.mc.protocol.util.ReflectionToString;
 import com.github.steveice10.packetlib.io.NetInput;
 import com.github.steveice10.packetlib.io.NetOutput;
@@ -41,18 +35,18 @@ public class ServerStatisticsPacket implements Packet {
     @Override
     public void read(NetInput in) throws IOException {
         int length = in.readVarInt();
-        for(int index = 0; index < length; index++) {
+        for (int index = 0; index < length; index++) {
             String value = in.readString();
             Statistic statistic = null;
-            if(value.startsWith("achievement.")) {
+            if (value.startsWith("achievement.")) {
                 statistic = MagicValues.key(Achievement.class, value);
-            } else if(value.startsWith(CRAFT_ITEM_PREFIX)) {
+            } else if (value.startsWith(CRAFT_ITEM_PREFIX)) {
                 statistic = new CraftItemStatistic(Integer.parseInt(value.substring(value.lastIndexOf(".") + 1)));
-            } else if(value.startsWith(BREAK_BLOCK_PREFIX)) {
+            } else if (value.startsWith(BREAK_BLOCK_PREFIX)) {
                 statistic = new BreakBlockStatistic(Integer.parseInt(value.substring(value.lastIndexOf(".") + 1)));
-            } else if(value.startsWith(USE_ITEM_PREFIX)) {
+            } else if (value.startsWith(USE_ITEM_PREFIX)) {
                 statistic = new UseItemStatistic(Integer.parseInt(value.substring(value.lastIndexOf(".") + 1)));
-            } else if(value.startsWith(BREAK_ITEM_PREFIX)) {
+            } else if (value.startsWith(BREAK_ITEM_PREFIX)) {
                 statistic = new BreakItemStatistic(Integer.parseInt(value.substring(value.lastIndexOf(".") + 1)));
             } else {
                 statistic = MagicValues.key(GenericStatistic.class, value);
@@ -65,20 +59,20 @@ public class ServerStatisticsPacket implements Packet {
     @Override
     public void write(NetOutput out) throws IOException {
         out.writeVarInt(this.statistics.size());
-        for(Statistic statistic : this.statistics.keySet()) {
+        for (Statistic statistic : this.statistics.keySet()) {
             String value = "";
-            if(statistic instanceof Achievement) {
-                value = MagicValues.value(String.class, (Achievement) statistic);
-            } else if(statistic instanceof CraftItemStatistic) {
+            if (statistic instanceof Achievement) {
+                value = MagicValues.value(String.class, statistic);
+            } else if (statistic instanceof CraftItemStatistic) {
                 value = CRAFT_ITEM_PREFIX + ((CraftItemStatistic) statistic).getId();
-            } else if(statistic instanceof BreakBlockStatistic) {
+            } else if (statistic instanceof BreakBlockStatistic) {
                 value = BREAK_BLOCK_PREFIX + ((CraftItemStatistic) statistic).getId();
-            } else if(statistic instanceof UseItemStatistic) {
+            } else if (statistic instanceof UseItemStatistic) {
                 value = USE_ITEM_PREFIX + ((CraftItemStatistic) statistic).getId();
-            } else if(statistic instanceof BreakItemStatistic) {
+            } else if (statistic instanceof BreakItemStatistic) {
                 value = BREAK_ITEM_PREFIX + ((CraftItemStatistic) statistic).getId();
-            } else if(statistic instanceof GenericStatistic) {
-                value = MagicValues.value(String.class, (GenericStatistic) statistic);
+            } else if (statistic instanceof GenericStatistic) {
+                value = MagicValues.value(String.class, statistic);
             }
 
             out.writeString(value);

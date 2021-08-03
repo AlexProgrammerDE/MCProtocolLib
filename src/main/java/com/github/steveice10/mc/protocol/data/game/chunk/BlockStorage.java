@@ -15,7 +15,7 @@ public class BlockStorage {
 
     private int bitsPerEntry;
 
-    private List<BlockState> states;
+    private final List<BlockState> states;
     private FlexibleStorage storage;
 
     public BlockStorage() {
@@ -32,18 +32,30 @@ public class BlockStorage {
 
         this.states = new ArrayList<BlockState>();
         int stateCount = in.readVarInt();
-        for(int i = 0; i < stateCount; i++) {
+        for (int i = 0; i < stateCount; i++) {
             this.states.add(NetUtil.readBlockState(in));
         }
 
         this.storage = new FlexibleStorage(this.bitsPerEntry, in.readLongs(in.readVarInt()));
     }
 
+    private static int index(int x, int y, int z) {
+        return y << 8 | z << 4 | x;
+    }
+
+    private static BlockState rawToState(int raw) {
+        return new BlockState(raw >> 4, raw & 0xF);
+    }
+
+    private static int stateToRaw(BlockState state) {
+        return (state.getId() << 4) | (state.getData() & 0xF);
+    }
+
     public void write(NetOutput out) throws IOException {
         out.writeByte(this.bitsPerEntry);
 
         out.writeVarInt(this.states.size());
-        for(BlockState state : this.states) {
+        for (BlockState state : this.states) {
             NetUtil.writeBlockState(out, state);
         }
 
@@ -71,13 +83,13 @@ public class BlockStorage {
 
     public void set(int x, int y, int z, BlockState state) {
         int id = this.bitsPerEntry <= 8 ? this.states.indexOf(state) : stateToRaw(state);
-        if(id == -1) {
+        if (id == -1) {
             this.states.add(state);
-            if(this.states.size() > 1 << this.bitsPerEntry) {
+            if (this.states.size() > 1 << this.bitsPerEntry) {
                 this.bitsPerEntry++;
 
                 List<BlockState> oldStates = this.states;
-                if(this.bitsPerEntry > 8) {
+                if (this.bitsPerEntry > 8) {
                     oldStates = new ArrayList<BlockState>(this.states);
                     this.states.clear();
                     this.bitsPerEntry = 13;
@@ -85,7 +97,7 @@ public class BlockStorage {
 
                 FlexibleStorage oldStorage = this.storage;
                 this.storage = new FlexibleStorage(this.bitsPerEntry, this.storage.getSize());
-                for(int index = 0; index < this.storage.getSize(); index++) {
+                for (int index = 0; index < this.storage.getSize(); index++) {
                     this.storage.set(index, this.bitsPerEntry <= 8 ? oldStorage.get(index) : stateToRaw(oldStates.get(index)));
                 }
             }
@@ -97,25 +109,13 @@ public class BlockStorage {
     }
 
     public boolean isEmpty() {
-        for(int index = 0; index < this.storage.getSize(); index++) {
-            if(this.storage.get(index) != 0) {
+        for (int index = 0; index < this.storage.getSize(); index++) {
+            if (this.storage.get(index) != 0) {
                 return false;
             }
         }
 
         return true;
-    }
-
-    private static int index(int x, int y, int z) {
-        return y << 8 | z << 4 | x;
-    }
-
-    private static BlockState rawToState(int raw) {
-        return new BlockState(raw >> 4, raw & 0xF);
-    }
-
-    private static int stateToRaw(BlockState state) {
-        return (state.getId() << 4) | (state.getData() & 0xF);
     }
 
     @Override

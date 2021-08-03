@@ -6,5 +6,5 @@ public enum EquipmentSlot {
     BOOTS,
     LEGGINGS,
     CHESTPLATE,
-    HELMET;
+    HELMET
 }

@@ -75,11 +75,11 @@ public class ServerEntityEffectPacket implements Packet {
         out.writeVarInt(this.duration);
 
         int flags = 0;
-        if(this.ambient) {
+        if (this.ambient) {
             flags |= 0x1;
         }
 
-        if(this.showParticles) {
+        if (this.showParticles) {
             flags |= 0x2;
         }
 

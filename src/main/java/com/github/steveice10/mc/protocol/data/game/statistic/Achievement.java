@@ -34,6 +34,6 @@ public enum Achievement implements Statistic {
     KILL_WITHER,
     MAKE_FULL_BEACON,
     EXPLORE_ALL_BIOMES,
-    OVERPOWERED;
+    OVERPOWERED
 
 }

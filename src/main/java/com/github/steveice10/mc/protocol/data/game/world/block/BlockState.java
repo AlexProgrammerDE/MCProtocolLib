@@ -1,8 +1,8 @@
 package com.github.steveice10.mc.protocol.data.game.world.block;
 
 public class BlockState {
-    private int id;
-    private int data;
+    private final int id;
+    private final int data;
 
     public BlockState(int id, int data) {
         this.id = id;

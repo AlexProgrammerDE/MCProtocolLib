@@ -19,19 +19,19 @@ public enum ChatColor {
     WHITE,
     RESET;
 
-    @Override
-    public String toString() {
-        return this.name().toLowerCase();
-    }
-
     public static ChatColor byName(String name) {
         name = name.toLowerCase();
-        for(ChatColor color : values()) {
-            if(color.toString().equals(name)) {
+        for (ChatColor color : values()) {
+            if (color.toString().equals(name)) {
                 return color;
             }
         }
 
         return null;
+    }
+
+    @Override
+    public String toString() {
+        return this.name().toLowerCase();
     }
 }

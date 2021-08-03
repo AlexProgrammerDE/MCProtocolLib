@@ -1,7 +1,7 @@
 package com.github.steveice10.mc.protocol.data.game.world.effect;
 
 public class RecordEffectData implements WorldEffectData {
-    private int recordId;
+    private final int recordId;
 
     public RecordEffectData(int recordId) {
         this.recordId = recordId;
