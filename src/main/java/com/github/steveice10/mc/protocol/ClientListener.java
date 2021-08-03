@@ -33,6 +33,10 @@ public class ClientListener extends SessionAdapter {
     private SecretKey key;
     private final String accessToken;
 
+    public String getAccessToken() {
+        return this.accessToken;
+    }
+
     public ClientListener(String accessToken) {
         this.accessToken = accessToken;
     }

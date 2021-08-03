@@ -39,6 +39,7 @@ import com.github.steveice10.packetlib.packet.DefaultPacketHeader;
 import com.github.steveice10.packetlib.packet.PacketHeader;
 import com.github.steveice10.packetlib.packet.PacketProtocol;
 
+import java.net.Proxy;
 import java.security.GeneralSecurityException;
 import java.security.Key;
 import java.util.UUID;
@@ -71,14 +72,21 @@ public class MinecraftProtocol extends PacketProtocol {
 
     public MinecraftProtocol(String username) {
         this(ProtocolMode.LOGIN);
-        this.profile = new GameProfile("", username);
-        this.clientListener = new ClientListener("");
+        this.profile = new GameProfile((UUID) null, username);
+    }
+
+    public MinecraftProtocol(String username, String password) throws RequestException {
+        this(username, password, false);
     }
 
     public MinecraftProtocol(String username, String using, boolean token) throws RequestException {
+        this(username, using, token, Proxy.NO_PROXY);
+    }
+
+    public MinecraftProtocol(String username, String using, boolean token, Proxy authProxy) throws RequestException {
         this(ProtocolMode.LOGIN);
         String clientToken = UUID.randomUUID().toString();
-        AuthenticationService auth = new AuthenticationService(clientToken);
+        AuthenticationService auth = new AuthenticationService(clientToken, authProxy);
         auth.setUsername(username);
         if (token) {
             auth.setAccessToken(using);
@@ -89,6 +97,20 @@ public class MinecraftProtocol extends PacketProtocol {
         auth.login();
         this.profile = auth.getSelectedProfile();
         this.clientListener = new ClientListener(auth.getAccessToken());
+    }
+
+    public MinecraftProtocol(GameProfile profile, String accessToken) {
+        this(ProtocolMode.LOGIN);
+        this.profile = profile;
+        this.clientListener = new ClientListener(accessToken);
+    }
+
+    public GameProfile getProfile() {
+        return this.profile;
+    }
+
+    public String getAccessToken() {
+        return this.clientListener.getAccessToken();
     }
 
     @Override
