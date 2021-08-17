@@ -169,7 +169,9 @@ public class ServerListener extends SessionAdapter {
 
             GameProfile profile = null;
             try {
-                profile = new SessionService(proxy).getProfileByServer(username, new BigInteger(CryptUtil.getServerIdHash(serverId, pair.getPublic(), this.key)).toString(16));
+                SessionService sessionService = new SessionService();
+                sessionService.setProxy(proxy);
+                sessionService.getProfileByServer(username, new BigInteger(CryptUtil.getServerIdHash(serverId, pair.getPublic(), this.key)).toString(16));
             } catch (RequestException e) {
                 this.session.disconnect("Failed to make session service request.", e);
                 return;
