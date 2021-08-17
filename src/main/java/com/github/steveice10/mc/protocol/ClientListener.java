@@ -60,7 +60,8 @@ public class ClientListener extends SessionAdapter {
                     proxy = Proxy.NO_PROXY;
                 }
 
-                SessionService sessionService = new SessionService(proxy);
+                SessionService sessionService = new SessionService();
+                sessionService.setProxy(proxy);
                 GameProfile profile = event.getSession().getFlag(MinecraftConstants.PROFILE_KEY);
                 String serverId = sessionService.getServerId(packet.getServerId(), packet.getPublicKey(), key);
                 String accessToken = event.getSession().getFlag(MinecraftConstants.ACCESS_TOKEN_KEY);

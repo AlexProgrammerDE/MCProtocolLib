@@ -180,7 +180,8 @@ public class ServerListener extends SessionAdapter {
                     proxy = Proxy.NO_PROXY;
                 }
 
-                SessionService sessionService = new SessionService(proxy);
+                SessionService sessionService = new SessionService();
+                sessionService.setProxy(proxy);
                 try {
                     profile = sessionService.getProfileByServer(username, sessionService.getServerId(SERVER_ID, KEY_PAIR.getPublic(), this.key));
                 } catch(RequestException e) {
