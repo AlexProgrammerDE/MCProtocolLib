@@ -19,7 +19,6 @@ import com.github.steveice10.mc.protocol.packet.ingame.server.ServerJoinGamePack
 import com.github.steveice10.mc.protocol.packet.ingame.server.ServerJoinGamePacket.Difficulty;
 import com.github.steveice10.mc.protocol.packet.ingame.server.ServerJoinGamePacket.GameMode;
 import com.github.steveice10.mc.protocol.packet.ingame.server.ServerJoinGamePacket.WorldType;
-import com.github.steveice10.packetlib.Client;
 import com.github.steveice10.packetlib.Server;
 import com.github.steveice10.packetlib.Session;
 import com.github.steveice10.packetlib.event.server.ServerAdapter;
@@ -27,7 +26,8 @@ import com.github.steveice10.packetlib.event.server.SessionAddedEvent;
 import com.github.steveice10.packetlib.event.session.DisconnectedEvent;
 import com.github.steveice10.packetlib.event.session.PacketReceivedEvent;
 import com.github.steveice10.packetlib.event.session.SessionAdapter;
-import com.github.steveice10.packetlib.tcp.TcpSessionFactory;
+import com.github.steveice10.packetlib.tcp.TcpClientSession;
+import com.github.steveice10.packetlib.tcp.TcpServer;
 
 import java.util.Arrays;
 
@@ -42,7 +42,7 @@ public class Test {
 
     public static void main(String[] args) {
         if (SPAWN_SERVER) {
-            Server server = new Server(HOST, PORT, MinecraftProtocol.class, new TcpSessionFactory());
+            Server server = new TcpServer(HOST, PORT, MinecraftProtocol.class);
             server.setGlobalFlag(ProtocolConstants.VERIFY_USERS_KEY, VERIFY_USERS);
             server.setGlobalFlag(ProtocolConstants.SERVER_INFO_BUILDER_KEY, new ServerInfoBuilder() {
                 @Override
@@ -89,8 +89,8 @@ public class Test {
 
     private static void status() {
         MinecraftProtocol protocol = new MinecraftProtocol(ProtocolMode.STATUS);
-        Client client = new Client(HOST, PORT, protocol, new TcpSessionFactory());
-        client.getSession().setFlag(ProtocolConstants.SERVER_INFO_HANDLER_KEY, new ServerInfoHandler() {
+        Session client = new TcpClientSession(HOST, PORT, protocol);
+        client.setFlag(ProtocolConstants.SERVER_INFO_HANDLER_KEY, new ServerInfoHandler() {
             @Override
             public void handle(ServerStatusInfo info) {
                 System.out.println("Version: " + info.getVersionInfo().getVersionName() + ", " + info.getVersionInfo().getProtocolVersion());
@@ -101,15 +101,15 @@ public class Test {
             }
         });
 
-        client.getSession().setFlag(ProtocolConstants.SERVER_PING_TIME_HANDLER_KEY, new ServerPingTimeHandler() {
+        client.setFlag(ProtocolConstants.SERVER_PING_TIME_HANDLER_KEY, new ServerPingTimeHandler() {
             @Override
             public void handle(long pingTime) {
                 System.out.println("Server ping took " + pingTime + "ms");
             }
         });
 
-        client.getSession().connect();
-        while (client.getSession().isConnected()) {
+        client.connect();
+        while (client.isConnected()) {
             try {
                 Thread.sleep(5);
             } catch (InterruptedException e) {
@@ -131,8 +131,8 @@ public class Test {
             protocol = new MinecraftProtocol(USERNAME);
         }
 
-        Client client = new Client(HOST, PORT, protocol, new TcpSessionFactory());
-        client.getSession().addListener(new SessionAdapter() {
+        Session client = new TcpClientSession(HOST, PORT, protocol);
+        client.addListener(new SessionAdapter() {
             @Override
             public void packetReceived(PacketReceivedEvent event) {
                 if (event.getPacket() instanceof ServerJoinGamePacket) {
@@ -149,7 +149,7 @@ public class Test {
             }
         });
 
-        client.getSession().connect();
+        client.connect();
     }
 
 }

@@ -30,7 +30,6 @@ import com.github.steveice10.mc.protocol.packet.status.client.StatusPingPacket;
 import com.github.steveice10.mc.protocol.packet.status.client.StatusQueryPacket;
 import com.github.steveice10.mc.protocol.packet.status.server.StatusPongPacket;
 import com.github.steveice10.mc.protocol.packet.status.server.StatusResponsePacket;
-import com.github.steveice10.packetlib.Client;
 import com.github.steveice10.packetlib.Server;
 import com.github.steveice10.packetlib.Session;
 import com.github.steveice10.packetlib.crypt.AESEncryption;
@@ -86,7 +85,8 @@ public class MinecraftProtocol extends PacketProtocol {
     public MinecraftProtocol(String username, String using, boolean token, Proxy authProxy) throws RequestException {
         this(ProtocolMode.LOGIN);
         String clientToken = UUID.randomUUID().toString();
-        AuthenticationService auth = new AuthenticationService(clientToken, authProxy);
+        AuthenticationService auth = new AuthenticationService(clientToken);
+        auth.setProxy(authProxy);
         auth.setUsername(username);
         if (token) {
             auth.setAccessToken(using);
@@ -129,7 +129,7 @@ public class MinecraftProtocol extends PacketProtocol {
     }
 
     @Override
-    public void newClientSession(Client client, Session session) {
+    public void newClientSession(Session session) {
         if (this.profile != null) {
             session.setFlag(ProtocolConstants.PROFILE_KEY, this.profile);
         }
