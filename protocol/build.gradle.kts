@@ -20,7 +20,7 @@ dependencies {
     api(libs.bundles.fastutil)
 
     // Velocity natives
-    api(libs.velocity.natives)
+    api(libs.velocity.native)
 
     // Netty
     api(libs.bundles.netty)
