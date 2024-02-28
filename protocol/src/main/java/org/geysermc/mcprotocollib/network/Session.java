@@ -183,7 +183,7 @@ public interface Session {
     /**
      * Enables encryption for this session.
      */
-    void enableEncryption(SecretKey keyEncode, SecretKey keyDecode);
+    void enableEncryption(SecretKey key);
 
     /**
      * Gets the connect timeout for this session in seconds.

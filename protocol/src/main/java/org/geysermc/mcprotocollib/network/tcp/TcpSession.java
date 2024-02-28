@@ -199,11 +199,11 @@ public abstract class TcpSession extends SimpleChannelInboundHandler<Packet> imp
     }
 
     @Override
-    public void enableEncryption(SecretKey keyEncode, SecretKey keyDecode) {
+    public void enableEncryption(SecretKey key) {
         if (channel == null) {
             throw new IllegalStateException("Connect the client before initializing encryption!");
         }
-        channel.pipeline().addBefore("sizer", "encryption", new MinecraftCipherCodec(keyEncode, keyDecode));
+        channel.pipeline().addBefore("sizer", "encryption", new MinecraftCipherCodec(key, key));
     }
 
     @Override

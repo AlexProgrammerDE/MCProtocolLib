@@ -42,7 +42,7 @@ public class ClientSessionListener extends SessionAdapter {
     public void connected(ConnectedEvent event) {
         System.out.println("CLIENT Connected");
 
-        event.getSession().enableEncryption(key, key);
+        event.getSession().enableEncryption(key);
         event.getSession().send(new PingPacket("hello"));
     }
 

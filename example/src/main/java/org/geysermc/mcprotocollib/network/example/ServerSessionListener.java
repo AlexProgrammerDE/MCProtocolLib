@@ -35,7 +35,7 @@ public class ServerSessionListener extends SessionAdapter {
     public void connected(ConnectedEvent event) {
         System.out.println("SERVER Connected");
 
-        event.getSession().enableEncryption(key, key);
+        event.getSession().enableEncryption(key);
     }
 
     @Override
